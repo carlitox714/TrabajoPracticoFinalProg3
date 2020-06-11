@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 
-public class Contenedor<K,T>  {
+public class Contenedor<K,T>  
+{
 	
 	private HashMap<K,T> conjuntoDeElementos;
 	
@@ -24,7 +25,7 @@ public class Contenedor<K,T>  {
 	}
 	
 	
-	public void agregar(K id, T objeto) {
+	public void agregar1(K id, T objeto) {
 		conjuntoDeElementos.put(id, objeto);
 	}
 

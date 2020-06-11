@@ -30,7 +30,7 @@ public class Venta
 
 	@Override
 	public String toString() {
-		return "ID=" + id + ", " + nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "]\n";
+		return "ID=" + id + ", " + nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "\n";
 	}
 
 	public int getCantidad() {
