@@ -16,19 +16,28 @@ public class Venta
 	}
 
 
-	public Venta(int id, String nombre, int cantidad, int precio) {
+	public Venta(Producto prod, int cantidad) {
 		super();
-		this.id = id;
-		this.setNombre(nombre);
-		this.precio = precio;
+		this.id = prod.getID();
+		this.nombre = prod.getNombre();
+		this.precio = prod.getPrecio();
 		this.cantidad = cantidad;
 		this.setPrecioTotal(precio * cantidad);
+		
 	}
 
 
 	public int getCantidad() {
 		return cantidad;
 	}
+	
+	public Producto reducirStock(Producto prod)
+	{
+		prod.setStock(prod.getStock() - cantidad);
+		
+		return prod;
+	}
+	
 	
 	public int getId()
 	{
