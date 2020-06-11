@@ -2,6 +2,8 @@ package Productos;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Contenedor<K,T>  {
@@ -39,6 +41,27 @@ public class Contenedor<K,T>  {
 	public int cantElementos() {
 		return conjuntoDeElementos.size();
 	}
+	
+	
+	
+	public String toString() 
+	{	
+		Map<K, T> map = getElementos();
+		String aux = "";
+		for (T value : map.values()) {
+		    aux = aux + value.toString();
+		}
+		return aux;
+	}
+
+	public String toString(Contenedor<K, T> cont) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
 }
 
 

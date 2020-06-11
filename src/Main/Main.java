@@ -1,5 +1,10 @@
 package Main;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 import Productos.RegistroCompra;
 import Productos.Venta;
 

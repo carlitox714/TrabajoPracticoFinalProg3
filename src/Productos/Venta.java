@@ -33,8 +33,7 @@ public class Venta
 	
 	public Producto reducirStock(Producto prod)
 	{
-		prod.setStock(prod.getStock() - cantidad);
-		
+		prod.reducirStock(cantidad);
 		return prod;
 	}
 	

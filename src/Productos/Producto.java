@@ -19,13 +19,28 @@ public class Producto implements Serializable
 	private int stock; 
 	
 	
+	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
+			boolean isCeliaco, boolean azucar) 
+	{
+		super();
+		ID = iD;
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.precio = precio;
+		this.calorias = calorias;
+		this.isVegano = isVegano;
+		this.isCeliaco = isCeliaco;
+		this.azucar = azucar;
+		this.stock = stock;
+		
+	}
 	
 	public int getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		ID = id;
 	}
 
 	public String getNombre() {
@@ -87,23 +102,17 @@ public class Producto implements Serializable
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+	
+	public void reducirStock(int cant) {
+		int newStock = this.stock - cant;
+		if(newStock >= 0)
+		{
+		this.stock = newStock;
+		}		
+	}
 
 	//private Date vencimiento; 
-	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
-			boolean isCeliaco, boolean azucar) 
-	{
-		super();
-		ID = iD;
-		this.nombre = nombre;
-		this.categoria = categoria;
-		this.precio = precio;
-		this.calorias = calorias;
-		this.isVegano = isVegano;
-		this.isCeliaco = isCeliaco;
-		this.azucar = azucar;
-		this.stock = stock;
-		
-	}
+	
 	
 	public int getStock()
 	{

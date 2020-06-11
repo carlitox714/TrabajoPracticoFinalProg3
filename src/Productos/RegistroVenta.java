@@ -1,10 +1,26 @@
 package Productos;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import sun.security.jca.GetInstance;
 
 public class RegistroVenta<K,T> extends Contenedor<Integer,Venta>
 {
-	Contenedor<Integer,Venta> contenedor = new Contenedor<Integer,Venta>();	
 	
+	Calendar date;
+	Contenedor<Integer,Venta> contenedor;	
+	
+	
+	public RegistroVenta() {
+		this.contenedor = new Contenedor<Integer,Venta>();
+		this.date = Calendar.getInstance();
+	}
+
+	public RegistroVenta(Contenedor<Integer, Venta> contenedor) {
+		this.contenedor = contenedor;
+	}
+
 	public void agregar(int id, Venta venta)
 	{
 		Integer integer = new Integer(id);
@@ -16,14 +32,18 @@ public class RegistroVenta<K,T> extends Contenedor<Integer,Venta>
 		return contenedor.remover(id);
 	}
 	
-	public RegistroVenta<K, T> getCarrito()
+	public RegistroVenta<K,T> getCarrito()
 	{
-		return (RegistroVenta<K, T>)contenedor;
+		return (RegistroVenta<K,T>)contenedor;
 	}
 	
-		
-		
-
+	@Override
+	public String toString() 
+	{
+		return contenedor.toString(); 
+	}
+	
+	
 	public Contenedor<Integer,Venta> getCompra()
 	{
 		return contenedor;
