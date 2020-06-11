@@ -20,7 +20,7 @@ public class Producto implements Serializable
 	
 	
 	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
-			boolean isCeliaco, boolean azucar) 
+			boolean isCeliaco, boolean azucar, int stock) 
 	{
 		super();
 		ID = iD;
@@ -35,6 +35,8 @@ public class Producto implements Serializable
 		
 	}
 	
+	
+
 	public int getID() {
 		return ID;
 	}
@@ -134,7 +136,12 @@ public class Producto implements Serializable
 		this.stock = this.stock - stock;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Producto [ID=" + ID + ", nombre=" + nombre + ", categoria=" + categoria + ", precio=" + precio
+				+ ", calorias=" + calorias + ", isVegano=" + isVegano + ", isCeliaco=" + isCeliaco + ", azucar="
+				+ azucar + ", stock=" + stock + "]";
+	}
 	
 	
 

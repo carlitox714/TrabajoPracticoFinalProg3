@@ -11,14 +11,15 @@ public class Venta
 	
 	
 	public Venta() {
-		super();
+		this.cantidad = 0;
+		this.nombre = "";
+		this.precio = 0 ;
+		this.precioTotal = 0;
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Venta(Producto prod, int cantidad) {
-		super();
-		this.id = prod.getID();
+		this.id =prod.getID();
 		this.nombre = prod.getNombre();
 		this.precio = prod.getPrecio();
 		this.cantidad = cantidad;
@@ -26,6 +27,11 @@ public class Venta
 		
 	}
 
+
+	@Override
+	public String toString() {
+		return "ID=" + id + ", " + nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "]\n";
+	}
 
 	public int getCantidad() {
 		return cantidad;
@@ -110,6 +116,8 @@ public class Venta
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 	
 	
  

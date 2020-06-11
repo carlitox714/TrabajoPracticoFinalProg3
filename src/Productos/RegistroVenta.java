@@ -19,6 +19,8 @@ public class RegistroVenta<K,T> extends Contenedor<Integer,Venta>
 
 	public RegistroVenta(Contenedor<Integer, Venta> contenedor) {
 		this.contenedor = contenedor;
+		this.date = Calendar.getInstance();
+
 	}
 
 	public void agregar(int id, Venta venta)
@@ -40,7 +42,7 @@ public class RegistroVenta<K,T> extends Contenedor<Integer,Venta>
 	@Override
 	public String toString() 
 	{
-		return contenedor.toString(); 
+		return (contenedor.toString() + this.date.getTime() + "\n");
 	}
 	
 	
