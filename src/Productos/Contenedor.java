@@ -22,8 +22,8 @@ public class Contenedor<K,T>  {
 	}
 	
 	
-	public void agregar(K clave, T objeto) {
-		conjuntoDeElementos.put(clave, objeto);
+	public void agregar(K id, T objeto) {
+		conjuntoDeElementos.put(id, objeto);
 	}
 
 	

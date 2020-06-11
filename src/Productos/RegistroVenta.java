@@ -1,22 +1,20 @@
 package Productos;
 
 
-public class RegistroVenta<Integer,Venta> extends Contenedor<Integer,Venta>
+public class RegistroVenta<K,T> extends Contenedor<Integer,Venta>
 {
-	Contenedor<Integer,Venta> contenedor = new Contenedor<Integer,Venta>();
-	private Venta venta;
+	Contenedor<Integer,Venta> contenedor = new Contenedor<Integer,Venta>();	
 	
-	
-	
-	public void agregar(Venta s)
+	public void agregar(int id, Venta venta)
 	{
-		
-		contenedor.agregar();
+		Integer integer = new Integer(id);
+
+		contenedor.agregar(integer,venta);
 	}
 	
 	public Venta removerVenta(int id)
 	{
-		venta.
+		return contenedor.remover(id);
 	}
 	
 		
