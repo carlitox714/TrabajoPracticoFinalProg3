@@ -10,21 +10,26 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JButton;
 
-public class registrarVenta extends JFrame {
-
+public class registrarVenta extends JFrame
+{
 	private JPanel contentPane;
 	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
+			public void run()
+			{
+				try
+				{
 					registrarVenta frame = new registrarVenta();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
@@ -34,7 +39,8 @@ public class registrarVenta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public registrarVenta() {
+	public registrarVenta()
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
