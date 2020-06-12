@@ -1,7 +1,9 @@
-package Productos;
+package Ventas;
 
 import java.util.Iterator;
 import java.util.Map;
+
+import Productos.Contenedor;
 
 public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
 {

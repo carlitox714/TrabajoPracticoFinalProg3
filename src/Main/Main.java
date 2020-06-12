@@ -6,12 +6,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import Productos.Venta;
-import Productos.listadoVentas;
+
 import Productos.Producto;
-import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
+import Ventas.listadoVentas;
 
 
 public class Main {

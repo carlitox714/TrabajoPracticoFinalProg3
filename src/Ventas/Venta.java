@@ -1,4 +1,6 @@
-package Productos;
+package Ventas;
+
+import Productos.Producto;
 
 public class Venta 
 {
