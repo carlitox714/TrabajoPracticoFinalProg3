@@ -55,7 +55,11 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		String aux = "";
 		for (Map.Entry<Integer, RegistroVenta<Venta>> entry : map.entrySet()) 
 		{
+<<<<<<< HEAD
 		    aux = aux + "ID REGISTRO: " +  entry.getKey() + "\n" +  entry.getValue().toString() + "\n" ;
+=======
+		    aux = aux + entry.getKey() +  entry.getValue().toString() + "\n" ;
+>>>>>>> master
 		}
 		
 		
@@ -63,4 +67,8 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	}
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
