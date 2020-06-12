@@ -69,5 +69,19 @@ public class ContenedorArrayList<T> implements Iterator<T>
 	public int cantElementos() {
 		return conjuntoDeElementos.size();
 	}
+
+
+	@Override
+	public boolean hasNext() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public T next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
