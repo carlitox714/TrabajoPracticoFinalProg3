@@ -19,6 +19,13 @@ public class Producto implements Serializable
 	private int stock; 
 	
 	
+	
+	
+	public Producto() 
+	{
+		super(); 
+	}
+
 	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
 			boolean isCeliaco, boolean azucar, int stock) 
 	{
@@ -32,10 +39,44 @@ public class Producto implements Serializable
 		this.isCeliaco = isCeliaco;
 		this.azucar = azucar;
 		this.stock = stock;
-		
 	}
 	
 	
+	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + (azucar ? 1231 : 1237);
+		result = prime * result + calorias;
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + (isCeliaco ? 1231 : 1237);
+		result = prime * result + (isVegano ? 1231 : 1237);
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + precio;
+		result = prime * result + stock;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if(obj instanceof Producto)
+		{
+				
+			Producto prod = (Producto) obj;
+			if(this.nombre == prod.nombre)
+				return true;
+			else
+				return false;
+			
+		}
+		else return false;
+		
+	}
 
 	public int getID() {
 		return ID;
@@ -101,19 +142,27 @@ public class Producto implements Serializable
 		this.azucar = azucar;
 	}
 
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
 	
-	public void reducirStock(int cant) {
+	public boolean reducirStock(int cant)
+	{
 		int newStock = this.stock - cant;
 		if(newStock >= 0)
 		{
-		this.stock = newStock;
-		}		
+			this.stock = newStock;
+			return true;
+			}
+			else 
+			{
+				return false;
+			}
+	}
+	
+	public void aumentarStock(int cant)
+	{
+		this.stock = this.stock + cant;
 	}
 
-	//private Date vencimiento; 
+
 	
 	
 	public int getStock()
@@ -125,22 +174,13 @@ public class Producto implements Serializable
 	{
 		this.stock = stock;
 	}
-	
-	public void addStock(int id,int stock)
-	{
-		this.stock = this.stock + stock;
-	}
-	
-	public void removeStock(int id,int stock)
-	{
-		this.stock = this.stock - stock;
-	}
+
 	
 	@Override
-	public String toString() {
-		return "Producto [ID=" + ID + ", nombre=" + nombre + ", categoria=" + categoria + ", precio=" + precio
-				+ ", calorias=" + calorias + ", isVegano=" + isVegano + ", isCeliaco=" + isCeliaco + ", azucar="
-				+ azucar + ", stock=" + stock + "]";
+	public String toString()
+	{
+		return nombre  + ", precio=" + precio
+				+ ", calorias=" + calorias + ", stock=" + stock + "]\n" ;
 	}
 	
 	

@@ -12,6 +12,7 @@ import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Productos.ListadoProducto;
 
 
 public class Main {
@@ -21,21 +22,46 @@ public class Main {
 	
 		Producto prod1 = new Producto(1, "manzana", null, 15, 0, false, false, false,40);
 		Producto prod2 = new Producto(2, "banana", null, 45, 0, false, false, false,22);
-		Producto prod3 = new Producto(2, "frutilla", null, 11, 0, false, false, false,60);
+		Producto prod3 = new Producto(2, "manzana", null, 11, 0, false, false, false,60);
 		Producto prod4 = new Producto(3, "leche1lt", null, 80, 0, false, false, false,40);
 		Producto prod5 = new Producto(4, "barrita de cereal", null, 35, 0, false, false, false,40);
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,40);
+		
+		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
+		
+		
+		try {
+		listProd.agregar(prod1);
+		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		try {
+		listProd.agregar(prod2);
+		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
 		
 		boolean agregarCarrito = false;
 	
 		RegistroVenta<Venta> reg1 = new RegistroVenta<Venta>();
 		RegistroVenta<Venta> reg2 = new RegistroVenta<Venta>();
 		
-			
+		
+		System.out.println(listProd.toString());
+		
+		/*	
 		Venta aux;
 		aux = new Venta(prod1,9);
 		reg1.agregar(aux);
-		prod2.reducirStock(5);
+		prod2.reducirStock(4);
 		
 		
 		aux =new Venta(prod1,5);
@@ -77,11 +103,11 @@ public class Main {
 		lista.agregar(reg2);
 		lista.agregar(reg2);
 				
-		
+		*/
 				
 		
 		
-		System.out.println(lista.toString());
+		//System.out.println(lista.toString());
 				
 				
 			

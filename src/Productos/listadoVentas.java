@@ -3,27 +3,29 @@ package Productos;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
 {
 	public static int idCount=0;
 	private int id;
-	Contenedor<Integer, RegistroVenta<Venta>> cont;
+	private Contenedor<Integer, RegistroVenta<Venta>> cont;
 	
 	public listadoVentas() {
 		super();
 		this.cont = new Contenedor<Integer, RegistroVenta<Venta>>();
 		this.id=0;
-
 	}
-
 	 
 	public listadoVentas(int id, Contenedor<K, T> cont) {
 		super();
 		this.id = id;
-		
 	}
 	
-	
+	public listadoVentas<Integer, Venta> getListado()
+	{
+		return (listadoVentas<Integer, Venta>) cont;
+	}
 	public int getId()
 	{
 		return this.id;
@@ -31,8 +33,7 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 
 
 	public void agregar(RegistroVenta<Venta> venta)
-	{
-		
+	{	
 		id = idCount;
 		cont.agregar(id,venta);
 		idCount++;
@@ -43,24 +44,18 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	{
 		
 		return cont.remover(id);
-		
 	}
 	
 	
 	public String toString() 
 	{
-	
 		Map<Integer, RegistroVenta<Venta>> map = cont.getElementos();
 		Iterator<Map.Entry<Integer, RegistroVenta<Venta>>> entries = map.entrySet().iterator();
 		String aux = "";
 		for (Map.Entry<Integer, RegistroVenta<Venta>> entry : map.entrySet()) 
 		{
-
 		    aux = aux + "ID REGISTRO: " +  entry.getKey() + "\n" +  entry.getValue().toString() + "\n" ;
-
 		}
-		
-		
 		return  aux;
 	}
 	

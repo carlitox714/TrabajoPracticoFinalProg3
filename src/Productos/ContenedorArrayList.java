@@ -24,16 +24,14 @@ public class ContenedorArrayList<T> implements Iterator<T>
 	}
 
 
-	/**
-	 * @return en forma de arrayList los elementos del contenedor
-	 */
+	
 	public ArrayList<T> getElementos()
 	{
 		return conjuntoDeElementos;
 	}
 	
 	
-	public void agregar(T obj) 
+	public void agregar(T obj) throws Exception 
 	{
 		conjuntoDeElementos.add(obj);
 	}

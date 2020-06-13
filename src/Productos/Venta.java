@@ -1,5 +1,7 @@
 package Productos;
 
+import java.io.IOException;
+
 public class Venta 
 {
 	private int id;
@@ -18,13 +20,21 @@ public class Venta
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venta(Producto prod, int cantidad) {
+	public Venta(Producto prod, int cantidad) throws IOException 
+	{
+		
+		if(! prod.reducirStock(cantidad))
+		{
+			throw new IOException("No hay suficiente stock, intente nuevamente");
+		}
+		
 		this.id =prod.getID();
 		this.nombre = prod.getNombre();
 		this.precio = prod.getPrecio();
 		this.cantidad = cantidad;
 		this.setPrecioTotal(precio * cantidad);
 		
+	
 	}
 
 
@@ -37,11 +47,7 @@ public class Venta
 		return cantidad;
 	}
 	
-	public Producto reducirStock(Producto prod)
-	{
-		prod.reducirStock(cantidad);
-		return prod;
-	}
+	
 	
 	
 	public int getId()

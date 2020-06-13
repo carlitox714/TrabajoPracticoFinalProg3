@@ -1,6 +1,5 @@
 package Productos;
 
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,7 +8,6 @@ import java.util.Map;
 public class Contenedor<K,T>  {
 	
 	private HashMap<K,T> conjuntoDeElementos;
-	
 	
 	public Contenedor() 
 	{
@@ -25,19 +23,16 @@ public class Contenedor<K,T>  {
 		return conjuntoDeElementos;
 	}
 
-
 	public void agregar(K id, T objeto) 
 	{
 		conjuntoDeElementos.put(id, objeto);
 	}
-
 	
 	public T remover(K id) 
 	{	
 		return conjuntoDeElementos.remove(id);
 	}
 
-	
 	/**
 	 * 
 	 * @return la cantidad de elementos en el contenedor
