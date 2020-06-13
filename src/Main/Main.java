@@ -12,6 +12,7 @@ import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Vistas.AgregarProducto;
 
 
 public class Main {
@@ -27,6 +28,9 @@ public class Main {
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,40);
 		
 		boolean agregarCarrito = false;
+		
+		
+		
 	
 		RegistroVenta<Venta> reg1 = new RegistroVenta<Venta>();
 		RegistroVenta<Venta> reg2 = new RegistroVenta<Venta>();
@@ -70,12 +74,17 @@ public class Main {
 		prod3.reducirStock(9);
 		
 		
+		
 		listadoVentas<Integer,RegistroVenta<Venta>> lista = new listadoVentas<Integer,RegistroVenta<Venta>>();
 	
 		lista.agregar(reg1);
 		lista.agregar(reg2);
 		lista.agregar(reg2);
 		lista.agregar(reg2);
+		
+		
+
+		AgregarProducto Menu = new AgregarProducto(lista);
 				
 		
 				

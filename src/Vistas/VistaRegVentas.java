@@ -30,14 +30,21 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
+
+import Productos.Producto;
+import Productos.RegistroVenta;
+import Productos.Venta;
+import Productos.listadoVentas;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
-public class RegistroVenta extends JFrame
+public class VistaRegVentas extends JFrame
 {
 	private JPanel contentPane;
 	private JTable table;
 	private JTable tablaVentas;
+	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 
 	/**
 	 * Launch the application.
@@ -50,7 +57,7 @@ public class RegistroVenta extends JFrame
 			{
 				try
 				{
-					RegistroVenta frame = new RegistroVenta();
+					VistaRegVentas frame = new VistaRegVentas(listVentas);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -63,8 +70,10 @@ public class RegistroVenta extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public RegistroVenta()
+	public VistaRegVentas(listadoVentas<Integer,RegistroVenta<Venta>> lista)
 	{
+		
+		listVentas = lista;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Venta");
 		setResizable(false);
@@ -178,6 +187,7 @@ public class RegistroVenta extends JFrame
 		contentPane.add(etiquetaNuevaVenta);
 		
 		JComboBox comboBox_producto = new JComboBox();
+		comboBox_producto.setEditable(true);
 		comboBox_producto.setBackground(Color.LIGHT_GRAY);
 		comboBox_producto.setBounds(153, 67, 569, 41);
 		contentPane.add(comboBox_producto);
@@ -274,6 +284,12 @@ public class RegistroVenta extends JFrame
 		contentPane.add(textPane_precio);
 		
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
+		btnAniadirALista.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
 		btnAniadirALista.setForeground(new Color(70, 130, 180));
 		btnAniadirALista.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnAniadirALista.setBackground(Color.LIGHT_GRAY);

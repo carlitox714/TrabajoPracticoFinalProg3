@@ -30,6 +30,11 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
+
+import Productos.RegistroVenta;
+import Productos.Venta;
+import Productos.listadoVentas;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
@@ -37,7 +42,7 @@ public class AgregarProducto extends JFrame
 {
 	private JPanel contentPane;
 	private JTable table;
-
+	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	/**
 	 * Launch the application.
 	 */
@@ -49,7 +54,7 @@ public class AgregarProducto extends JFrame
 			{
 				try
 				{
-					AgregarProducto frame = new AgregarProducto();
+					AgregarProducto frame = new AgregarProducto(listVentas);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -62,8 +67,10 @@ public class AgregarProducto extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public AgregarProducto()
+	public AgregarProducto(listadoVentas<Integer,RegistroVenta<Venta>> lista)
 	{
+		this.listVentas = lista; 
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Venta");
 		setResizable(false);

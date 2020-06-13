@@ -113,7 +113,7 @@ public class MenuPrincipal extends JFrame
 			public void mouseClicked(MouseEvent arg0) {
 				try
 				{
-					RegistroVenta frame = new RegistroVenta();
+					VistaRegVentas frame = new VistaRegVentas();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
