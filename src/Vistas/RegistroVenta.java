@@ -12,6 +12,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -27,6 +30,8 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 public class RegistroVenta extends JFrame
 {
@@ -66,6 +71,66 @@ public class RegistroVenta extends JFrame
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 900);
+		/*
+		 * Barra de Opciones
+		 */
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu menuBarraCaja = new JMenu("Caja");
+		menuBarraCaja.setForeground(Color.BLACK);
+		menuBarraCaja.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBar.add(menuBarraCaja);
+		
+		JMenuItem btnBarraRegistrarVenta = new JMenuItem("Registrar Venta");
+		btnBarraRegistrarVenta.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraCaja.add(btnBarraRegistrarVenta);
+		
+		JMenu menuBarraProductos = new JMenu("Productos");
+		menuBarraProductos.setForeground(Color.BLACK);
+		menuBarraProductos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBar.add(menuBarraProductos);
+		
+		JMenuItem btnBarraAgregarProducto = new JMenuItem("Agregar Producto");
+		btnBarraAgregarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraProductos.add(btnBarraAgregarProducto);
+		
+		JMenuItem btnBarraEditarProducto = new JMenuItem("Editar Producto");
+		btnBarraEditarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraProductos.add(btnBarraEditarProducto);
+		
+		JMenuItem btnBarraRegistrarCompra = new JMenuItem("Registrar Compra");
+		btnBarraRegistrarCompra.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraProductos.add(btnBarraRegistrarCompra);
+		
+		JMenu menuBarraListados = new JMenu("Productos");
+		menuBarraListados.setForeground(Color.BLACK);
+		menuBarraListados.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBar.add(menuBarraListados);
+		
+		JMenuItem btnBarraRegistroVentas = new JMenuItem("Registro de Ventas");
+		btnBarraRegistroVentas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraListados.add(btnBarraRegistroVentas);
+		
+		JMenuItem btnBarraProductosID = new JMenuItem("Productos por ID");
+		btnBarraProductosID.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraListados.add(btnBarraProductosID);
+		
+		JMenuItem btnBarraProductosStock = new JMenuItem("Productos por Stock");
+		btnBarraProductosStock.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraListados.add(btnBarraProductosStock);
+		
+		JMenu menuBarraAyuda = new JMenu("Ayuda");
+		menuBarraAyuda.setForeground(Color.BLACK);
+		menuBarraAyuda.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBar.add(menuBarraAyuda);
+		
+		JMenuItem btnBarraManual = new JMenuItem("Manual de Usuario");
+		btnBarraManual.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
+		menuBarraAyuda.add(btnBarraManual);
+		/*
+		 * Contenido en Ventana				
+		 */
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,13 +140,13 @@ public class RegistroVenta extends JFrame
 		JLabel lblNewLabel_1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
 		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		lblNewLabel_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1.setBounds(12, 830, 384, 22);
+		lblNewLabel_1.setBounds(12, 804, 384, 22);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("\u00A9 2020 - Los Hermosos");
 		lblNewLabel_1_1.setForeground(SystemColor.textInactiveText);
 		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(610, 830, 172, 22);
+		lblNewLabel_1_1.setBounds(595, 804, 172, 22);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btnRegistrarVenta = new JButton("Cancelar");
@@ -96,7 +161,7 @@ public class RegistroVenta extends JFrame
 		});
 		btnRegistrarVenta.setForeground(new Color(153, 0, 0));
 		btnRegistrarVenta.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarVenta.setBounds(571, 776, 211, 41);
+		btnRegistrarVenta.setBounds(556, 750, 211, 41);
 		contentPane.add(btnRegistrarVenta);
 		
 		table = new JTable();
@@ -112,92 +177,108 @@ public class RegistroVenta extends JFrame
 		lblNewLabel_2.setBounds(291, 13, 211, 41);
 		contentPane.add(lblNewLabel_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.LIGHT_GRAY);
-		comboBox.setBounds(153, 67, 569, 41);
-		contentPane.add(comboBox);
+		JComboBox comboBox_producto = new JComboBox();
+		comboBox_producto.setBackground(Color.LIGHT_GRAY);
+		comboBox_producto.setBounds(153, 67, 569, 41);
+		contentPane.add(comboBox_producto);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Producto:");
-		lblNewLabel_2_1.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_2_1.setBackground(Color.GRAY);
-		lblNewLabel_2_1.setBounds(69, 74, 72, 22);
-		contentPane.add(lblNewLabel_2_1);
+		JLabel etiqueta_producto = new JLabel("Producto:");
+		etiqueta_producto.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_producto.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_producto.setForeground(Color.DARK_GRAY);
+		etiqueta_producto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_producto.setBackground(Color.GRAY);
+		etiqueta_producto.setBounds(69, 74, 72, 22);
+		contentPane.add(etiqueta_producto);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("ID:");
-		lblNewLabel_2_1_1.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_2_1_1.setBackground(Color.GRAY);
-		lblNewLabel_2_1_1.setBounds(121, 128, 20, 22);
-		contentPane.add(lblNewLabel_2_1_1);
+		JLabel etiqueta_id = new JLabel("ID:");
+		etiqueta_id.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_id.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_id.setForeground(Color.DARK_GRAY);
+		etiqueta_id.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_id.setBackground(Color.GRAY);
+		etiqueta_id.setBounds(121, 128, 20, 22);
+		contentPane.add(etiqueta_id);
 		
-		JLabel lblNewLabel_2_1_2 = new JLabel("Stock:");
-		lblNewLabel_2_1_2.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2_1_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_2_1_2.setBackground(Color.GRAY);
-		lblNewLabel_2_1_2.setBounds(305, 128, 45, 22);
-		contentPane.add(lblNewLabel_2_1_2);
+		JLabel etiqueta_stock = new JLabel("Stock:");
+		etiqueta_stock.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_stock.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_stock.setForeground(Color.DARK_GRAY);
+		etiqueta_stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_stock.setBackground(Color.GRAY);
+		etiqueta_stock.setBounds(305, 128, 45, 22);
+		contentPane.add(etiqueta_stock);
 		
-		JLabel lblNewLabel_2_1_2_1 = new JLabel("Precio:");
-		lblNewLabel_2_1_2_1.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2_1_2_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_2_1_2_1.setBackground(Color.GRAY);
-		lblNewLabel_2_1_2_1.setBounds(514, 128, 50, 22);
-		contentPane.add(lblNewLabel_2_1_2_1);
+		JLabel etiqueta_precio = new JLabel("Precio:");
+		etiqueta_precio.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_precio.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_precio.setForeground(Color.DARK_GRAY);
+		etiqueta_precio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_precio.setBackground(Color.GRAY);
+		etiqueta_precio.setBounds(514, 128, 50, 22);
+		contentPane.add(etiqueta_precio);
 		
-		JLabel lblNewLabel_2_1_2_1_1 = new JLabel("Cantidad:");
-		lblNewLabel_2_1_2_1_1.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_2_1_1.setForeground(Color.DARK_GRAY);
-		lblNewLabel_2_1_2_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_2_1_2_1_1.setBackground(Color.GRAY);
-		lblNewLabel_2_1_2_1_1.setBounds(249, 169, 69, 22);
-		contentPane.add(lblNewLabel_2_1_2_1_1);
+		JLabel etiqueta_cantidad = new JLabel("Cantidad:");
+		etiqueta_cantidad.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_cantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_cantidad.setForeground(Color.DARK_GRAY);
+		etiqueta_cantidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_cantidad.setBackground(Color.GRAY);
+		etiqueta_cantidad.setBounds(302, 177, 69, 22);
+		contentPane.add(etiqueta_cantidad);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 100, 1));
-		spinner.setBounds(330, 171, 172, 22);
-		contentPane.add(spinner);
+		JSpinner jSpin_ = new JSpinner();
+		jSpin_.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpin_.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+		        int movimiento = e.getWheelRotation();
+		        if (movimiento > 0 && jSpin_.getPreviousValue() != null)// Rueda hacia abajo
+		        {
+		            jSpin_.setValue(jSpin_.getPreviousValue());
+		        }
+		        else if (movimiento < 0 && jSpin_.getNextValue() != null)// Rueda hacia arriba
+		        {
+		        	jSpin_.setValue(jSpin_.getNextValue());
+		        }
+			}
+		});
+		jSpin_.setModel(new SpinnerNumberModel(1, 1, 100, 1));
+		jSpin_.setBounds(383, 171, 119, 39);
+		contentPane.add(jSpin_);
 		
-		JButton btnRegistrarVenta_1 = new JButton("Registrar Venta");
-		btnRegistrarVenta_1.setForeground(Color.BLACK);
-		btnRegistrarVenta_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistrarVenta_1.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarVenta_1.setBounds(348, 776, 211, 41);
-		contentPane.add(btnRegistrarVenta_1);
+		JButton btnConfirmarVenta = new JButton("Confirmar Venta");
+		btnConfirmarVenta.setForeground(new Color(0, 128, 0));
+		btnConfirmarVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnConfirmarVenta.setBackground(Color.LIGHT_GRAY);
+		btnConfirmarVenta.setBounds(333, 750, 211, 41);
+		contentPane.add(btnConfirmarVenta);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane.setBackground(Color.LIGHT_GRAY);
-		textPane.setBounds(153, 128, 140, 28);
-		contentPane.add(textPane);
+		JTextPane textPane_id = new JTextPane();
+		textPane_id.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPane_id.setBackground(Color.LIGHT_GRAY);
+		textPane_id.setBounds(153, 128, 140, 28);
+		contentPane.add(textPane_id);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane_1.setBackground(Color.LIGHT_GRAY);
-		textPane_1.setBounds(362, 128, 140, 28);
-		contentPane.add(textPane_1);
+		JTextPane textPane_stock = new JTextPane();
+		textPane_stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPane_stock.setBackground(Color.LIGHT_GRAY);
+		textPane_stock.setBounds(362, 128, 140, 28);
+		contentPane.add(textPane_stock);
 		
-		JTextPane textPane_2 = new JTextPane();
-		textPane_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane_2.setBackground(Color.LIGHT_GRAY);
-		textPane_2.setBounds(571, 128, 140, 28);
-		contentPane.add(textPane_2);
+		JTextPane textPane_precio = new JTextPane();
+		textPane_precio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPane_precio.setBackground(Color.LIGHT_GRAY);
+		textPane_precio.setBounds(571, 128, 140, 28);
+		contentPane.add(textPane_precio);
 		
-		JButton btnRegistrarVenta_1_1 = new JButton("A\u00F1adir a la Lista");
-		btnRegistrarVenta_1_1.setForeground(Color.BLACK);
-		btnRegistrarVenta_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistrarVenta_1_1.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarVenta_1_1.setBounds(511, 169, 211, 41);
-		contentPane.add(btnRegistrarVenta_1_1);
+		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
+		btnAniadirALista.setForeground(new Color(70, 130, 180));
+		btnAniadirALista.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnAniadirALista.setBackground(Color.LIGHT_GRAY);
+		btnAniadirALista.setBounds(511, 169, 211, 41);
+		contentPane.add(btnAniadirALista);
 		
 		JLabel lblNewLabel_2_2 = new JLabel("Lista de Venta");
 		lblNewLabel_2_2.setVerticalAlignment(SwingConstants.CENTER);
@@ -209,7 +290,7 @@ public class RegistroVenta extends JFrame
 		contentPane.add(lblNewLabel_2_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(79, 275, 643, 350);
+		scrollPane.setBounds(79, 275, 643, 431);
 		contentPane.add(scrollPane);
 		
 		tablaVentas = new JTable();

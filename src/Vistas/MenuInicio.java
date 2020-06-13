@@ -82,11 +82,11 @@ public class MenuInicio extends JFrame
 		});
 		btnNewButton.setForeground(SystemColor.activeCaptionText);
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		btnNewButton.setBounds(291, 361, 211, 41);
+		btnNewButton.setBounds(291, 424, 211, 41);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(60, 80, 662, 196);
+		lblNewLabel.setBounds(66, 64, 662, 196);
 		contentPane.add(lblNewLabel);
 		lblNewLabel.setIcon(new ImageIcon(MenuInicio.class.getResource("/Imagenes/AureliaLogoCompleto.png")));
 		

@@ -20,6 +20,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
 
 public class MenuPrincipal extends JFrame
 {
@@ -63,7 +66,7 @@ public class MenuPrincipal extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Registros de Venta\r\n\r\n");
+		JButton btnNewButton = new JButton("Registro de Ventas\n\r\n");
 		btnNewButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnNewButton.addMouseListener(new MouseAdapter()
 		{
@@ -129,7 +132,7 @@ public class MenuPrincipal extends JFrame
 		lblNewLabel.setVerticalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel.setBounds(12, 155, 211, 41);
+		lblNewLabel.setBounds(12, 209, 211, 41);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Editar Producto");
@@ -182,7 +185,7 @@ public class MenuPrincipal extends JFrame
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Imagenes/AureliaLogoDibujo.jpg")));
-		lblNewLabel_2.setBounds(12, 13, 100, 100);
+		lblNewLabel_2.setBounds(66, 42, 100, 100);
 		contentPane.add(lblNewLabel_2);
 		
 		JButton btnCerrar = new JButton("Cerrar");
@@ -197,7 +200,7 @@ public class MenuPrincipal extends JFrame
 			}
 		});
 		btnCerrar.setBackground(Color.LIGHT_GRAY);
-		btnCerrar.setBounds(571, 476, 211, 41);
+		btnCerrar.setBounds(571, 416, 211, 41);
 		contentPane.add(btnCerrar);
 		
 		JLabel lblMenPrincipal = new JLabel("Men\u00FA Principal");
