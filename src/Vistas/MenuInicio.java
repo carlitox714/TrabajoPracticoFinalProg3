@@ -19,10 +19,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import java.awt.Window.Type;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MenuInicio extends JFrame
 {
-	private JPanel contentPane;
+	private JPanel paneLogin;
+	private JPasswordField campoContraseña;
 
 	/**
 	 * Launch the application.
@@ -46,26 +52,27 @@ public class MenuInicio extends JFrame
 	}
 
 	/**
-	 * Create the frame.
+	 * Creacion de la ventana Menú de Inicio.
 	 */
 	public MenuInicio()
 	{
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/AureliaTituloRecortado.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Gesti\u00F3n de Stock");
 		setResizable(false);
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
-		contentPane = new JPanel();
-		contentPane.setForeground(new Color(192, 192, 192));
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Iniciar");
-		btnNewButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnNewButton.addMouseListener(new MouseAdapter()
+		paneLogin = new JPanel();
+		paneLogin.setForeground(new Color(192, 192, 192));
+		paneLogin.setBackground(Color.WHITE);
+		paneLogin.setBorder(UIManager.getBorder("PasswordField.border"));
+		setContentPane(paneLogin);
+		paneLogin.setLayout(null);
+		
+		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnIniciar.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
@@ -74,33 +81,34 @@ public class MenuInicio extends JFrame
 				{
 					MenuPrincipal frame = new MenuPrincipal();
 					frame.setVisible(true);
+					dispose();
 				} catch (Exception e)
 				{
 					e.printStackTrace();
 				}
 			}
 		});
-		btnNewButton.setForeground(SystemColor.activeCaptionText);
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		btnNewButton.setBounds(291, 424, 211, 41);
-		contentPane.add(btnNewButton);
+		btnIniciar.setForeground(SystemColor.activeCaptionText);
+		btnIniciar.setBackground(Color.LIGHT_GRAY);
+		btnIniciar.setBounds(291, 424, 211, 41);
+		paneLogin.add(btnIniciar);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(66, 64, 662, 196);
-		contentPane.add(lblNewLabel);
-		lblNewLabel.setIcon(new ImageIcon(MenuInicio.class.getResource("/Imagenes/AureliaLogoCompleto.png")));
+		JLabel LogoInicio = new JLabel("");
+		LogoInicio.setBounds(66, 64, 662, 196);
+		paneLogin.add(LogoInicio);
+		LogoInicio.setIcon(new ImageIcon(MenuInicio.class.getResource("/Imagenes/AureliaLogoCompleto.png")));
 		
-		JLabel lblNewLabel_1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1.setBounds(12, 530, 384, 22);
-		contentPane.add(lblNewLabel_1);
+		JLabel pieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
+		pieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		pieDePagina1.setForeground(SystemColor.textInactiveText);
+		pieDePagina1.setBounds(12, 530, 384, 22);
+		paneLogin.add(pieDePagina1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("\u00A9 2020 - Los Hermosos");
-		lblNewLabel_1_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(610, 530, 172, 22);
-		contentPane.add(lblNewLabel_1_1);		
+		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
+		pieDePagina2.setForeground(SystemColor.textInactiveText);
+		pieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		pieDePagina2.setBounds(610, 530, 172, 22);
+		paneLogin.add(pieDePagina2);		
 		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.addActionListener(new ActionListener() {
@@ -119,6 +127,22 @@ public class MenuInicio extends JFrame
 		btnCerrar.setForeground(new Color(153, 0, 0));
 		btnCerrar.setBackground(Color.LIGHT_GRAY);
 		btnCerrar.setBounds(571, 476, 211, 41);
-		contentPane.add(btnCerrar);
+		paneLogin.add(btnCerrar);
+		
+
+		JLabel etiquetaContrasenia = new JLabel("Contrase\u00F1a : ");
+		etiquetaContrasenia.setForeground(Color.DARK_GRAY);
+		etiquetaContrasenia.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaContrasenia.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaContrasenia.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaContrasenia.setBounds(291, 318, 94, 22);
+		paneLogin.add(etiquetaContrasenia);
+		
+		campoContraseña = new JPasswordField();
+		campoContraseña.setEchoChar('*');
+		campoContraseña.setBackground(Color.LIGHT_GRAY);
+		campoContraseña.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));
+		campoContraseña.setBounds(397, 319, 105, 24);
+		paneLogin.add(campoContraseña);
 	}
 }

@@ -23,10 +23,12 @@ import java.awt.event.FocusEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
 
 public class MenuPrincipal extends JFrame
 {
-	private JPanel contentPane;
+	private JPanel paneMenuPrincipal;
 
 	/**
 	 * Launch the application.
@@ -54,21 +56,21 @@ public class MenuPrincipal extends JFrame
 	 */
 	public MenuPrincipal()
 	{
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuPrincipal.class.getResource("/Imagenes/AureliaTituloRecortado.png")));
-		setTitle("Aurelia - Gesti\u00F3n de Stock");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
+		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
 		setResizable(false);
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
-		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		paneMenuPrincipal = new JPanel();
+		paneMenuPrincipal.setBackground(Color.WHITE);
+		paneMenuPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(paneMenuPrincipal);
+		paneMenuPrincipal.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Registro de Ventas\n\r\n");
-		btnNewButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnNewButton.addMouseListener(new MouseAdapter()
+		JButton btnRegistroVentas = new JButton("Registro de Ventas\n\r\n");
+		btnRegistroVentas.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnRegistroVentas.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
@@ -76,29 +78,34 @@ public class MenuPrincipal extends JFrame
 				
 			}
 		});
-		btnNewButton.setForeground(SystemColor.activeCaptionText);
-		btnNewButton.setBackground(Color.LIGHT_GRAY);
-		btnNewButton.addActionListener(new ActionListener()
+		btnRegistroVentas.setForeground(SystemColor.activeCaptionText);
+		btnRegistroVentas.setBackground(Color.LIGHT_GRAY);
+		btnRegistroVentas.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				
 			}
 		});
-		btnNewButton.setBounds(571, 209, 211, 41);
-		contentPane.add(btnNewButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1.setBounds(12, 530, 384, 22);
-		contentPane.add(lblNewLabel_1);
+		JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.setSize(20, 20);
+		popupMenu.setLocation(500, 500);
+		addPopup(paneMenuPrincipal, popupMenu);
+		btnRegistroVentas.setBounds(571, 209, 211, 41);
+		paneMenuPrincipal.add(btnRegistroVentas);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("\u00A9 2020 - Los Hermosos");
-		lblNewLabel_1_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(610, 530, 172, 22);
-		contentPane.add(lblNewLabel_1_1);
+		JLabel pieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
+		pieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		pieDePagina1.setForeground(SystemColor.textInactiveText);
+		pieDePagina1.setBounds(12, 530, 384, 22);
+		paneMenuPrincipal.add(pieDePagina1);
+		
+		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
+		pieDePagina2.setForeground(SystemColor.textInactiveText);
+		pieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		pieDePagina2.setBounds(610, 530, 172, 22);
+		paneMenuPrincipal.add(pieDePagina2);
 		
 		JButton btnRegistrarVenta = new JButton("Registrar Venta");
 		btnRegistrarVenta.addMouseListener(new MouseAdapter() {
@@ -118,36 +125,36 @@ public class MenuPrincipal extends JFrame
 		btnRegistrarVenta.setForeground(Color.BLACK);
 		btnRegistrarVenta.setBackground(Color.LIGHT_GRAY);
 		btnRegistrarVenta.setBounds(12, 262, 211, 41);
-		contentPane.add(btnRegistrarVenta);
+		paneMenuPrincipal.add(btnRegistrarVenta);
 		
-		JButton btnNewButton_1_1 = new JButton("Agregar Producto");
-		btnNewButton_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnNewButton_1_1.setForeground(Color.BLACK);
-		btnNewButton_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1.setBounds(301, 209, 211, 41);
-		contentPane.add(btnNewButton_1_1);
+		JButton btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnAgregarProducto.setForeground(Color.BLACK);
+		btnAgregarProducto.setBackground(Color.LIGHT_GRAY);
+		btnAgregarProducto.setBounds(301, 209, 211, 41);
+		paneMenuPrincipal.add(btnAgregarProducto);
 		
-		JLabel lblNewLabel = new JLabel("Gesti\u00F3n de Caja");
-		lblNewLabel.setForeground(Color.DARK_GRAY);
-		lblNewLabel.setVerticalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel.setBounds(12, 209, 211, 41);
-		contentPane.add(lblNewLabel);
+		JLabel etiquetaGestionCaja = new JLabel("Gesti\u00F3n de Caja");
+		etiquetaGestionCaja.setForeground(Color.DARK_GRAY);
+		etiquetaGestionCaja.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaGestionCaja.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaGestionCaja.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaGestionCaja.setBounds(12, 209, 211, 41);
+		paneMenuPrincipal.add(etiquetaGestionCaja);
 		
-		JButton btnNewButton_1_1_1 = new JButton("Editar Producto");
-		btnNewButton_1_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnNewButton_1_1_1.setForeground(Color.BLACK);
-		btnNewButton_1_1_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1_1.setBounds(301, 262, 211, 41);
-		contentPane.add(btnNewButton_1_1_1);
+		JButton btnEditarProducto = new JButton("Editar Producto");
+		btnEditarProducto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnEditarProducto.setForeground(Color.BLACK);
+		btnEditarProducto.setBackground(Color.LIGHT_GRAY);
+		btnEditarProducto.setBounds(301, 262, 211, 41);
+		paneMenuPrincipal.add(btnEditarProducto);
 		
-		JButton btnNewButton_1_1_2 = new JButton("Registrar Compra");
-		btnNewButton_1_1_2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnNewButton_1_1_2.setForeground(Color.BLACK);
-		btnNewButton_1_1_2.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1_1_2.setBounds(301, 316, 211, 41);
-		contentPane.add(btnNewButton_1_1_2);
+		JButton btnRegistrarCompra = new JButton("Registrar Compra");
+		btnRegistrarCompra.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnRegistrarCompra.setForeground(Color.BLACK);
+		btnRegistrarCompra.setBackground(Color.LIGHT_GRAY);
+		btnRegistrarCompra.setBounds(301, 316, 211, 41);
+		paneMenuPrincipal.add(btnRegistrarCompra);
 		
 		JButton btnListaDeProductos = new JButton("Productos (por ID)");
 		btnListaDeProductos.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -158,22 +165,22 @@ public class MenuPrincipal extends JFrame
 		btnListaDeProductos.setForeground(Color.BLACK);
 		btnListaDeProductos.setBackground(Color.LIGHT_GRAY);
 		btnListaDeProductos.setBounds(571, 262, 211, 41);
-		contentPane.add(btnListaDeProductos);
+		paneMenuPrincipal.add(btnListaDeProductos);
 		
 		JButton btnProductosporStock = new JButton("Productos (por Stock)");
 		btnProductosporStock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnProductosporStock.setForeground(Color.BLACK);
 		btnProductosporStock.setBackground(Color.LIGHT_GRAY);
 		btnProductosporStock.setBounds(571, 316, 211, 41);
-		contentPane.add(btnProductosporStock);
+		paneMenuPrincipal.add(btnProductosporStock);
 		
-		JLabel lblGestinDeProductos = new JLabel("Gesti\u00F3n de Productos");
-		lblGestinDeProductos.setForeground(Color.DARK_GRAY);
-		lblGestinDeProductos.setVerticalAlignment(SwingConstants.CENTER);
-		lblGestinDeProductos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestinDeProductos.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblGestinDeProductos.setBounds(291, 155, 211, 41);
-		contentPane.add(lblGestinDeProductos);
+		JLabel lblGestionDeProductos = new JLabel("Gesti\u00F3n de Productos");
+		lblGestionDeProductos.setForeground(Color.DARK_GRAY);
+		lblGestionDeProductos.setVerticalAlignment(SwingConstants.CENTER);
+		lblGestionDeProductos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionDeProductos.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		lblGestionDeProductos.setBounds(291, 155, 211, 41);
+		paneMenuPrincipal.add(lblGestionDeProductos);
 		
 		JLabel lblListados = new JLabel("Listados");
 		lblListados.setForeground(Color.DARK_GRAY);
@@ -181,12 +188,12 @@ public class MenuPrincipal extends JFrame
 		lblListados.setHorizontalAlignment(SwingConstants.CENTER);
 		lblListados.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		lblListados.setBounds(571, 155, 211, 41);
-		contentPane.add(lblListados);
+		paneMenuPrincipal.add(lblListados);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Imagenes/AureliaLogoDibujo.jpg")));
-		lblNewLabel_2.setBounds(66, 42, 100, 100);
-		contentPane.add(lblNewLabel_2);
+		JLabel LogoAurelia = new JLabel("");
+		LogoAurelia.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Imagenes/AureliaLogoDibujo.jpg")));
+		LogoAurelia.setBounds(66, 42, 100, 100);
+		paneMenuPrincipal.add(LogoAurelia);
 		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.setForeground(new Color(153, 51, 51));
@@ -200,8 +207,8 @@ public class MenuPrincipal extends JFrame
 			}
 		});
 		btnCerrar.setBackground(Color.LIGHT_GRAY);
-		btnCerrar.setBounds(571, 416, 211, 41);
-		contentPane.add(btnCerrar);
+		btnCerrar.setBounds(571, 476, 211, 41);
+		paneMenuPrincipal.add(btnCerrar);
 		
 		JLabel lblMenPrincipal = new JLabel("Men\u00FA Principal");
 		lblMenPrincipal.setVerticalAlignment(SwingConstants.CENTER);
@@ -209,6 +216,23 @@ public class MenuPrincipal extends JFrame
 		lblMenPrincipal.setForeground(Color.DARK_GRAY);
 		lblMenPrincipal.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 		lblMenPrincipal.setBounds(291, 13, 211, 41);
-		contentPane.add(lblMenPrincipal);
+		paneMenuPrincipal.add(lblMenPrincipal);
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

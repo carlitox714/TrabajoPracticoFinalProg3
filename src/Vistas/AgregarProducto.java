@@ -33,11 +33,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
-public class RegistroVenta extends JFrame
+public class AgregarProducto extends JFrame
 {
 	private JPanel contentPane;
 	private JTable table;
-	private JTable tablaVentas;
 
 	/**
 	 * Launch the application.
@@ -50,7 +49,7 @@ public class RegistroVenta extends JFrame
 			{
 				try
 				{
-					RegistroVenta frame = new RegistroVenta();
+					AgregarProducto frame = new AgregarProducto();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -63,13 +62,13 @@ public class RegistroVenta extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public RegistroVenta()
+	public AgregarProducto()
 	{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Venta");
 		setResizable(false);
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		/*
 		 * Barra de Opciones
@@ -151,14 +150,6 @@ public class RegistroVenta extends JFrame
 		
 		JButton btnRegistrarVenta = new JButton("Cancelar");
 		btnRegistrarVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistrarVenta.addFocusListener(new FocusAdapter()
-		{
-			@Override
-			public void focusGained(FocusEvent arg0)
-			{
-				
-			}
-		});
 		btnRegistrarVenta.setForeground(new Color(153, 0, 0));
 		btnRegistrarVenta.setBackground(Color.LIGHT_GRAY);
 		btnRegistrarVenta.setBounds(571, 450, 211, 41);
@@ -168,14 +159,14 @@ public class RegistroVenta extends JFrame
 		table.setBounds(247, 221, 73, -74);
 		contentPane.add(table);
 		
-		JLabel etiquetaNuevaVenta = new JLabel("Nueva Venta");
-		etiquetaNuevaVenta.setVerticalAlignment(SwingConstants.CENTER);
-		etiquetaNuevaVenta.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaNuevaVenta.setForeground(Color.DARK_GRAY);
-		etiquetaNuevaVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		etiquetaNuevaVenta.setBackground(Color.GRAY);
-		etiquetaNuevaVenta.setBounds(291, 13, 211, 41);
-		contentPane.add(etiquetaNuevaVenta);
+		JLabel etiquetaNuevoProducto = new JLabel("Nuevo Producto");
+		etiquetaNuevoProducto.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaNuevoProducto.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaNuevoProducto.setForeground(Color.DARK_GRAY);
+		etiquetaNuevoProducto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
+		etiquetaNuevoProducto.setBackground(Color.GRAY);
+		etiquetaNuevoProducto.setBounds(291, 13, 211, 41);
+		contentPane.add(etiquetaNuevoProducto);
 		
 		JComboBox comboBox_producto = new JComboBox();
 		comboBox_producto.setBackground(Color.LIGHT_GRAY);
@@ -279,40 +270,5 @@ public class RegistroVenta extends JFrame
 		btnAniadirALista.setBackground(Color.LIGHT_GRAY);
 		btnAniadirALista.setBounds(511, 169, 211, 41);
 		contentPane.add(btnAniadirALista);
-		
-		JLabel etiquetaListaParcial = new JLabel("Lista Parcial");
-		etiquetaListaParcial.setVerticalAlignment(SwingConstants.CENTER);
-		etiquetaListaParcial.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaListaParcial.setForeground(Color.DARK_GRAY);
-		etiquetaListaParcial.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		etiquetaListaParcial.setBackground(Color.GRAY);
-		etiquetaListaParcial.setBounds(69, 201, 211, 41);
-		contentPane.add(etiquetaListaParcial);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(79, 255, 643, 182);
-		contentPane.add(scrollPane);
-		
-		tablaVentas = new JTable();
-		tablaVentas.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Detalle Producto", "Precio Unidad", "Cantidad"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		tablaVentas.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tablaVentas.getColumnModel().getColumn(1).setPreferredWidth(450);
-		tablaVentas.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tablaVentas.getColumnModel().getColumn(3).setPreferredWidth(150);
-		tablaVentas.setFont(new Font("Courier New", Font.PLAIN, 16));
-		scrollPane.setViewportView(tablaVentas);
 	}
 }
