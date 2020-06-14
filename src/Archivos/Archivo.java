@@ -2,7 +2,7 @@ package Archivos;
 
 import java.io.*;
 
-public class Archivos<T> 
+public class Archivo<T> 
 {
 	public static void guardar(Object o, String nombreArchivo)
 	{
@@ -17,7 +17,7 @@ public class Archivos<T>
 		}
 	}
 	
-	public Object leer(Object o, String nombreArchivo)
+	public Object leer(String nombreArchivo)
 	{
 		ObjectInputStream arch = null;
 		try

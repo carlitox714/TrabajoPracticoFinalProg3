@@ -2,6 +2,9 @@ package Productos;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+
+import Archivos.Archivo;
 
 
 public class Producto implements Serializable
@@ -17,6 +20,8 @@ public class Producto implements Serializable
 	private boolean isCeliaco;
 	private boolean azucar;
 	private int stock; 
+	
+	private static String nombreArchivo = "productos.bin";
 	
 	
 	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
@@ -143,6 +148,18 @@ public class Producto implements Serializable
 				+ azucar + ", stock=" + stock + "]";
 	}
 	
+	public Contenedor leerArchivo()
+	{
+		Contenedor aux = new Producto();
+		Archivo arch = new Archivo();
+		aux =(Contenedor) arch.leer(nombreArchivo);
+		return aux;
+	}
 	
+	public void guardarArchivo(Contenedor cont)
+	{
+		Archivo arch = new Archivo();
+		arch.guardar(cont, nombreArchivo);
+	}
 
 }

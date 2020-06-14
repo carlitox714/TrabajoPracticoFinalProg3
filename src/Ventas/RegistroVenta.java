@@ -21,7 +21,6 @@ public class RegistroVenta<T> extends ContenedorArrayList<Venta>
 	public RegistroVenta(ContenedorArrayList<Venta> contenedor) {
 		this.contenedor = contenedor;
 		this.date = Calendar.getInstance();
-
 	}
 
 	

@@ -1,14 +1,17 @@
 package Ventas;
 
+import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.Map;
 
+import Archivos.Archivo;
 import Productos.Contenedor;
 
 public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
 {
 	public static int idCount=0;
 	private int id;
+	private static String nombreArchivo = LocalDate.now() + ".bin";
 	Contenedor<Integer, RegistroVenta<Venta>> cont;
 	
 	public listadoVentas() {
@@ -64,6 +67,20 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		
 		
 		return  aux;
+	}
+	
+	public Contenedor leerArchivo()
+	{
+		Contenedor aux = new Contenedor();
+		Archivo arch = new Archivo();
+		aux =(Contenedor) arch.leer("/Registro de Ventas/" + nombreArchivo);
+		return aux;
+	}
+	
+	public void guardarArchivo(Contenedor cont)
+	{
+		Archivo arch = new Archivo();
+		arch.guardar(cont, "/Registro de Ventas/" + nombreArchivo);
 	}
 	
 	

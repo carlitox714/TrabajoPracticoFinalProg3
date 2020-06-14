@@ -1,5 +1,5 @@
 package Productos;
-
+import Archivos.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -46,9 +46,6 @@ public class Contenedor<K,T>  {
 	{
 		return conjuntoDeElementos.size();
 	}
-	
-	
-	
 	
 }
 
