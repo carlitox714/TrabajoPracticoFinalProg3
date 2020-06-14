@@ -12,9 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -29,6 +32,7 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import Productos.Producto;
@@ -38,12 +42,12 @@ import Productos.listadoVentas;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
+import javax.swing.UIManager;
+import javax.swing.DefaultComboBoxModel;
 
 public class VistaRegVentas extends JFrame
 {
 	private JPanel contentPane;
-	private JTable table;
-	private JTable tablaVentas;
 	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 
 	/**
@@ -145,38 +149,21 @@ public class VistaRegVentas extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		// Etiquetas:
 		
-		JLabel lblNewLabel_1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		lblNewLabel_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1.setBounds(12, 504, 384, 22);
-		contentPane.add(lblNewLabel_1);
+		JLabel etiquetaPieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
+		etiquetaPieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaPieDePagina1.setForeground(SystemColor.textInactiveText);
+		etiquetaPieDePagina1.setBounds(12, 504, 384, 22);
+		contentPane.add(etiquetaPieDePagina1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("\u00A9 2020 - Los Hermosos");
-		lblNewLabel_1_1.setForeground(SystemColor.textInactiveText);
-		lblNewLabel_1_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(610, 504, 172, 22);
-		contentPane.add(lblNewLabel_1_1);
-		
-		JButton btnRegistrarVenta = new JButton("Cancelar");
-		btnRegistrarVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistrarVenta.addFocusListener(new FocusAdapter()
-		{
-			@Override
-			public void focusGained(FocusEvent arg0)
-			{
-				
-			}
-		});
-		btnRegistrarVenta.setForeground(new Color(153, 0, 0));
-		btnRegistrarVenta.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarVenta.setBounds(571, 450, 211, 41);
-		contentPane.add(btnRegistrarVenta);
-		
-		table = new JTable();
-		table.setBounds(247, 221, 73, -74);
-		contentPane.add(table);
-		
+		JLabel etiquetaPieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
+		etiquetaPieDePagina2.setForeground(SystemColor.textInactiveText);
+		etiquetaPieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaPieDePagina2.setBounds(610, 504, 172, 22);
+		contentPane.add(etiquetaPieDePagina2);
+
 		JLabel etiquetaNuevaVenta = new JLabel("Nueva Venta");
 		etiquetaNuevaVenta.setVerticalAlignment(SwingConstants.CENTER);
 		etiquetaNuevaVenta.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,13 +172,7 @@ public class VistaRegVentas extends JFrame
 		etiquetaNuevaVenta.setBackground(Color.GRAY);
 		etiquetaNuevaVenta.setBounds(291, 13, 211, 41);
 		contentPane.add(etiquetaNuevaVenta);
-		
-		JComboBox comboBox_producto = new JComboBox();
-		comboBox_producto.setEditable(true);
-		comboBox_producto.setBackground(Color.LIGHT_GRAY);
-		comboBox_producto.setBounds(153, 67, 569, 41);
-		contentPane.add(comboBox_producto);
-		
+
 		JLabel etiqueta_producto = new JLabel("Producto:");
 		etiqueta_producto.setVerticalAlignment(SwingConstants.CENTER);
 		etiqueta_producto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -201,63 +182,77 @@ public class VistaRegVentas extends JFrame
 		etiqueta_producto.setBounds(69, 74, 72, 22);
 		contentPane.add(etiqueta_producto);
 		
-		JLabel etiqueta_id = new JLabel("ID:");
-		etiqueta_id.setVerticalAlignment(SwingConstants.CENTER);
-		etiqueta_id.setHorizontalAlignment(SwingConstants.CENTER);
-		etiqueta_id.setForeground(Color.DARK_GRAY);
-		etiqueta_id.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiqueta_id.setBackground(Color.GRAY);
-		etiqueta_id.setBounds(121, 128, 20, 22);
-		contentPane.add(etiqueta_id);
+		JLabel etiquetaID = new JLabel("ID:");
+		etiquetaID.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaID.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaID.setForeground(Color.DARK_GRAY);
+		etiquetaID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaID.setBackground(Color.GRAY);
+		etiquetaID.setBounds(91, 128, 20, 22);
+		contentPane.add(etiquetaID);
 		
-		JLabel etiqueta_stock = new JLabel("Stock:");
-		etiqueta_stock.setVerticalAlignment(SwingConstants.CENTER);
-		etiqueta_stock.setHorizontalAlignment(SwingConstants.CENTER);
-		etiqueta_stock.setForeground(Color.DARK_GRAY);
-		etiqueta_stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiqueta_stock.setBackground(Color.GRAY);
-		etiqueta_stock.setBounds(305, 128, 45, 22);
-		contentPane.add(etiqueta_stock);
+		JLabel etiquetaStock = new JLabel("Stock:");
+		etiquetaStock.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaStock.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaStock.setForeground(Color.DARK_GRAY);
+		etiquetaStock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaStock.setBackground(Color.GRAY);
+		etiquetaStock.setBounds(275, 128, 45, 22);
+		contentPane.add(etiquetaStock);
 		
-		JLabel etiqueta_precio = new JLabel("Precio:");
-		etiqueta_precio.setVerticalAlignment(SwingConstants.CENTER);
-		etiqueta_precio.setHorizontalAlignment(SwingConstants.CENTER);
-		etiqueta_precio.setForeground(Color.DARK_GRAY);
-		etiqueta_precio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiqueta_precio.setBackground(Color.GRAY);
-		etiqueta_precio.setBounds(514, 128, 50, 22);
-		contentPane.add(etiqueta_precio);
+		JLabel etiquetaPrecio = new JLabel("Precio:");
+		etiquetaPrecio.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaPrecio.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaPrecio.setForeground(Color.DARK_GRAY);
+		etiquetaPrecio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaPrecio.setBackground(Color.GRAY);
+		etiquetaPrecio.setBounds(479, 128, 50, 22);
+		contentPane.add(etiquetaPrecio);
 		
-		JLabel etiqueta_cantidad = new JLabel("Cantidad:");
-		etiqueta_cantidad.setVerticalAlignment(SwingConstants.CENTER);
-		etiqueta_cantidad.setHorizontalAlignment(SwingConstants.CENTER);
-		etiqueta_cantidad.setForeground(Color.DARK_GRAY);
-		etiqueta_cantidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiqueta_cantidad.setBackground(Color.GRAY);
-		etiqueta_cantidad.setBounds(302, 177, 69, 22);
-		contentPane.add(etiqueta_cantidad);
+		JLabel etiquetaCantidad = new JLabel("Cantidad:");
+		etiquetaCantidad.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaCantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaCantidad.setForeground(Color.DARK_GRAY);
+		etiquetaCantidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaCantidad.setBackground(Color.GRAY);
+		etiquetaCantidad.setBounds(302, 177, 69, 22);
+		contentPane.add(etiquetaCantidad);
+
+		JLabel etiquetaPrecioxUnidad = new JLabel("/ud");
+		etiquetaPrecioxUnidad.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaPrecioxUnidad.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaPrecioxUnidad.setForeground(Color.DARK_GRAY);
+		etiquetaPrecioxUnidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaPrecioxUnidad.setBackground(Color.GRAY);
+		etiquetaPrecioxUnidad.setBounds(693, 128, 26, 22);
+		etiquetaPrecioxUnidad.setVisible(false);
+		contentPane.add(etiquetaPrecioxUnidad);
 		
-		JSpinner jSpin_ = new JSpinner();
-		jSpin_.setFont(new Font("Courier New", Font.PLAIN, 17));
-		jSpin_.addMouseWheelListener(new MouseWheelListener()
-		{
-			public void mouseWheelMoved(MouseWheelEvent e)
+		JLabel etiquetaPrecioxGramo = new JLabel("/g");
+		etiquetaPrecioxGramo.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaPrecioxGramo.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaPrecioxGramo.setForeground(Color.DARK_GRAY);
+		etiquetaPrecioxGramo.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaPrecioxGramo.setBackground(Color.GRAY);
+		etiquetaPrecioxGramo.setBounds(693, 128, 17, 22);
+		etiquetaPrecioxGramo.setVisible(false);
+		contentPane.add(etiquetaPrecioxGramo);
+		
+		// Botones:
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
 			{
-		        int movimiento = e.getWheelRotation();
-		        if (movimiento > 0 && jSpin_.getPreviousValue() != null)// Rueda hacia abajo
-		        {
-		            jSpin_.setValue(jSpin_.getPreviousValue());
-		        }
-		        else if (movimiento < 0 && jSpin_.getNextValue() != null)// Rueda hacia arriba
-		        {
-		        	jSpin_.setValue(jSpin_.getNextValue());
-		        }
+				dispose();
 			}
 		});
-		jSpin_.setModel(new SpinnerNumberModel(1, 1, 100, 1));
-		jSpin_.setBounds(383, 171, 119, 39);
-		contentPane.add(jSpin_);
-		
+		btnCancelar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnCancelar.setForeground(new Color(153, 0, 0));
+		btnCancelar.setBackground(Color.LIGHT_GRAY);
+		btnCancelar.setBounds(571, 450, 211, 41);
+		contentPane.add(btnCancelar);
+
 		JButton btnConfirmarVenta = new JButton("Confirmar Venta");
 		btnConfirmarVenta.setForeground(new Color(0, 128, 0));
 		btnConfirmarVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -265,70 +260,104 @@ public class VistaRegVentas extends JFrame
 		btnConfirmarVenta.setBounds(348, 450, 211, 41);
 		contentPane.add(btnConfirmarVenta);
 		
-		JTextPane textPane_id = new JTextPane();
-		textPane_id.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane_id.setBackground(Color.LIGHT_GRAY);
-		textPane_id.setBounds(153, 128, 140, 28);
-		contentPane.add(textPane_id);
+		JComboBox<String> comboBoxProducto = new JComboBox<String>();
+		comboBoxProducto.setModel(new DefaultComboBoxModel(new String[] {" ", "fefe", "fifi", "fofo", "fufu"}));
+		comboBoxProducto.setEditable(true);
+		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
+		comboBoxProducto.setBounds(153, 67, 569, 41);
+		contentPane.add(comboBoxProducto);
 		
-		JTextPane textPane_stock = new JTextPane();
-		textPane_stock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane_stock.setBackground(Color.LIGHT_GRAY);
-		textPane_stock.setBounds(362, 128, 140, 28);
-		contentPane.add(textPane_stock);
+		JSpinner jSpinCantidad = new JSpinner();
+		jSpinCantidad.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpinCantidad.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+		        int movimiento = e.getWheelRotation();
+		        if (movimiento > 0 && jSpinCantidad.getPreviousValue() != null)// Rueda hacia abajo
+		        {
+		            jSpinCantidad.setValue(jSpinCantidad.getPreviousValue());
+		        }
+		        else if (movimiento < 0 && jSpinCantidad.getNextValue() != null)// Rueda hacia arriba
+		        {
+		        	jSpinCantidad.setValue(jSpinCantidad.getNextValue());
+		        }
+			}
+		});
+		jSpinCantidad.setModel(new SpinnerNumberModel(1, 1, 100, 1));
+		jSpinCantidad.setBounds(383, 171, 119, 39);
+		contentPane.add(jSpinCantidad);
 		
-		JTextPane textPane_precio = new JTextPane();
-		textPane_precio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		textPane_precio.setBackground(Color.LIGHT_GRAY);
-		textPane_precio.setBounds(571, 128, 140, 28);
-		contentPane.add(textPane_precio);
+		JTextPane textPaneID = new JTextPane();// Obtener ID del atributo del Producto
+		textPaneID.setEditable(false);
+		textPaneID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPaneID.setBackground(Color.LIGHT_GRAY);
+		textPaneID.setBounds(123, 128, 140, 28);
+		contentPane.add(textPaneID);
+		
+		JTextPane textPaneStock = new JTextPane(); // Obtener Stock del atributo del Producto
+		textPaneStock.setEditable(false);
+		textPaneStock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPaneStock.setBackground(Color.LIGHT_GRAY);
+		textPaneStock.setBounds(327, 128, 140, 28);
+		contentPane.add(textPaneStock);
+		
+		JTextPane textPanePrecio = new JTextPane(); // Obtener Precio del atributo del Producto y desarrollar etiqueta de si es por gramo o por unidad
+		textPanePrecio.setEditable(false);
+		textPanePrecio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPanePrecio.setBackground(Color.LIGHT_GRAY);
+		textPanePrecio.setBounds(541, 128, 140, 28);
+		contentPane.add(textPanePrecio);
+		
+		// Lista y componentes relacionados.
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(70, 232, 654, 184);
+		contentPane.add(scrollPane);
+		
+		DefaultListModel<String> listaParcial = new DefaultListModel<String>();
+		
+		JList<String> listaParcialProductos = new JList<String>();
+		listaParcialProductos.setBackground(Color.LIGHT_GRAY);
+		listaParcialProductos.setModel(listaParcial);
+		scrollPane.setViewportView(listaParcialProductos);
 		
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
-		btnAniadirALista.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		btnAniadirALista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				if(comboBoxProducto.getSelectedIndex() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "Seleccione el producto a vender.", "Error.", 2, null);
+				}
+				else
+				{
+					listaParcial.addElement(jSpinCantidad.getValue() + " " + comboBoxProducto.getSelectedItem() + ", a $" + ".");
+					/// desarrollar listaVenta paralela al defaultlistmodel
+				}
 				
 			}
 		});
 		btnAniadirALista.setForeground(new Color(70, 130, 180));
 		btnAniadirALista.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnAniadirALista.setBackground(Color.LIGHT_GRAY);
-		btnAniadirALista.setBounds(511, 169, 211, 41);
+		btnAniadirALista.setBounds(513, 182, 211, 41);
 		contentPane.add(btnAniadirALista);
-		
-		JLabel etiquetaListaParcial = new JLabel("Lista Parcial");
-		etiquetaListaParcial.setVerticalAlignment(SwingConstants.CENTER);
-		etiquetaListaParcial.setHorizontalAlignment(SwingConstants.CENTER);
-		etiquetaListaParcial.setForeground(Color.DARK_GRAY);
-		etiquetaListaParcial.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		etiquetaListaParcial.setBackground(Color.GRAY);
-		etiquetaListaParcial.setBounds(69, 201, 211, 41);
-		contentPane.add(etiquetaListaParcial);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(79, 255, 643, 182);
-		contentPane.add(scrollPane);
-		
-		tablaVentas = new JTable();
-		tablaVentas.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Detalle Producto", "Precio Unidad", "Cantidad"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
+
+		JButton btnEliminarSeleccionados = new JButton("Eliminar Seleccionados");	
+		btnEliminarSeleccionados.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)
+			{
+				ListSelectionModel model2 = listaParcialProductos.getSelectionModel();
+				int indiceABorrar = model2.getMinSelectionIndex();
+				if (indiceABorrar != -1) {
+					listaParcial.remove(indiceABorrar);
+				}		
 			}
 		});
-		tablaVentas.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tablaVentas.getColumnModel().getColumn(1).setPreferredWidth(450);
-		tablaVentas.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tablaVentas.getColumnModel().getColumn(3).setPreferredWidth(150);
-		tablaVentas.setFont(new Font("Courier New", Font.PLAIN, 16));
-		scrollPane.setViewportView(tablaVentas);
+		btnEliminarSeleccionados.setForeground(new Color(153, 0, 0));
+		btnEliminarSeleccionados.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnEliminarSeleccionados.setBackground(Color.LIGHT_GRAY);
+		btnEliminarSeleccionados.setBounds(69, 429, 211, 41);
+		contentPane.add(btnEliminarSeleccionados);
 	}
 }
