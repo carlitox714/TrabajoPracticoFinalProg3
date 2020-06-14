@@ -12,6 +12,7 @@ import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Vistas.VistaEditarProducto;
 import Productos.ListadoProducto;
 
 
@@ -20,11 +21,11 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
-		Producto prod1 = new Producto(1, "manzana", null, 15, 0, false, false, false,40);
-		Producto prod2 = new Producto(2, "banana", null, 45, 0, false, false, false,22);
-		Producto prod3 = new Producto(2, "manzana", null, 11, 0, false, false, false,60);
+		Producto prod1 = new Producto(0, "manzana", null, 15, 0, false, false, false,40);
+		Producto prod2 = new Producto(1, "banana", null, 45, 0, false, false, false,22);
+		Producto prod3 = new Producto(2, "btaba", null, 11, 0, false, false, false,60);
 		Producto prod4 = new Producto(3, "leche1lt", null, 80, 0, false, false, false,40);
-		Producto prod5 = new Producto(4, "barrita de cereal", null, 35, 0, false, false, false,40);
+		Producto prod5 = new Producto(4, "caca", null, 35, 0, false, false, false,40);
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,40);
 		
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
@@ -45,8 +46,36 @@ public class Main {
 		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+
+		try {
+		listProd.agregar(prod3);
+		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		try {
+		listProd.agregar(prod4);
+		
+		}
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+	
+		VistaEditarProducto caca = new VistaEditarProducto(listProd);
+		caca.setVisible(true);
 		
 		
+		
+
+		
+		
+		
+		
+	
+	
 		
 		
 		boolean agregarCarrito = false;

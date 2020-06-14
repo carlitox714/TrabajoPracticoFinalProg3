@@ -68,7 +68,7 @@ public class Producto implements Serializable
 		{
 				
 			Producto prod = (Producto) obj;
-			if(this.nombre == prod.nombre)
+			if(this.nombre.equals(prod.nombre))
 				return true;
 			else
 				return false;
@@ -174,6 +174,14 @@ public class Producto implements Serializable
 	{
 		this.stock = stock;
 	}
+	
+
+	
+	public String toStringSimple()
+	{
+		return this.getNombre()  + "                " + this.getPrecio() + "                " + stock;
+	}
+	
 
 	
 	@Override

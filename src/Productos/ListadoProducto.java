@@ -2,12 +2,15 @@ package Productos;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class ListadoProducto<T> extends ContenedorArrayList<Producto>{
 	
 	private ContenedorArrayList<Producto> contenedor;
-
+	
 
 	public ListadoProducto(ContenedorArrayList<Producto> contenedor) {
 		super();
@@ -23,47 +26,104 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>{
 	public void agregar(Producto prod) throws Exception
 	{
 		
-			if(!existeProducto(prod))
-			contenedor.agregar(prod);
+			if(! existeProducto(prod))
+				contenedor.agregar(prod);
 			else
 				throw new IOException("El producto ya se encuentra registrado");
-			
-		
 	}
 	
 	
-	
-	public boolean existeProducto(Producto prod) 
+	public Producto getProducto(String nombre)
 	{
-		
 		Iterator<Producto> iterator = contenedor.iterator();
 	
-		if(buscarProducto(prod) != null)
-			return true;
-		else
-			return false;	
-	
-	}
-	
-	
-	public Producto buscarProducto(Producto prod)
-	{
-		
-		Iterator<Producto> iterator = contenedor.iterator();
-	
-		if(iterator.hasNext())
+		while(iterator.hasNext())
 		{
-			if(iterator.next().equals(prod))
+			Producto prod = iterator.next();
+			if(nombre.equals(prod.getNombre()))
 			{
-				System.out.println("caca");
 				return prod;
 			}
 		}
-		return null;
+		return null;	
+	}
+	
+
+	
+	public boolean existeProducto(Producto prod)
+	{
+		Iterator<Producto> iterator = contenedor.iterator();
+	
+		while(iterator.hasNext())
+		{
+			if(iterator.next().equals(prod))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public int cantProd()
+	{
+		int cont = 0;
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			cont++;
+			iterator.next();
+		}
+		return cont;
 			
 	}
 	
 	
+	
+	
+	
+	public String[] getNombres()
+	{
+		int cont = 0;
+		int cantProd = cantProd();
+		
+		String[] str = new String[cantProd];
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prodcto = iterator.next();
+			str[cont] = (String) prodcto.getNombre();
+			cont++;
+			
+		}
+		return str;
+			
+	}
+	
+
+	public String[] listaSimple()
+	{
+		int cont = 0;
+		int cantProd = cantProd();
+		
+		String[] str = new String[cantProd];
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prodcto = iterator.next();
+			str[cont] = (String) prodcto.toStringSimple();
+			cont++;
+			
+		}
+		return str;
+			
+	}
 	
 	
 
