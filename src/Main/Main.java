@@ -85,7 +85,7 @@ public class Main {
 		
 
 		VistaAgregProducto Menu = new VistaAgregProducto(lista);
-		Menu.setVisible(true);		
+		Menu.setVisible(true);
 		
 		System.out.println(lista.toString());		
 
