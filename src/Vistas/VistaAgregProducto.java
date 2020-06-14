@@ -38,6 +38,8 @@ import Productos.listadoVentas;
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 
 public class VistaAgregProducto extends JFrame
 {
@@ -80,7 +82,7 @@ public class VistaAgregProducto extends JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		/*
-		 * Barra de Opciones
+		 * Barra de Tareas
 		 */
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -186,44 +188,44 @@ public class VistaAgregProducto extends JFrame
 		etiquetaDetalleProducto.setBounds(69, 74, 131, 22);
 		contentPane.add(etiquetaDetalleProducto);
 		
-		JLabel etiqueta_precio = new JLabel("Precio:");
+		JLabel etiqueta_precio = new JLabel("Precio de Venta :");
 		etiqueta_precio.setVerticalAlignment(SwingConstants.CENTER);
 		etiqueta_precio.setHorizontalAlignment(SwingConstants.CENTER);
 		etiqueta_precio.setForeground(Color.DARK_GRAY);
 		etiqueta_precio.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiqueta_precio.setBackground(Color.GRAY);
-		etiqueta_precio.setBounds(514, 128, 50, 22);
+		etiqueta_precio.setBounds(436, 109, 123, 22);
 		contentPane.add(etiqueta_precio);
 		
-		JLabel etiqueta_cantidad = new JLabel("Stock Inicial");
+		JLabel etiqueta_cantidad = new JLabel("Stock Inicial :");
 		etiqueta_cantidad.setVerticalAlignment(SwingConstants.CENTER);
 		etiqueta_cantidad.setHorizontalAlignment(SwingConstants.CENTER);
 		etiqueta_cantidad.setForeground(Color.DARK_GRAY);
 		etiqueta_cantidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiqueta_cantidad.setBackground(Color.GRAY);
-		etiqueta_cantidad.setBounds(284, 177, 87, 22);
+		etiqueta_cantidad.setBounds(271, 191, 95, 22);
 		contentPane.add(etiqueta_cantidad);
 		
-		JSpinner jSpin_ = new JSpinner();
-		jSpin_.setFont(new Font("Courier New", Font.PLAIN, 17));
-		jSpin_.addMouseWheelListener(new MouseWheelListener()
+		JSpinner jSpinStock = new JSpinner();
+		jSpinStock.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpinStock.addMouseWheelListener(new MouseWheelListener()
 		{
 			public void mouseWheelMoved(MouseWheelEvent e)
 			{
 		        int movimiento = e.getWheelRotation();
-		        if (movimiento > 0 && jSpin_.getPreviousValue() != null)// Rueda hacia abajo
+		        if (movimiento > 0 && jSpinStock.getPreviousValue() != null)// Rueda hacia abajo
 		        {
-		            jSpin_.setValue(jSpin_.getPreviousValue());
+		            jSpinStock.setValue(jSpinStock.getPreviousValue());
 		        }
-		        else if (movimiento < 0 && jSpin_.getNextValue() != null)// Rueda hacia arriba
+		        else if (movimiento < 0 && jSpinStock.getNextValue() != null)// Rueda hacia arriba
 		        {
-		        	jSpin_.setValue(jSpin_.getNextValue());
+		        	jSpinStock.setValue(jSpinStock.getNextValue());
 		        }
 			}
 		});
-		jSpin_.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
-		jSpin_.setBounds(383, 177, 118, 28);
-		contentPane.add(jSpin_);
+		jSpinStock.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
+		jSpinStock.setBounds(378, 191, 118, 28);
+		contentPane.add(jSpinStock);
 		
 		JButton btnConfirmarVenta = new JButton("Confirmar ");
 		btnConfirmarVenta.setForeground(new Color(0, 128, 0));
@@ -236,14 +238,29 @@ public class VistaAgregProducto extends JFrame
 		btnAniadirALista.setForeground(new Color(70, 130, 180));
 		btnAniadirALista.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnAniadirALista.setBackground(Color.LIGHT_GRAY);
-		btnAniadirALista.setBounds(511, 169, 211, 41);
+		btnAniadirALista.setBounds(513, 182, 211, 41);
 		contentPane.add(btnAniadirALista);
 		
-		JSpinner jSpin__1 = new JSpinner();
-		jSpin__1.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-		jSpin__1.setFont(new Font("Courier New", Font.PLAIN, 17));
-		jSpin__1.setBounds(571, 128, 119, 28);
-		contentPane.add(jSpin__1);
+		JSpinner jSpinPrecio = new JSpinner();
+		jSpinPrecio.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		jSpinPrecio.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpinPrecio.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+		        int movimiento = e.getWheelRotation();
+		        if (movimiento > 0 && jSpinPrecio.getPreviousValue() != null)// Rueda hacia abajo
+		        {
+		        	jSpinPrecio.setValue(jSpinPrecio.getPreviousValue());
+		        }
+		        else if (movimiento < 0 && jSpinPrecio.getNextValue() != null)// Rueda hacia arriba
+		        {
+		        	jSpinPrecio.setValue(jSpinPrecio.getNextValue());
+		        }
+			}
+		});
+		jSpinPrecio.setBounds(571, 109, 119, 28);
+		contentPane.add(jSpinPrecio);
 		
 		JLabel etiqueta_signoPeso = new JLabel("$");
 		etiqueta_signoPeso.setVerticalAlignment(SwingConstants.CENTER);
@@ -251,21 +268,64 @@ public class VistaAgregProducto extends JFrame
 		etiqueta_signoPeso.setForeground(Color.DARK_GRAY);
 		etiqueta_signoPeso.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiqueta_signoPeso.setBackground(Color.GRAY);
-		etiqueta_signoPeso.setBounds(702, 128, 9, 22);
+		etiqueta_signoPeso.setBounds(702, 108, 10, 25);
 		contentPane.add(etiqueta_signoPeso);
 		
 		textFieldDetalleProducto = new JTextField();
-		textFieldDetalleProducto.setBounds(212, 76, 277, 22);
+		textFieldDetalleProducto.setToolTipText("\r\nEn este campo se ingresa por teclado el detalle del producto.\r\n");
+		textFieldDetalleProducto.setBounds(212, 76, 184, 22);
 		contentPane.add(textFieldDetalleProducto);
 		textFieldDetalleProducto.setColumns(10);
 		
-		JLabel lblCategoria = new JLabel("Categor\u00EDa :");
-		lblCategoria.setVerticalAlignment(SwingConstants.CENTER);
-		lblCategoria.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCategoria.setForeground(Color.DARK_GRAY);
-		lblCategoria.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		lblCategoria.setBackground(Color.GRAY);
-		lblCategoria.setBounds(121, 109, 79, 22);
-		contentPane.add(lblCategoria);
+		JLabel etiquetaCategoria = new JLabel("Categor\u00EDa :");
+		etiquetaCategoria.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaCategoria.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaCategoria.setForeground(Color.DARK_GRAY);
+		etiquetaCategoria.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaCategoria.setBackground(Color.GRAY);
+		etiquetaCategoria.setBounds(121, 109, 79, 22);
+		contentPane.add(etiquetaCategoria);
+		
+		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setBackground(Color.WHITE);
+		comboBoxCategoria.setToolTipText("Aqu\u00ED puedes seleccionar la categor\u00EDa a la que pertenece el nuevo producto.");
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Categor\u00EDa 1", "Categor\u00EDa 2", "Categor\u00EDa 3"}));
+		comboBoxCategoria.setBounds(212, 111, 184, 22);
+		contentPane.add(comboBoxCategoria);
+		
+		JCheckBox chckbxVegetariano = new JCheckBox("Vegetariano");
+		chckbxVegetariano.setToolTipText("Aqu\u00ED seleccionas si el art\u00EDculo es vegetariano.\r\n");
+		chckbxVegetariano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		chckbxVegetariano.setBackground(Color.LIGHT_GRAY);
+		chckbxVegetariano.setBounds(222, 142, 117, 31);
+		contentPane.add(chckbxVegetariano);
+		
+		JCheckBox chckbxVegano = new JCheckBox("Vegano");
+		chckbxVegano.setToolTipText("Aqu\u00ED seleccionas si el art\u00EDculo es vegano.\r\n");
+		chckbxVegano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		chckbxVegano.setBackground(Color.LIGHT_GRAY);
+		chckbxVegano.setBounds(348, 142, 117, 31);
+		chckbxVegano.setVisible(false);
+		contentPane.add(chckbxVegano);
+		
+		//Lógica Vegano-Vegetariano
+		chckbxVegetariano.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
+				if(chckbxVegetariano.isSelected())
+					chckbxVegano.setVisible(true);
+				else
+					chckbxVegano.setVisible(false);
+				chckbxVegano.setSelected(false);
+			}
+		});
+		
+		JCheckBox chckbxAzucar = new JCheckBox("Az\u00FAcar");
+		chckbxAzucar.setToolTipText("Aqu\u00ED seleccionas si el art\u00EDculo contiene az\u00FAcar.\r\n");
+		chckbxAzucar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		chckbxAzucar.setBackground(Color.LIGHT_GRAY);
+		chckbxAzucar.setBounds(474, 142, 117, 31);
+		contentPane.add(chckbxAzucar);
 	}
 }

@@ -26,7 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 
-public class MenuPrincipal extends JFrame
+public class VistaMenuPrincipal extends JFrame
 {
 	private JPanel paneMenuPrincipal;
 
@@ -41,7 +41,7 @@ public class MenuPrincipal extends JFrame
 			{
 				try
 				{
-					MenuPrincipal frame = new MenuPrincipal();
+					VistaMenuPrincipal frame = new VistaMenuPrincipal();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -54,10 +54,9 @@ public class MenuPrincipal extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public MenuPrincipal()
+	public VistaMenuPrincipal()
 	{
 		setResizable(false);
-		setAlwaysOnTop(true);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
 		setBackground(Color.WHITE);
@@ -218,7 +217,7 @@ public class MenuPrincipal extends JFrame
 		paneMenuPrincipal.add(lblListados);
 		
 		JLabel LogoAurelia = new JLabel("");
-		LogoAurelia.setIcon(new ImageIcon(MenuPrincipal.class.getResource("/Imagenes/AureliaLogoDibujo.jpg")));
+		LogoAurelia.setIcon(new ImageIcon(VistaMenuPrincipal.class.getResource("/Imagenes/AureliaLogoDibujo.jpg")));
 		LogoAurelia.setBounds(66, 42, 100, 100);
 		paneMenuPrincipal.add(LogoAurelia);
 		

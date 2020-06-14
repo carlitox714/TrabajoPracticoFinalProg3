@@ -91,7 +91,7 @@ public class VistaLogin extends JFrame
 				{
 					try
 					{
-						MenuPrincipal frame = new MenuPrincipal();
+						VistaMenuPrincipal frame = new VistaMenuPrincipal();
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception e)
