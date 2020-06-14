@@ -56,9 +56,10 @@ public class MenuPrincipal extends JFrame
 	 */
 	public MenuPrincipal()
 	{
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
-		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
 		setResizable(false);
+		setAlwaysOnTop(true);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
+		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -113,7 +114,7 @@ public class MenuPrincipal extends JFrame
 			public void mouseClicked(MouseEvent arg0) {
 				try
 				{
-					VistaRegVentas frame = new VistaRegVentas();
+					VistaRegVentas frame = new VistaRegVentas(null);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -128,6 +129,19 @@ public class MenuPrincipal extends JFrame
 		paneMenuPrincipal.add(btnRegistrarVenta);
 		
 		JButton btnAgregarProducto = new JButton("Agregar Producto");
+		btnAgregarProducto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try
+				{
+					VistaAgregProducto frame = new VistaAgregProducto(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		btnAgregarProducto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnAgregarProducto.setForeground(Color.BLACK);
 		btnAgregarProducto.setBackground(Color.LIGHT_GRAY);
@@ -150,6 +164,19 @@ public class MenuPrincipal extends JFrame
 		paneMenuPrincipal.add(btnEditarProducto);
 		
 		JButton btnRegistrarCompra = new JButton("Registrar Compra");
+		btnRegistrarCompra.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try
+				{
+					VistaRegCompras frame = new VistaRegCompras(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		btnRegistrarCompra.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnRegistrarCompra.setForeground(Color.BLACK);
 		btnRegistrarCompra.setBackground(Color.LIGHT_GRAY);
@@ -218,19 +245,21 @@ public class MenuPrincipal extends JFrame
 		lblMenPrincipal.setBounds(291, 13, 211, 41);
 		paneMenuPrincipal.add(lblMenPrincipal);
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
+	private static void addPopup(Component component, final JPopupMenu popup)
+	{
+		component.addMouseListener(new MouseAdapter(){
+			public void mousePressed(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
 					showMenu(e);
-				}
 			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
+			public void mouseReleased(MouseEvent e)
+			{
+				if (e.isPopupTrigger())
 					showMenu(e);
-				}
 			}
-			private void showMenu(MouseEvent e) {
+			private void showMenu(MouseEvent e)
+			{
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});

@@ -25,10 +25,11 @@ import java.awt.Window.Type;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class MenuInicio extends JFrame
+public class VistaLogin extends JFrame
 {
 	private JPanel paneLogin;
 	private JPasswordField campoContraseña;
+	private JLabel etiquetaContraseniaIncorrecta;
 
 	/**
 	 * Launch the application.
@@ -41,7 +42,7 @@ public class MenuInicio extends JFrame
 			{
 				try
 				{
-					MenuInicio frame = new MenuInicio();
+					VistaLogin frame = new VistaLogin();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -54,9 +55,9 @@ public class MenuInicio extends JFrame
 	/**
 	 * Creacion de la ventana Menú de Inicio.
 	 */
-	public MenuInicio()
+	public VistaLogin()
 	{
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MenuInicio.class.getResource("/Imagenes/IconoVentana.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Gesti\u00F3n de Stock");
 		setResizable(false);
 		setBackground(Color.WHITE);
@@ -68,26 +69,45 @@ public class MenuInicio extends JFrame
 		paneLogin.setBackground(Color.WHITE);
 		paneLogin.setBorder(UIManager.getBorder("PasswordField.border"));
 		setContentPane(paneLogin);
-		paneLogin.setLayout(null);
+		paneLogin.setLayout(null);		
+
+		JLabel etiquetaContraseniaIncorrecta = new JLabel("Contrase\u00F1a incorrecta.");
+		etiquetaContraseniaIncorrecta.setVisible(false);
+		etiquetaContraseniaIncorrecta.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaContraseniaIncorrecta.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaContraseniaIncorrecta.setForeground(new Color(153, 0, 0));
+		etiquetaContraseniaIncorrecta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaContraseniaIncorrecta.setBounds(514, 318, 164, 22);
+		paneLogin.add(etiquetaContraseniaIncorrecta);
 		
 		JButton btnIniciar = new JButton("Iniciar");
-		btnIniciar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnIniciar.addMouseListener(new MouseAdapter()
+		btnIniciar.addActionListener(new ActionListener()
 		{
-			@Override
-			public void mouseClicked(MouseEvent arg0)
+			public void actionPerformed(ActionEvent arg0)
 			{
-				try
+				String password = campoContraseña.getText();
+				
+				if(password.equals("admin"))
 				{
-					MenuPrincipal frame = new MenuPrincipal();
-					frame.setVisible(true);
-					dispose();
-				} catch (Exception e)
+					try
+					{
+						MenuPrincipal frame = new MenuPrincipal();
+						frame.setVisible(true);
+						dispose();
+					} catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+				}else
 				{
-					e.printStackTrace();
+					
+					etiquetaContraseniaIncorrecta.setVisible(true);
+					campoContraseña.setText("");
+					campoContraseña.setFocusable(true);
 				}
 			}
 		});
+		btnIniciar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnIniciar.setForeground(SystemColor.activeCaptionText);
 		btnIniciar.setBackground(Color.LIGHT_GRAY);
 		btnIniciar.setBounds(291, 424, 211, 41);
@@ -96,7 +116,7 @@ public class MenuInicio extends JFrame
 		JLabel LogoInicio = new JLabel("");
 		LogoInicio.setBounds(66, 64, 662, 196);
 		paneLogin.add(LogoInicio);
-		LogoInicio.setIcon(new ImageIcon(MenuInicio.class.getResource("/Imagenes/AureliaLogoCompleto.png")));
+		LogoInicio.setIcon(new ImageIcon(VistaLogin.class.getResource("/Imagenes/AureliaLogoCompleto.png")));
 		
 		JLabel pieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
 		pieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -111,19 +131,13 @@ public class MenuInicio extends JFrame
 		paneLogin.add(pieDePagina2);		
 		
 		JButton btnCerrar = new JButton("Cerrar");
-		btnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnCerrar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnCerrar.addMouseListener(new MouseAdapter()
-		{
-			@Override
-			public void mouseClicked(MouseEvent arg0)
+		btnCerrar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0)
 			{
 				System.exit(0);
 			}
 		});
+		btnCerrar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnCerrar.setForeground(new Color(153, 0, 0));
 		btnCerrar.setBackground(Color.LIGHT_GRAY);
 		btnCerrar.setBounds(571, 476, 211, 41);
@@ -143,6 +157,6 @@ public class MenuInicio extends JFrame
 		campoContraseña.setBackground(Color.LIGHT_GRAY);
 		campoContraseña.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));
 		campoContraseña.setBounds(397, 319, 105, 24);
-		paneLogin.add(campoContraseña);
+		paneLogin.add(campoContraseña);		
 	}
 }

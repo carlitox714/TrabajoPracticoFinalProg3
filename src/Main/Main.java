@@ -12,7 +12,7 @@ import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
-import Vistas.AgregarProducto;
+import Vistas.VistaAgregProducto;
 
 
 public class Main {
@@ -84,23 +84,10 @@ public class Main {
 		
 		
 
-		AgregarProducto Menu = new AgregarProducto(lista);
-				
+		VistaAgregProducto Menu = new VistaAgregProducto(lista);
+		Menu.setVisible(true);		
 		
-				
-		
-		
-		System.out.println(lista.toString());
-				
-				
-			
-			
-		
-
-		
-		
-		
-		
+		System.out.println(lista.toString());		
 
 	}
 
