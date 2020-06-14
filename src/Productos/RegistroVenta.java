@@ -1,10 +1,11 @@
 package Productos;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 
 
-public class RegistroVenta<T> extends ContenedorArrayList<Venta> 
+public class RegistroVenta<T> extends ContenedorArrayList<Venta> implements Serializable
 {
 	
 	private Calendar date;

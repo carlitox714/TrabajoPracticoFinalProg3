@@ -1,8 +1,9 @@
 package Productos;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Venta 
+public class Venta implements Serializable
 {
 	private int id;
 	private String nombre;

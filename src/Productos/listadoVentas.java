@@ -2,6 +2,7 @@ package Productos;
 
 import java.util.Iterator;
 import java.util.Map;
+import Archivos.*;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -10,6 +11,7 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	public static int idCount=0;
 	private int id;
 	private Contenedor<Integer, RegistroVenta<Venta>> cont;
+	private static String nombreArchivo = "registroVentas.bin";
 	
 	public listadoVentas() {
 		super();
@@ -26,6 +28,7 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	{
 		return (listadoVentas<Integer, Venta>) cont;
 	}
+	
 	public int getId()
 	{
 		return this.id;
@@ -59,7 +62,17 @@ public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		return  aux;
 	}
 	
+	public void leerArchivo()
+	{
+		ArchivoVentas arch = new ArchivoVentas();
+		cont =(Contenedor) arch.levantarArchivo();
+	}
 	
+	public void guardarArchivo()
+	{
+		ArchivoVentas arch = new ArchivoVentas();
+		arch.guardarArchivo(cont);
+	}
 
 }
 

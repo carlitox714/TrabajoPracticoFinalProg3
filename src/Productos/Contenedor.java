@@ -1,11 +1,12 @@
 package Productos;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 
-public class Contenedor<K,T>  {
+public class Contenedor<K,T> implements Serializable  {
 	
 	private HashMap<K,T> conjuntoDeElementos;
 	
