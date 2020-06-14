@@ -1,12 +1,17 @@
 package Productos;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ListadoProducto<T> extends ContenedorArrayList<Producto>{
+import Archivos.*;
+
+public class ListadoProducto<T> extends ContenedorArrayList<Producto>
+{
 	
 	private ContenedorArrayList<Producto> contenedor;
+	private static String nombreArchivo = "productos.bin";
 
 
 	public ListadoProducto(ContenedorArrayList<Producto> contenedor) {
@@ -63,7 +68,17 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>{
 			
 	}
 	
+	public void leerArchivo()
+	{
+		ArchivoProducto arch = new ArchivoProducto();
+		contenedor = arch.levantarArchivo();
+	}
 	
+	public void guardarArchivo()
+	{
+		ArchivoProducto arch = new ArchivoProducto();
+		arch.guardarArchivo(contenedor);
+	}
 	
 	
 

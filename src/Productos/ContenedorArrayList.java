@@ -1,10 +1,11 @@
 package Productos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ContenedorArrayList<T> implements Iterator<T>
+public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 {
 
 	private ArrayList<T> conjuntoDeElementos;
