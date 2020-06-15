@@ -28,7 +28,7 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import Productos.RegistroVenta;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoVentas;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -37,7 +37,7 @@ import javax.swing.DefaultComboBoxModel;
 public class VistaRegCompras extends JFrame
 {
 	private JPanel contentPane;
-	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 
 	/**
 	 * Launch the application.
@@ -63,7 +63,7 @@ public class VistaRegCompras extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaRegCompras(listadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaRegCompras(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
 	{
 		
 		listVentas = lista;

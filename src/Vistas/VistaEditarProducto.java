@@ -25,7 +25,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.ListSelectionModel;
 import Productos.RegistroVenta;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoVentas;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -39,7 +39,7 @@ import javax.swing.UIManager;
 public class VistaEditarProducto extends JFrame
 {
 	private JPanel contentPane;
-	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	private JTextField textFieldDetalleProducto;
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class VistaEditarProducto extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaEditarProducto(listadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaEditarProducto(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
 	{
 		this.listVentas = lista; 
 		

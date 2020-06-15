@@ -12,12 +12,24 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	
 	private ContenedorArrayList<Producto> contenedor;
 	private static String nombreArchivo = "productos.bin";
+	private int idCount = 0;
 
 
 	public ListadoProducto(ContenedorArrayList<Producto> contenedor) {
 		super();
 		this.contenedor = contenedor;
 	}
+	
+	public int getIdcount()
+	{
+		return this.idCount;
+	}
+	
+	public int setIdcount(int idCount)
+	{
+		return this.idCount;
+	}
+	
 
 	public ListadoProducto() {
 		super();
@@ -29,44 +41,120 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	{
 		
 			if(!existeProducto(prod))
-			contenedor.agregar(prod);
+			{
+				contenedor.agregar(prod);
+				this.idCount++;
+			}
 			else
 				throw new IOException("El producto ya se encuentra registrado");
 			
 		
 	}
 	
-	
-	
-	public boolean existeProducto(Producto prod) 
+	@Override
+	public Producto remover(int id)
 	{
+		return contenedor.remover(id);
 		
-		Iterator<Producto> iterator = contenedor.iterator();
-	
-		if(buscarProducto(prod) != null)
-			return true;
-		else
-			return false;	
-	
 	}
+
+	
+
 	
 	
-	public Producto buscarProducto(Producto prod)
+	public Producto getProducto(String nombre)
 	{
-		
 		Iterator<Producto> iterator = contenedor.iterator();
 	
-		if(iterator.hasNext())
+		while(iterator.hasNext())
 		{
-			if(iterator.next().equals(prod))
+			Producto prod = iterator.next();
+			if(nombre.equals(prod.getNombre()))
 			{
-				System.out.println("caca");
 				return prod;
 			}
 		}
-		return null;
+		return null;	
+	}
+	
+
+	
+	public boolean existeProducto(Producto prod)
+	{
+		Iterator<Producto> iterator = contenedor.iterator();
+	
+		while(iterator.hasNext())
+		{
+			if(iterator.next().equals(prod))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	
+	public int cantProd()
+	{
+		int cont = 0;
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			cont++;
+			iterator.next();
+		}
+		return cont;
 			
 	}
+	
+	
+	
+	
+	
+	public String[] getNombres()
+	{
+		int cont = 0;
+		int cantProd = cantProd();
+		
+		String[] str = new String[cantProd];
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prodcto = iterator.next();
+			str[cont] = (String) prodcto.getNombre();
+			cont++;
+			
+		}
+		return str;
+			
+	}
+	
+
+	public String[] listaSimple()
+	{
+		int cont = 0;
+		int cantProd = cantProd();
+		
+		String[] str = new String[cantProd];
+		
+		Iterator<Producto> iterator = contenedor.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prodcto = iterator.next();
+			str[cont] = (String) prodcto.toStringSimple();
+			cont++;
+			
+		}
+		return str;
+			
+	}
+	
+	
 	
 	public void leerArchivo()
 	{
@@ -87,10 +175,6 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		return contenedor.toString();
 	}
 
-	public void remover(Producto prod)
-	{
-		
-	}
 
 	@Override
 	public boolean hasNext() {

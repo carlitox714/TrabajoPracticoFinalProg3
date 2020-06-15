@@ -5,6 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Productos.ListadoProducto;
+import Productos.Producto;
+import Productos.RegistroVenta;
+import Productos.Venta;
+import Productos.ListadoVentas;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -21,7 +28,7 @@ import javax.swing.SwingConstants;
 public class VistaMenuPrincipal extends JFrame
 {
 	private JPanel paneMenuPrincipal;
-
+/*
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -39,12 +46,14 @@ public class VistaMenuPrincipal extends JFrame
 			}
 		});
 	}
-
+*/
 	/**
 	 * Creación de la Ventana de Menú Principal.
 	 */
-	public VistaMenuPrincipal()
+	public VistaMenuPrincipal(ListadoProducto<Producto> listProd, ListadoVentas<Integer, RegistroVenta<Venta>> listVentas)
 	{
+		
+		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
@@ -164,7 +173,7 @@ public class VistaMenuPrincipal extends JFrame
 			public void mouseClicked(MouseEvent arg0) {
 				try
 				{
-					VistaAgregProducto frame = new VistaAgregProducto(null);
+					VistaAgregProducto frame = new VistaAgregProducto(listProd);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -226,7 +235,7 @@ public class VistaMenuPrincipal extends JFrame
 			{
 				try
 				{
-					VistaListProducID frame = new VistaListProducID(null);
+					VistaListProducID frame = new VistaListProducID(listProd);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{

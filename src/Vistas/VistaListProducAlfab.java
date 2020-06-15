@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import Productos.RegistroVenta;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoVentas;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -28,7 +28,7 @@ import javax.swing.UIManager;
 public class VistaListProducAlfab extends JFrame
 {
 	private JPanel contentPane;
-	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	/**
 	 * Launch the application.
 	 */
@@ -53,7 +53,7 @@ public class VistaListProducAlfab extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaListProducAlfab(listadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaListProducAlfab(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
 	{
 		this.listVentas = lista; 
 		

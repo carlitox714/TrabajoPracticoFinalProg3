@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -23,9 +25,12 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.ListSelectionModel;
+
+import Productos.ListadoProducto;
+import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoVentas;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -39,11 +44,12 @@ import javax.swing.UIManager;
 public class VistaAgregProducto extends JFrame
 {
 	private JPanel contentPane;
-	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	private JTextField textFieldDetalleProducto;
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -61,13 +67,14 @@ public class VistaAgregProducto extends JFrame
 			}
 		});
 	}
+	*/
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaAgregProducto(listadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaAgregProducto(ListadoProducto<Producto> listProd)
 	{
-		this.listVentas = lista; 
+		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Nuevo Producto");
@@ -369,11 +376,26 @@ public class VistaAgregProducto extends JFrame
 		listaParcialProductos.setModel(listaParcial);
 		scrollPane.setViewportView(listaParcialProductos);
 		
+		ListadoProducto<Producto> listAux = new ListadoProducto<Producto>();
+		
+		
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
 		btnAniadirALista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				/// verificar repetido en registro real y luego en listaParcial
-				listaParcial.addElement(jSpinStock.getValue() + " " + textFieldDetalleProducto.getText() + ", " +  comboBoxCategoria.getSelectedItem() + " a $" + jSpinPrecio.getValue() + ".");
+				
+				Producto prod = new Producto(listProd.getIdcount(), textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, false, false, false, (Integer) jSpinStock.getValue());
+				
+					try {
+						listAux.agregar(prod);
+						listaParcial.addElement(jSpinStock.getValue() + " " + textFieldDetalleProducto.getText() + ", " +  comboBoxCategoria.getSelectedItem() + " a $" + jSpinPrecio.getValue() + ".");
+
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);
+					}
+					
+			
+				
 				/// cambiar la muestra de la categoría por el detalle del precio (por gramos o por unidad)
 				/// desarrollar listaProducto paralela al defaultListModel
 			}
@@ -392,6 +414,8 @@ public class VistaAgregProducto extends JFrame
 				int indiceABorrar = model2.getMinSelectionIndex();
 				if (indiceABorrar != -1) {
 					listaParcial.remove(indiceABorrar);
+					
+					System.out.println(listAux.remover(indiceABorrar).toString());
 				}
 			}
 		});

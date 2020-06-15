@@ -6,27 +6,27 @@ import Archivos.*;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
-public class listadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
+public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
 {
 	public static int idCount=0;
 	private int id;
 	private Contenedor<Integer, RegistroVenta<Venta>> cont;
 	private static String nombreArchivo = "registroVentas.bin";
 	
-	public listadoVentas() {
+	public ListadoVentas() {
 		super();
 		this.cont = new Contenedor<Integer, RegistroVenta<Venta>>();
 		this.id=0;
 	}
 	 
-	public listadoVentas(int id, Contenedor<K, T> cont) {
+	public ListadoVentas(int id, Contenedor<K, T> cont) {
 		super();
 		this.id = id;
 	}
 	
-	public listadoVentas<Integer, Venta> getListado()
+	public ListadoVentas<Integer, Venta> getListado()
 	{
-		return (listadoVentas<Integer, Venta>) cont;
+		return (ListadoVentas<Integer, Venta>) cont;
 	}
 	
 	public int getId()

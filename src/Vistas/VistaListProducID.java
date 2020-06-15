@@ -1,5 +1,6 @@
 package Vistas;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,7 +20,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import Productos.RegistroVenta;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoProducto;
+import Productos.ListadoVentas;
+import Productos.Producto;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -28,10 +31,10 @@ import javax.swing.UIManager;
 public class VistaListProducID extends JFrame
 {
 	private JPanel contentPane;
-	private static listadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -40,7 +43,7 @@ public class VistaListProducID extends JFrame
 			{
 				try
 				{
-					VistaListProducID frame = new VistaListProducID(listVentas);
+					VistaListProducID frame = new VistaListProducID();
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -48,14 +51,14 @@ public class VistaListProducID extends JFrame
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaListProducID(listadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaListProducID(ListadoProducto<Producto> lista)
 	{
-		VistaListProducID.listVentas = lista; 
+		 
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Listado de Productos Ordenados por ID\r\n\r\n");

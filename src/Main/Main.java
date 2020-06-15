@@ -8,11 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Productos.Venta;
-import Productos.listadoVentas;
+import Productos.ListadoVentas;
 import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Vistas.VistaMenuPrincipal;
 import Productos.ListadoProducto;
 
 
@@ -20,7 +21,17 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-	
+		
+		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
+		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
+
+		listProd.leerArchivo();
+		listVentas.leerArchivo();
+		
+		VistaMenuPrincipal menu = new VistaMenuPrincipal(listProd, listVentas);
+		menu.setVisible(true);
+		
+	/*
 		Producto prod1 = new Producto(0, "manzana", null, 15, 0, false, false, false,490);
 		Producto prod2 = new Producto(1, "banana", null, 45, 0, false, false, false,292);
 		Producto prod3 = new Producto(2, "ayauasca", null, 11, 0, false, false, false,609);
@@ -29,7 +40,7 @@ public class Main {
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,490);
 		
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
-		
+
 		try 
 		{
 		listProd.agregar(prod1);
@@ -72,8 +83,9 @@ public class Main {
 		{
 			System.out.println(e.getMessage());
 		}
-		/*
+		
 		listProd.guardarArchivo();
+		
 		listProd.leerArchivo();
 		System.out.println(listProd.toString());
 	
@@ -124,24 +136,24 @@ public class Main {
 		reg2.agregar(aux);
 		prod3.reducirStock(9);
 		
-		*/
+		
 		listadoVentas<Integer,RegistroVenta<Venta>> lista = new listadoVentas<Integer,RegistroVenta<Venta>>();
-	/*
+
 		lista.agregar(reg1);
 		lista.agregar(reg2);
 		lista.agregar(reg2);
 		lista.agregar(reg2);
 		
-		lista.guardarArchivo();
-		*/
-		lista.leerArchivo();
-		System.out.println(lista.toString());
+		lista.guardarArchivo();*/
 		
-			
+	//	lista.leerArchivo();
+	//	System.out.println(lista.toString());
+		
+		
 				
 		
 		
-		//System.out.println(lista.toString());
+
 				
 				
 			
