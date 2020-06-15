@@ -1,6 +1,5 @@
 package Vistas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,13 +17,6 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
 
 public class VistaMenuPrincipal extends JFrame
 {
@@ -58,7 +50,7 @@ public class VistaMenuPrincipal extends JFrame
 		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(600, 200, 800, 600);
 		paneMenuPrincipal = new JPanel();
 		paneMenuPrincipal.setBackground(Color.WHITE);
 		paneMenuPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,27 +110,33 @@ public class VistaMenuPrincipal extends JFrame
 		
 		// Botones: 
 		
-		JButton btnRegistroVentas = new JButton("Registro de Ventas\n\r\n");
-		btnRegistroVentas.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistroVentas.addMouseListener(new MouseAdapter()
-		{
+		JButton btnListVentas = new JButton("Ventas\r\n\r\r\n");
+		btnListVentas.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnListVentas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				
+				try
+				{
+					VistaListVentas frame = new VistaListVentas(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		});
-		btnRegistroVentas.setForeground(SystemColor.activeCaptionText);
-		btnRegistroVentas.setBackground(Color.LIGHT_GRAY);
-		btnRegistroVentas.addActionListener(new ActionListener()
+		btnListVentas.setForeground(SystemColor.activeCaptionText);
+		btnListVentas.setBackground(Color.LIGHT_GRAY);
+		btnListVentas.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0)
 			{
 				
 			}
 		});
-		btnRegistroVentas.setBounds(571, 209, 211, 41);
-		paneMenuPrincipal.add(btnRegistroVentas);
+		btnListVentas.setBounds(571, 209, 211, 41);
+		paneMenuPrincipal.add(btnListVentas);
 		
 		JButton btnRegistrarVenta = new JButton("Registrar Venta");
 		btnRegistrarVenta.addMouseListener(new MouseAdapter() {
@@ -181,6 +179,19 @@ public class VistaMenuPrincipal extends JFrame
 		paneMenuPrincipal.add(btnAgregarProducto);
 		
 		JButton btnEditarProducto = new JButton("Editar Producto");
+		btnEditarProducto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try
+				{
+					VistaEditarProducto frame = new VistaEditarProducto(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
 		btnEditarProducto.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnEditarProducto.setForeground(Color.BLACK);
 		btnEditarProducto.setBackground(Color.LIGHT_GRAY);
@@ -207,23 +218,47 @@ public class VistaMenuPrincipal extends JFrame
 		btnRegistrarCompra.setBounds(301, 316, 211, 41);
 		paneMenuPrincipal.add(btnRegistrarCompra);
 		
-		JButton btnListaDeProductos = new JButton("Productos (por ID)");
-		btnListaDeProductos.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnListaDeProductos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		JButton btnListProdID = new JButton("Productos (por ID)");
+		btnListProdID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnListProdID.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				try
+				{
+					VistaListProducID frame = new VistaListProducID(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		});
-		btnListaDeProductos.setForeground(Color.BLACK);
-		btnListaDeProductos.setBackground(Color.LIGHT_GRAY);
-		btnListaDeProductos.setBounds(571, 262, 211, 41);
-		paneMenuPrincipal.add(btnListaDeProductos);
+		btnListProdID.setForeground(Color.BLACK);
+		btnListProdID.setBackground(Color.LIGHT_GRAY);
+		btnListProdID.setBounds(571, 262, 211, 41);
+		paneMenuPrincipal.add(btnListProdID);
 		
-		JButton btnProductosporStock = new JButton("Productos (por Stock)");
-		btnProductosporStock.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnProductosporStock.setForeground(Color.BLACK);
-		btnProductosporStock.setBackground(Color.LIGHT_GRAY);
-		btnProductosporStock.setBounds(571, 316, 211, 41);
-		paneMenuPrincipal.add(btnProductosporStock);
+		JButton btnProductosAlfabetico = new JButton("Productos (Alfab\u00E9tico)");
+		btnProductosAlfabetico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+			{
+				try
+				{
+					VistaListProducAlfab frame = new VistaListProducAlfab(null);
+					frame.setVisible(true);
+				} catch (Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		});
+		btnProductosAlfabetico.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		btnProductosAlfabetico.setForeground(Color.BLACK);
+		btnProductosAlfabetico.setBackground(Color.LIGHT_GRAY);
+		btnProductosAlfabetico.setBounds(571, 316, 211, 41);
+		paneMenuPrincipal.add(btnProductosAlfabetico);
 		
 		JButton btnCerrar = new JButton("Cerrar");
 		btnCerrar.setForeground(new Color(153, 51, 51));

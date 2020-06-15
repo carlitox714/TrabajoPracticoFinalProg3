@@ -1,11 +1,9 @@
 package Vistas;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,22 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
-import java.awt.Window.Type;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class VistaLogin extends JFrame
 {
 	private JPanel paneLogin;
 	private JPasswordField campoContraseña;
-	private JLabel etiquetaContraseniaIncorrecta;
-
 	/**
 	 * Launch the application.
 	 */
@@ -62,12 +51,11 @@ public class VistaLogin extends JFrame
 		setResizable(false);
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(600, 200, 800, 600);
 		
 		paneLogin = new JPanel();
 		paneLogin.setForeground(new Color(192, 192, 192));
 		paneLogin.setBackground(Color.WHITE);
-		paneLogin.setBorder(UIManager.getBorder("PasswordField.border"));
 		setContentPane(paneLogin);
 		paneLogin.setLayout(null);
 		
