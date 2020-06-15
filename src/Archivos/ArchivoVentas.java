@@ -11,8 +11,8 @@ import java.io.Serializable;
 import Productos.Contenedor;
 import Productos.ContenedorArrayList;
 import Productos.Producto;
-import Productos.RegistroVenta;
-import Productos.Venta;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 
 public class ArchivoVentas
 {

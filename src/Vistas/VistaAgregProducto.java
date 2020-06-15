@@ -31,9 +31,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
-import Productos.RegistroVenta;
-import Productos.Venta;
-import Productos.listadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
+import Ventas.listadoVentas;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;

@@ -1,7 +1,9 @@
-package Productos;
+package Ventas;
 
 import java.io.Serializable;
 import java.util.Calendar;
+
+import Productos.ContenedorArrayList;
 
 
 

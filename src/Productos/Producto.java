@@ -11,16 +11,29 @@ public class Producto implements Serializable
 	private int ID;
 	private String nombre;
 	private String categoria;
-	private int precio;
+	private int precio; 
 	private int calorias;
 	private boolean isVegano;
 	private boolean isCeliaco;
 	private boolean azucar;
 	private int stock; 
+	private int stockMinimo;
 	
 	
 	
 	
+	public int getStockMinimo() {
+		return stockMinimo;
+	}
+
+	public void setStockMinimo(int stockMinimo) {
+		this.stockMinimo = stockMinimo;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	public Producto() 
 	{
 		super(); 
