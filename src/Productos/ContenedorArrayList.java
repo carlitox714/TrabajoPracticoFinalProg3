@@ -2,10 +2,11 @@ package Productos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ContenedorArrayList<T> implements Iterator<T>, Serializable
+public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Cloneable
 {
 
 	private ArrayList<T> conjuntoDeElementos;
@@ -64,7 +65,17 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 	/**
 	 * 
 	 * @return la cantidad de elementos en el contenedor
+	
+	 *
 	 */
+	
+	public void sort(Comparator<? super T> c)
+	{
+		conjuntoDeElementos.sort(c);
+		
+	}
+	
+	
 	public int cantElementos() {
 		return conjuntoDeElementos.size();
 	}
@@ -83,4 +94,7 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 		return null;
 	}
 }
+
+
+	
 

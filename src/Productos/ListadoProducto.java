@@ -12,7 +12,7 @@ import com.sun.scenario.effect.impl.prism.PrDrawable;
 
 import Archivos.*;
 
-public class ListadoProducto<T> extends ContenedorArrayList<Producto> implements Cloneable
+public class ListadoProducto<T> extends ContenedorArrayList<Producto> 
 {
 	
 	private static String nombreArchivo = "productos.bin";
@@ -34,6 +34,13 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto> implements
 	{
 		super();	
 	}
+	
+	
+	
+
+	
+	
+
 	
 	@Override
 	public void agregar(Producto prod) throws Exception
@@ -146,6 +153,8 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto> implements
 		}
 		
 	}
+	
+	
 	
 	
 	

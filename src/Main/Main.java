@@ -1,6 +1,7 @@
 package Main;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import javax.swing.DefaultComboBoxModel;
@@ -27,17 +28,19 @@ public class Main {
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
 	listProd.leerArchivo();
-		listVentas.leerArchivo();
+	listVentas.leerArchivo();
+		
+		
 		
 		
 		//System.out.println(listVentas.toString());
 		
-		//System.out.println(listProd.toString());
-		
-		VistaLogin login = new VistaLogin(listProd, listVentas);
+		System.out.println(listVentas.toString());
+		//
+	VistaLogin login = new VistaLogin(listProd, listVentas);
 		login.setVisible(true);
 		
-/*
+		/*
 		Producto prod1 = new Producto(0, "manzana", null, 15, 0, false, false, false,490);
 		Producto prod2 = new Producto(1, "banana", null, 45, 0, false, false, false,292);
 		Producto prod3 = new Producto(2, "ayauasca", null, 11, 0, false, false, false,609);
@@ -46,7 +49,7 @@ public class Main {
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,490);
 		
 
-/*
+
 		try 
 		{
 		listProd.agregar(prod1);
@@ -90,12 +93,12 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 		
-	//	listProd.guardarArchivo();
+		listProd.guardarArchivo();
 		
 		//listProd.leerArchivo();
 	//	System.out.println(listProd.toString());
 	
-	
+	*//*
 	
 		RegistroVenta<Venta> reg1 = new RegistroVenta<Venta>();
 		RegistroVenta<Venta> reg2 = new RegistroVenta<Venta>();
@@ -147,16 +150,16 @@ public class Main {
 		listVentas.agregar(reg2);
 		listVentas.agregar(reg2);
 		listVentas.agregar(reg2);
-		
-		//listVentas.guardarArchivo();
+		*/
+	//	listVentas.guardarArchivo();
 		
 	//	lista.leerArchivo();
 	//	System.out.println(lista.toString());
 		
 		
 				
-		*/
 		
+
 
 				
 				

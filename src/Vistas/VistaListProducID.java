@@ -3,10 +3,14 @@ package Vistas;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -29,10 +33,14 @@ import Productos.Producto;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.UIManager;
+import java.awt.Window.Type;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.border.LineBorder;
 
-public class VistaListProducID extends JFrame
+public class VistaListProducID extends JDialog
 {
 	private JPanel contentPane;
+	private Object JDialog;
 	
 	/**
 	 * Launch the application.
@@ -50,87 +58,35 @@ public class VistaListProducID extends JFrame
 				} catch (Exception e)
 				{
 					e.printStackTrace();
-				}
-			}
+				} 
 		});
 	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaListProducID(ListadoProducto<Producto> lista)
+	public VistaListProducID(java.awt.Frame parent, boolean bobo, ListadoProducto<Producto> lista)
 	{
-		 
+		super(parent,bobo);
+	setType(Type.POPUP);
+		setResizable(false);
+	
+		
+		setUndecorated(true);
+		
+	
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Listado de Productos Ordenados por ID\r\n\r\n");
-		setResizable(false);
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(800, 200, 800, 600);
-		/*
-		 * Barra de Tareas
-		 */
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
 		
-		JMenu menuBarraCaja = new JMenu("Caja");
-		menuBarraCaja.setForeground(Color.BLACK);
-		menuBarraCaja.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraCaja);
-		
-		JMenuItem btnBarraRegistrarVenta = new JMenuItem("Registrar Venta");
-		btnBarraRegistrarVenta.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraCaja.add(btnBarraRegistrarVenta);
-		
-		JMenu menuBarraProductos = new JMenu("Productos");
-		menuBarraProductos.setForeground(Color.BLACK);
-		menuBarraProductos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraProductos);
-		
-		JMenuItem btnBarraAgregarProducto = new JMenuItem("Agregar Producto");
-		btnBarraAgregarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraAgregarProducto);
-		
-		JMenuItem btnBarraEditarProducto = new JMenuItem("Editar Producto");
-		btnBarraEditarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraEditarProducto);
-		
-		JMenuItem btnBarraRegistrarCompra = new JMenuItem("Registrar Compra");
-		btnBarraRegistrarCompra.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraRegistrarCompra);
-		
-		JMenu menuBarraListados = new JMenu("Listados");
-		menuBarraListados.setForeground(Color.BLACK);
-		menuBarraListados.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraListados);
-		
-		JMenuItem btnBarraListVentas = new JMenuItem("Ventas");
-		btnBarraListVentas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraListVentas);
-		
-		JMenuItem btnBarraProductosID = new JMenuItem("Productos por ID");
-		btnBarraProductosID.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosID);
-		
-		JMenuItem btnBarraProductosAlfabetico = new JMenuItem("Productos Alfab\u00E9tico");
-		btnBarraProductosAlfabetico.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosAlfabetico);
-		
-		JMenu menuBarraAyuda = new JMenu("Ayuda");
-		menuBarraAyuda.setForeground(Color.BLACK);
-		menuBarraAyuda.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraAyuda);
-		
-		JMenuItem btnBarraManual = new JMenuItem("Manual de Usuario");
-		btnBarraManual.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraAyuda.add(btnBarraManual);
+		setSize(790, 560);
 		/*
 		 * Contenido en Ventana				
 		 */
 		contentPane = new JPanel();
+		contentPane.setBorder(null);
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(UIManager.getBorder("List.noFocusBorder"));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

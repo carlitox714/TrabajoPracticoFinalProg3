@@ -15,6 +15,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import Productos.RegistroVenta;
@@ -30,10 +32,11 @@ import javax.swing.UIManager;
 public class VistaListProducAlfab extends JFrame
 {
 	private JPanel contentPane;
-	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	
+	ListadoProducto<Producto> aux;
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -51,13 +54,17 @@ public class VistaListProducAlfab extends JFrame
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
 	public VistaListProducAlfab(ListadoProducto<Producto> lista)
 	{
 	
+		 aux = (ListadoProducto<Producto>) lista;
+		
+		aux.sort(Comparator.comparing(Producto::getNombre));
+		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Listado de Productos en Orden Alfab\u00E9tico\r\n");
@@ -160,6 +167,7 @@ public class VistaListProducAlfab extends JFrame
 		btnVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0){
+				aux.sort(Comparator.comparing(Producto::getID));
 				dispose();
 			}
 		});
@@ -177,7 +185,7 @@ public class VistaListProducAlfab extends JFrame
 		
 		DefaultListModel<String> listaParcial = new DefaultListModel<String>();
 		
-		listaParcial = lista.listadoString();
+		listaParcial = aux.listadoString();
 		
 		JList<String> listaParcialProductos = new JList<String>();
 		listaParcialProductos.setForeground(Color.DARK_GRAY);

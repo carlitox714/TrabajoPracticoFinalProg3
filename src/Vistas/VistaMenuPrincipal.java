@@ -24,10 +24,12 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
+import java.awt.Button;
 
 public class VistaMenuPrincipal extends JFrame
 {
 	private JPanel paneMenuPrincipal;
+	
 /*
 	public static void main(String[] args)
 	{
@@ -54,12 +56,15 @@ public class VistaMenuPrincipal extends JFrame
 	{
 		
 		
+		
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
-		setTitle("Aurelia - Gesti\u00F3n de Stock - Men\u00FA Principal");
+		setTitle("Aurelia - Gesti\u00F3n de Stockmadm");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(600, 200, 800, 600);
+		setSize(800, 600);
+		setLocationRelativeTo(null);
+		
 		paneMenuPrincipal = new JPanel();
 		paneMenuPrincipal.setBackground(Color.WHITE);
 		paneMenuPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -228,21 +233,25 @@ public class VistaMenuPrincipal extends JFrame
 		paneMenuPrincipal.add(btnRegistrarCompra);
 		
 		JButton btnListProdID = new JButton("Productos (por ID)");
-		btnListProdID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnListProdID.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0)
-			{
+		btnListProdID.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
 				try
 				{
-					VistaListProducID frame = new VistaListProducID(listProd);
+					VistaListProducID frame = new VistaListProducID(new JFrame(),true,listProd);
+					frame.setLocationRelativeTo(getComponentAt(getLocationOnScreen()));
 					frame.setVisible(true);
-				} catch (Exception e)
+				} catch (Exception c)
 				{
-					e.printStackTrace();
+					c.printStackTrace();
 				}
+			
 			}
 		});
+		
+		btnListProdID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		
+		
 		btnListProdID.setForeground(Color.BLACK);
 		btnListProdID.setBackground(Color.LIGHT_GRAY);
 		btnListProdID.setBounds(571, 262, 211, 41);
@@ -255,7 +264,8 @@ public class VistaMenuPrincipal extends JFrame
 			{
 				try
 				{
-					VistaListProducAlfab frame = new VistaListProducAlfab(null);
+					VistaListProducAlfab frame = new VistaListProducAlfab(listProd);
+					frame.setLocation(getLocationOnScreen());
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -283,5 +293,19 @@ public class VistaMenuPrincipal extends JFrame
 		btnCerrar.setBackground(Color.LIGHT_GRAY);
 		btnCerrar.setBounds(571, 476, 211, 41);
 		paneMenuPrincipal.add(btnCerrar);
+	}
+
+	
+	
+	private void actionPerformed(ActionEvent arg0, ListadoProducto<Producto> listProd) 
+	{
+		try
+		{
+			VistaListProducID frame = new VistaListProducID(this,true,listProd);
+			frame.setVisible(true);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

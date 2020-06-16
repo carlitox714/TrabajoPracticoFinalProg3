@@ -29,7 +29,7 @@ public class Venta implements Serializable
 			throw new IOException("No hay suficiente stock, intente nuevamente");
 		}
 		
-		this.id =prod.getID();
+		
 		this.nombre = prod.getNombre();
 		this.precio = prod.getPrecio();
 		this.cantidad = cantidad;
@@ -41,7 +41,7 @@ public class Venta implements Serializable
 
 	@Override
 	public String toString() {
-		return "ID=" + id + ", " + nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "\n";
+		return  nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "\n";
 	}
 
 	public int getCantidad() {

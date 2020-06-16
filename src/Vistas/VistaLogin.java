@@ -21,6 +21,8 @@ import Productos.ListadoVentas;
 import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Venta;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class VistaLogin extends JFrame
 {
@@ -154,6 +156,38 @@ public class VistaLogin extends JFrame
 		// Campos:
 		
 		campoContraseña = new JPasswordField();
+		campoContraseña.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if(arg0.getKeyCode() == 10)
+				{
+					
+					// Desarrollar el sistema de contraseña
+					String password = campoContraseña.getText();
+					
+					if(password.equals("admin"))
+					{
+						try
+						{
+							VistaMenuPrincipal frame = new VistaMenuPrincipal(listProd, listVentas);
+							frame.setVisible(true);
+							dispose();
+						} catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+					}else
+					{
+						
+						etiquetaContraseniaIncorrecta.setVisible(true);
+						campoContraseña.setText("");
+						campoContraseña.setFocusable(true);
+					}
+					
+				}
+				
+			}
+		});
 		campoContraseña.setEchoChar('*');
 		campoContraseña.setBackground(Color.LIGHT_GRAY);
 		campoContraseña.setFont(new Font("Segoe UI Historic", Font.PLAIN, 13));

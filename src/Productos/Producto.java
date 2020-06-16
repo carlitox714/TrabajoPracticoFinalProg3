@@ -2,9 +2,10 @@ package Productos;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Comparator;
 
 
-public class Producto implements Serializable
+public class Producto implements  Serializable
 {
 	
 	
@@ -190,7 +191,6 @@ public class Producto implements Serializable
 		return ID + nombre  + ", precio=" + precio
 				+ ", calorias=" + calorias + ", stock=" + stock + "]\n" ;
 	}
-	
-	
+
 
 }
