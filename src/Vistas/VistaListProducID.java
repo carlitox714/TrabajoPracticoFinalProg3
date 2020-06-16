@@ -68,7 +68,7 @@ public class VistaListProducID extends JDialog
 	public VistaListProducID(java.awt.Frame parent, boolean bobo, ListadoProducto<Producto> lista)
 	{
 		super(parent,bobo);
-	setType(Type.POPUP);
+		setType(Type.POPUP);
 		setResizable(false);
 	
 		

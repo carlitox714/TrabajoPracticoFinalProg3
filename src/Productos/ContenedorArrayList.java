@@ -25,11 +25,18 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Clone
 		this.conjuntoDeElementos = conjuntoDeElementos;
 	}
 
+	
 
 	
 	public ArrayList<T> getElementos()
 	{
 		return conjuntoDeElementos;
+	}
+	
+	public void editar(T pord, int id)
+	{
+		conjuntoDeElementos.remove(id);
+		conjuntoDeElementos.add(id, pord);
 	}
 	
 	

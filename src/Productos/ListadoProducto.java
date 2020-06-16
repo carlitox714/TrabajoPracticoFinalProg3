@@ -35,13 +35,6 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		super();	
 	}
 	
-	
-	
-
-	
-	
-
-	
 	@Override
 	public void agregar(Producto prod) throws Exception
 	{
@@ -83,14 +76,9 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		{
 			Producto prod = iterator.next();
 			srt.addElement(prod.toStringSimple());
-			
 		}
-		return srt;	
-	
-		
+		return srt;		
 	}
-
-	
 	
 	public Producto getProducto(String nombre)
 	{
@@ -105,6 +93,22 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 			}
 		}
 		return null;	
+	}
+	
+	
+	public void modificarProducto(Producto producto)
+	{
+		Iterator<Producto> iterator = this.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prod = iterator.next();
+			if(producto.getNombre().equals(prod.getNombre()))
+			{
+				prod = producto;
+			}
+		}
+		
 	}
 	
 
@@ -127,7 +131,6 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	public int cantProd()
 	{
 		int cont = 0;
-		
 		Iterator<Producto> iterator = this.iterator();
 		
 		while(iterator.hasNext())
@@ -135,30 +138,22 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 			cont++;
 			iterator.next();
 		}
-		return cont;
-			
+		return cont;		
 	}
 	
 	
 	public void lista2lista(ContenedorArrayList<Producto> lista2) throws Exception
 	{
-		
 		Iterator<Producto> iterator = lista2.iterator();
 	
 		while(iterator.hasNext())
 		{ 
 			Producto prod = iterator.next();
-			this.agregar(prod);
-			
-		}
-		
+			this.agregar(prod);	
+		}		
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	public String[] getNombres()
 	{

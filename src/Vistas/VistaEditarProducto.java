@@ -25,7 +25,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.ListSelectionModel;
 import Productos.RegistroVenta;
 import Productos.Venta;
+import Productos.ListadoProducto;
 import Productos.ListadoVentas;
+import Productos.Producto;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -39,35 +41,20 @@ import javax.swing.UIManager;
 public class VistaEditarProducto extends JFrame
 {
 	private JPanel contentPane;
-	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	private JTextField textFieldDetalleProducto;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
-					VistaEditarProducto frame = new VistaEditarProducto(listVentas);
-					frame.setVisible(true);
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaEditarProducto(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaEditarProducto(ListadoProducto<Producto> lista)
 	{
-		this.listVentas = lista; 
+		Producto prod = new Producto();
+
+		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Nuevo Producto");
@@ -78,6 +65,9 @@ public class VistaEditarProducto extends JFrame
 		/*
 		 * Barra de Tareas
 		 */
+		
+		
+	
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -142,6 +132,15 @@ public class VistaEditarProducto extends JFrame
 		contentPane.setLayout(null);
 		
 		// Etiquetas:
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(lista.listaSimple());
+		
+		JComboBox<String> comboBoxProducto = new JComboBox<String>();
+		comboBoxProducto.setFont(new Font("Courier New", Font.PLAIN, 17));
+		comboBoxProducto.setModel(model);
+		comboBoxProducto.setEditable(true);
+		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
+		comboBoxProducto.setBounds(153, 67, 569, 41);
+		contentPane.add(comboBoxProducto);
 		
 		JLabel etiquetaPieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
 		etiquetaPieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -248,10 +247,9 @@ public class VistaEditarProducto extends JFrame
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				/*
-				 * 
-				 * 
-				 */
+				lista.editar(prod,comboBoxProducto.getSelectedIndex());
+				
+				
 			}
 		});
 		btnConfirmar.setForeground(new Color(0, 128, 0));
@@ -364,12 +362,5 @@ public class VistaEditarProducto extends JFrame
 		chckbxCeliaco.setBounds(522, 274, 123, 31);
 		contentPane.add(chckbxCeliaco);
 
-		JComboBox<String> comboBoxProducto = new JComboBox<String>();
-		comboBoxProducto.setFont(new Font("Courier New", Font.PLAIN, 17));
-		comboBoxProducto.setModel(new DefaultComboBoxModel<String>(new String[] {" ", "fafa", "fefe", "fifi", "fofo", "fufu"}));
-		comboBoxProducto.setEditable(true);
-		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
-		comboBoxProducto.setBounds(153, 67, 569, 41);
-		contentPane.add(comboBoxProducto);
 	}
 }

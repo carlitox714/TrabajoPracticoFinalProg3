@@ -35,7 +35,7 @@ public class Main {
 		
 		//System.out.println(listVentas.toString());
 		
-		System.out.println(listVentas.toString());
+		System.out.println(listProd.toString());
 		//
 	VistaLogin login = new VistaLogin(listProd, listVentas);
 		login.setVisible(true);
@@ -98,13 +98,13 @@ public class Main {
 		//listProd.leerArchivo();
 	//	System.out.println(listProd.toString());
 	
-	*//*
+	
 	
 		RegistroVenta<Venta> reg1 = new RegistroVenta<Venta>();
 		RegistroVenta<Venta> reg2 = new RegistroVenta<Venta>();
 		
 		
-
+/*
 		
 		Venta aux;
 		aux = new Venta(prod1,2);

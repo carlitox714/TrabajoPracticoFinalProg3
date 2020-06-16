@@ -179,7 +179,9 @@ public class VistaMenuPrincipal extends JFrame
 				try
 				{
 					VistaAgregProducto frame = new VistaAgregProducto(listProd);
+					frame.setLocationRelativeTo(getContentPane());
 					frame.setVisible(true);
+					
 				} catch (Exception e)
 				{
 					e.printStackTrace();
@@ -198,7 +200,7 @@ public class VistaMenuPrincipal extends JFrame
 			public void mouseClicked(MouseEvent arg0) {
 				try
 				{
-					VistaEditarProducto frame = new VistaEditarProducto(null);
+					VistaEditarProducto frame = new VistaEditarProducto(listProd);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -265,7 +267,6 @@ public class VistaMenuPrincipal extends JFrame
 				try
 				{
 					VistaListProducAlfab frame = new VistaListProducAlfab(listProd);
-					frame.setLocation(getLocationOnScreen());
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
