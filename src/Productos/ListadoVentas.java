@@ -1,21 +1,21 @@
 package Productos;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import Archivos.*;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
-public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>>
+public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>> implements Cloneable
 {
 	public static int idCount=0;
 	private int id;
-	private Contenedor<Integer, RegistroVenta<Venta>> cont;
+
 	private static String nombreArchivo = "registroVentas.bin";
 	
 	public ListadoVentas() {
 		super();
-		this.cont = new Contenedor<Integer, RegistroVenta<Venta>>();
 		this.id=0;
 	}
 	 
@@ -24,11 +24,7 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		this.id = id;
 	}
 	
-	public ListadoVentas<Integer, Venta> getListado()
-	{
-		return (ListadoVentas<Integer, Venta>) cont;
-	}
-	
+
 	public int getId()
 	{
 		return this.id;
@@ -38,21 +34,31 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	public void agregar(RegistroVenta<Venta> venta)
 	{	
 		id = idCount;
-		cont.agregar(id,venta);
+		this.agregar(id,venta);
 		idCount++;
 	}
-	
-	
-	public RegistroVenta<Venta> remover(int id)
+	public void lista2lista(Contenedor<Integer, RegistroVenta<Venta>> lista2) throws Exception
 	{
 		
-		return cont.remover(id);
+		Map<Integer, RegistroVenta<Venta>> map = (Map<Integer, RegistroVenta<Venta>>) lista2.getElementos();
+		Iterator<Map.Entry<Integer, RegistroVenta<Venta>>> entries = map.entrySet().iterator();
+
+		
+		for (Map.Entry<Integer, RegistroVenta<Venta>> entry : map.entrySet()) 
+		{
+		    this.agregar((RegistroVenta<Venta>)entry.getValue());
+		}
 	}
 	
+		
 	
+
+	
+	
+
 	public String toString() 
 	{
-		Map<Integer, RegistroVenta<Venta>> map = cont.getElementos();
+		Map<Integer, RegistroVenta<Venta>> map = this.getElementos();
 		Iterator<Map.Entry<Integer, RegistroVenta<Venta>>> entries = map.entrySet().iterator();
 		String aux = "";
 		for (Map.Entry<Integer, RegistroVenta<Venta>> entry : map.entrySet()) 
@@ -62,16 +68,17 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		return  aux;
 	}
 	
-	public void leerArchivo()
+	public void leerArchivo() throws Exception
 	{
 		ArchivoVentas arch = new ArchivoVentas();
-		cont =(Contenedor) arch.levantarArchivo();
+		
+		this.lista2lista(arch.levantarArchivo());
 	}
 	
-	public void guardarArchivo()
+	public void guardarArchivo() throws CloneNotSupportedException
 	{
 		ArchivoVentas arch = new ArchivoVentas();
-		arch.guardarArchivo(cont);
+		arch.guardarArchivo((Contenedor<Integer, RegistroVenta<Venta>>)this.clone());
 	}
 
 }

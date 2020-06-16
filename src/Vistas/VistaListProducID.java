@@ -18,6 +18,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
+
 import Productos.RegistroVenta;
 import Productos.Venta;
 import Productos.ListadoProducto;
@@ -177,6 +179,8 @@ public class VistaListProducID extends JFrame
 		contentPane.add(scrollPane);
 		
 		DefaultListModel<String> listaParcial = new DefaultListModel<String>();
+		
+		listaParcial = lista.listadoString();
 		
 		JList<String> listaParcialProductos = new JList<String>();
 		listaParcialProductos.setForeground(Color.DARK_GRAY);

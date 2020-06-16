@@ -187,7 +187,7 @@ public class Producto implements Serializable
 	@Override
 	public String toString()
 	{
-		return nombre  + ", precio=" + precio
+		return ID + nombre  + ", precio=" + precio
 				+ ", calorias=" + calorias + ", stock=" + stock + "]\n" ;
 	}
 	

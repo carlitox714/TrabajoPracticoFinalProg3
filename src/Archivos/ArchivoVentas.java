@@ -19,16 +19,16 @@ public class ArchivoVentas
 private static String nombreArchivo = "Resgistro de Ventas.bin";
 	
 	
-	public Contenedor<Integer, Venta> levantarArchivo()
+	public Contenedor<Integer, RegistroVenta<Venta>> levantarArchivo()
 	{
 		ObjectInputStream arch = null;
-		Contenedor<Integer, Venta> aux = new Contenedor<Integer, Venta>();
+		Contenedor<Integer, RegistroVenta<Venta>> aux = new Contenedor<Integer, RegistroVenta<Venta>>();
 		
 		try 
 		{
 			arch = new ObjectInputStream(new FileInputStream(nombreArchivo));
 			try {
-				aux = (Contenedor<Integer, Venta>) arch.readObject();
+				aux = (Contenedor<Integer, RegistroVenta<Venta>>) arch.readObject();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}

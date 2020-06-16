@@ -1,24 +1,23 @@
 package Productos;
 
+import java.awt.List;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.DefaultListModel;
+
+import com.sun.scenario.effect.impl.prism.PrDrawable;
+
 import Archivos.*;
 
-public class ListadoProducto<T> extends ContenedorArrayList<Producto>
+public class ListadoProducto<T> extends ContenedorArrayList<Producto> implements Cloneable
 {
 	
-	private ContenedorArrayList<Producto> contenedor;
 	private static String nombreArchivo = "productos.bin";
 	private int idCount = 0;
 
-
-	public ListadoProducto(ContenedorArrayList<Producto> contenedor) {
-		super();
-		this.contenedor = contenedor;
-	}
 	
 	public int getIdcount()
 	{
@@ -31,9 +30,9 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	}
 	
 
-	public ListadoProducto() {
-		super();
-		contenedor = new ContenedorArrayList<Producto>();	
+	public ListadoProducto()
+	{
+		super();	
 	}
 	
 	@Override
@@ -42,7 +41,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		
 			if(!existeProducto(prod))
 			{
-				contenedor.agregar(prod);
+				super.agregar(prod);
 				this.idCount++;
 			}
 			else
@@ -51,20 +50,44 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		
 	}
 	
-	@Override
-	public Producto remover(int id)
+
+
+	public void ordenarId(int id)
 	{
-		return contenedor.remover(id);
+		Iterator<Producto> iterator = this.iterator();
+	
+		while(iterator.hasNext())
+		{
+			Producto prod = iterator.next();
+			prod.setID(id);
+			id++;
+		}
+	
+	
+	}
+	
+	
+	public DefaultListModel<String> listadoString()
+	{
+		DefaultListModel<String> srt = new DefaultListModel<String>();
+		Iterator<Producto> iterator = this.iterator();
+		
+		while(iterator.hasNext())
+		{
+			Producto prod = iterator.next();
+			srt.addElement(prod.toStringSimple());
+			
+		}
+		return srt;	
+	
 		
 	}
-
-	
 
 	
 	
 	public Producto getProducto(String nombre)
 	{
-		Iterator<Producto> iterator = contenedor.iterator();
+		Iterator<Producto> iterator = this.iterator();
 	
 		while(iterator.hasNext())
 		{
@@ -81,7 +104,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	
 	public boolean existeProducto(Producto prod)
 	{
-		Iterator<Producto> iterator = contenedor.iterator();
+		Iterator<Producto> iterator = this.iterator();
 	
 		while(iterator.hasNext())
 		{
@@ -98,7 +121,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	{
 		int cont = 0;
 		
-		Iterator<Producto> iterator = contenedor.iterator();
+		Iterator<Producto> iterator = this.iterator();
 		
 		while(iterator.hasNext())
 		{
@@ -107,6 +130,21 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		}
 		return cont;
 			
+	}
+	
+	
+	public void lista2lista(ContenedorArrayList<Producto> lista2) throws Exception
+	{
+		
+		Iterator<Producto> iterator = lista2.iterator();
+	
+		while(iterator.hasNext())
+		{ 
+			Producto prod = iterator.next();
+			this.agregar(prod);
+			
+		}
+		
 	}
 	
 	
@@ -120,7 +158,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		
 		String[] str = new String[cantProd];
 		
-		Iterator<Producto> iterator = contenedor.iterator();
+		Iterator<Producto> iterator = this.iterator();
 		
 		while(iterator.hasNext())
 		{
@@ -141,7 +179,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		
 		String[] str = new String[cantProd];
 		
-		Iterator<Producto> iterator = contenedor.iterator();
+		Iterator<Producto> iterator = this.iterator();
 		
 		while(iterator.hasNext())
 		{
@@ -156,24 +194,20 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	
 	
 	
-	public void leerArchivo()
+	public void leerArchivo() throws Exception
 	{
 		ArchivoProducto arch = new ArchivoProducto();
-		contenedor = arch.levantarArchivo();
+		this.lista2lista(arch.levantarArchivo());
 	}
-	
-	public void guardarArchivo()
+	 
+	public void guardarArchivo() throws CloneNotSupportedException
 	{
 		ArchivoProducto arch = new ArchivoProducto();
-		arch.guardarArchivo(contenedor);
+		arch.guardarArchivo((ContenedorArrayList<Producto>)this.clone());
 	}
 	
 	
 
-	@Override
-	public String toString() {
-		return contenedor.toString();
-	}
 
 
 	@Override

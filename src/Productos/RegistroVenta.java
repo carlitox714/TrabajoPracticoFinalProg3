@@ -30,10 +30,7 @@ public class RegistroVenta<T> extends ContenedorArrayList<Venta> implements Seri
 		
 	}
 	
-	public RegistroVenta<Venta> getRegistro()
-	{
-		return (RegistroVenta<Venta>) contenedor;
-	}
+
 	
 	public Venta removerVenta(int id)
 	{

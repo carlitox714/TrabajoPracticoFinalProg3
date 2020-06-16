@@ -16,6 +16,12 @@ import java.awt.Toolkit;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
+import Productos.ListadoProducto;
+import Productos.ListadoVentas;
+import Productos.Producto;
+import Productos.RegistroVenta;
+import Productos.Venta;
+
 public class VistaLogin extends JFrame
 {
 	private JPanel paneLogin;
@@ -23,6 +29,7 @@ public class VistaLogin extends JFrame
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
@@ -39,12 +46,12 @@ public class VistaLogin extends JFrame
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Creacion de la ventana Menú de Inicio.
 	 */
-	public VistaLogin()
+	public VistaLogin(ListadoProducto<Producto> listProd, ListadoVentas<Integer, RegistroVenta<Venta>> listVentas)
 	{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Gesti\u00F3n de Stock");
@@ -109,7 +116,7 @@ public class VistaLogin extends JFrame
 				{
 					try
 					{
-						VistaMenuPrincipal frame = new VistaMenuPrincipal();
+						VistaMenuPrincipal frame = new VistaMenuPrincipal(listProd, listVentas);
 						frame.setVisible(true);
 						dispose();
 					} catch (Exception e)

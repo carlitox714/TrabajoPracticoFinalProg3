@@ -19,7 +19,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import Productos.RegistroVenta;
 import Productos.Venta;
+import Productos.ListadoProducto;
 import Productos.ListadoVentas;
+import Productos.Producto;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -53,9 +55,9 @@ public class VistaListProducAlfab extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaListProducAlfab(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaListProducAlfab(ListadoProducto<Producto> lista)
 	{
-		this.listVentas = lista; 
+	
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Listado de Productos en Orden Alfab\u00E9tico\r\n");
@@ -174,6 +176,8 @@ public class VistaListProducAlfab extends JFrame
 		contentPane.add(scrollPane);
 		
 		DefaultListModel<String> listaParcial = new DefaultListModel<String>();
+		
+		listaParcial = lista.listadoString();
 		
 		JList<String> listaParcialProductos = new JList<String>();
 		listaParcialProductos.setForeground(Color.DARK_GRAY);

@@ -57,7 +57,7 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 		while(it.hasNext())
 			  aux = aux + (it.next().toString());
 		return aux;
-		//la tengo como un elefante
+		
 		
 	}
 

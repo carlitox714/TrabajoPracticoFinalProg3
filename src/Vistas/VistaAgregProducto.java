@@ -46,6 +46,8 @@ public class VistaAgregProducto extends JFrame
 	private JPanel contentPane;
 	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
 	private JTextField textFieldDetalleProducto;
+	public static int id = 0;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -74,6 +76,11 @@ public class VistaAgregProducto extends JFrame
 	 */
 	public VistaAgregProducto(ListadoProducto<Producto> listProd)
 	{
+		ListadoProducto<Producto> listAux = new ListadoProducto<Producto>();
+		
+		id = listProd.getIdcount();
+		
+
 		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
@@ -246,10 +253,20 @@ public class VistaAgregProducto extends JFrame
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
 			{
-				/*
-				 * 
-				 * 
-				 */
+				try {
+					ListadoProducto<Producto> aux;
+					
+					listAux.ordenarId(listProd.getIdcount());
+					listProd.lista2lista(listAux);
+					System.out.println(listProd.toString());
+					
+					listProd.guardarArchivo();
+					dispose();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+				
 			}
 		});
 		btnConfirmar.setForeground(new Color(0, 128, 0));
@@ -376,22 +393,28 @@ public class VistaAgregProducto extends JFrame
 		listaParcialProductos.setModel(listaParcial);
 		scrollPane.setViewportView(listaParcialProductos);
 		
-		ListadoProducto<Producto> listAux = new ListadoProducto<Producto>();
+		
+	
+		
 		
 		
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
 		btnAniadirALista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				
-				Producto prod = new Producto(listProd.getIdcount(), textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, false, false, false, (Integer) jSpinStock.getValue());
-				
-					try {
-						listAux.agregar(prod);
-						listaParcial.addElement(jSpinStock.getValue() + " " + textFieldDetalleProducto.getText() + ", " +  comboBoxCategoria.getSelectedItem() + " a $" + jSpinPrecio.getValue() + ".");
-
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);
+				Producto prod = new Producto(id, textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, false, false, false, (Integer) jSpinStock.getValue());
+				if(!listProd.existeProducto(prod))
+					{
+						try {
+							listAux.agregar(prod);
+							listaParcial.addElement(jSpinStock.getValue() + " " + textFieldDetalleProducto.getText() + ", " +  comboBoxCategoria.getSelectedItem() + " a $" + jSpinPrecio.getValue() + ".");
+							id++;
+							
+	
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);
+						}
 					}
 					
 			

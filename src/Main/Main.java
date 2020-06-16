@@ -13,6 +13,7 @@ import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Contenedor;
 import Usuarios.Usuario;
+import Vistas.VistaLogin;
 import Vistas.VistaMenuPrincipal;
 import Productos.ListadoProducto;
 
@@ -25,13 +26,18 @@ public class Main {
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
-		listProd.leerArchivo();
+	listProd.leerArchivo();
 		listVentas.leerArchivo();
 		
-		VistaMenuPrincipal menu = new VistaMenuPrincipal(listProd, listVentas);
-		menu.setVisible(true);
 		
-	/*
+		//System.out.println(listVentas.toString());
+		
+		//System.out.println(listProd.toString());
+		
+		VistaLogin login = new VistaLogin(listProd, listVentas);
+		login.setVisible(true);
+		
+/*
 		Producto prod1 = new Producto(0, "manzana", null, 15, 0, false, false, false,490);
 		Producto prod2 = new Producto(1, "banana", null, 45, 0, false, false, false,292);
 		Producto prod3 = new Producto(2, "ayauasca", null, 11, 0, false, false, false,609);
@@ -39,8 +45,8 @@ public class Main {
 		Producto prod5 = new Producto(4, "barrita de cereal", null, 35, 0, false, false, false,490);
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,490);
 		
-		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
 
+/*
 		try 
 		{
 		listProd.agregar(prod1);
@@ -84,20 +90,18 @@ public class Main {
 			System.out.println(e.getMessage());
 		}
 		
-		listProd.guardarArchivo();
+	//	listProd.guardarArchivo();
 		
-		listProd.leerArchivo();
-		System.out.println(listProd.toString());
+		//listProd.leerArchivo();
+	//	System.out.println(listProd.toString());
 	
-		
-		
-		boolean agregarCarrito = false;
+	
 	
 		RegistroVenta<Venta> reg1 = new RegistroVenta<Venta>();
 		RegistroVenta<Venta> reg2 = new RegistroVenta<Venta>();
 		
 		
-		System.out.println(listProd.toString());
+
 		
 		Venta aux;
 		aux = new Venta(prod1,2);
@@ -137,21 +141,21 @@ public class Main {
 		prod3.reducirStock(9);
 		
 		
-		listadoVentas<Integer,RegistroVenta<Venta>> lista = new listadoVentas<Integer,RegistroVenta<Venta>>();
+	
 
-		lista.agregar(reg1);
-		lista.agregar(reg2);
-		lista.agregar(reg2);
-		lista.agregar(reg2);
+		listVentas.agregar(reg1);
+		listVentas.agregar(reg2);
+		listVentas.agregar(reg2);
+		listVentas.agregar(reg2);
 		
-		lista.guardarArchivo();*/
+		//listVentas.guardarArchivo();
 		
 	//	lista.leerArchivo();
 	//	System.out.println(lista.toString());
 		
 		
 				
-		
+		*/
 		
 
 				

@@ -15,6 +15,8 @@ public class Contenedor<K,T> implements Serializable  {
 		super();
 		conjuntoDeElementos=new HashMap<K,T>();
 	}
+	
+	
 
 	/**
 	 * @return en forma de arrayList los elementos del contenedor
@@ -30,7 +32,7 @@ public class Contenedor<K,T> implements Serializable  {
 	}
 	
 	public T remover(K id) 
-	{	
+	{	 
 		return conjuntoDeElementos.remove(id);
 	}
 
@@ -38,6 +40,8 @@ public class Contenedor<K,T> implements Serializable  {
 	 * 
 	 * @return la cantidad de elementos en el contenedor
 	 */
+
+	
 	public int cantElementos() 
 	{
 		return conjuntoDeElementos.size();
