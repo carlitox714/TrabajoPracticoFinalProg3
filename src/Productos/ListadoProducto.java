@@ -79,7 +79,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		}
 		return srt;		
 	}
-	
+
 	public Producto getProducto(String nombre)
 	{
 		Iterator<Producto> iterator = this.iterator();
@@ -88,6 +88,21 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		{
 			Producto prod = iterator.next();
 			if(nombre.equals(prod.getNombre()))
+			{
+				return prod;
+			}
+		}
+		return null;	
+	}
+	
+	public Producto getProducto(int id)
+	{
+		Iterator<Producto> iterator = this.iterator();
+	
+		while(iterator.hasNext())
+		{
+			Producto prod = iterator.next();
+			if(id == prod.getID())
 			{
 				return prod;
 			}
@@ -178,13 +193,14 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 
 	public String[] listaSimple()
 	{
-		int cont = 0;
+		int cont = 1;
 		int cantProd = cantProd();
 		
-		String[] str = new String[cantProd];
+		String[] str = new String[cantProd +1];
 		
 		Iterator<Producto> iterator = this.iterator();
 		
+		str[0] = "";
 		while(iterator.hasNext())
 		{
 			Producto prodcto = iterator.next();

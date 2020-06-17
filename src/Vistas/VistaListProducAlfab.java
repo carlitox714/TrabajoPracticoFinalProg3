@@ -1,35 +1,26 @@
 package Vistas;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JButton;
-import java.awt.SystemColor;
+import javax.swing.JDialog;
+
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Comparator;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import Productos.RegistroVenta;
-import Productos.Venta;
 import Productos.ListadoProducto;
-import Productos.ListadoVentas;
 import Productos.Producto;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.UIManager;
 
-public class VistaListProducAlfab extends JFrame
+public class VistaListProducAlfab extends JDialog
 {
 	private JPanel contentPane;
 	
@@ -58,77 +49,19 @@ public class VistaListProducAlfab extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaListProducAlfab(ListadoProducto<Producto> lista)
+	public VistaListProducAlfab(java.awt.Frame parent, boolean modo, ListadoProducto<Producto> lista)
 	{
-	
-		 aux = (ListadoProducto<Producto>) lista;
+		super(parent,modo);
+		setType(Type.POPUP);
+		setResizable(false);
+		setUndecorated(true);
+		setSize(792, 515);
+		setBackground(Color.WHITE);
+		setAlwaysOnTop(true);
 		
+		aux = (ListadoProducto<Producto>) lista;		
 		aux.sort(Comparator.comparing(Producto::getNombre));
 		
-		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
-		setTitle("Aurelia - Listado de Productos en Orden Alfab\u00E9tico\r\n");
-		setResizable(false);
-		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(800, 300, 800, 600);
-		/*
-		 * Barra de Tareas
-		 */
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu menuBarraCaja = new JMenu("Caja");
-		menuBarraCaja.setForeground(Color.BLACK);
-		menuBarraCaja.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraCaja);
-		
-		JMenuItem btnBarraRegistrarVenta = new JMenuItem("Registrar Venta");
-		btnBarraRegistrarVenta.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraCaja.add(btnBarraRegistrarVenta);
-		
-		JMenu menuBarraProductos = new JMenu("Productos");
-		menuBarraProductos.setForeground(Color.BLACK);
-		menuBarraProductos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraProductos);
-		
-		JMenuItem btnBarraAgregarProducto = new JMenuItem("Agregar Producto");
-		btnBarraAgregarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraAgregarProducto);
-		
-		JMenuItem btnBarraEditarProducto = new JMenuItem("Editar Producto");
-		btnBarraEditarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraEditarProducto);
-		
-		JMenuItem btnBarraRegistrarCompra = new JMenuItem("Registrar Compra");
-		btnBarraRegistrarCompra.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraRegistrarCompra);
-		
-		JMenu menuBarraListados = new JMenu("Listados");
-		menuBarraListados.setForeground(Color.BLACK);
-		menuBarraListados.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraListados);
-		
-		JMenuItem btnBarraListVentas = new JMenuItem("Ventas");
-		btnBarraListVentas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraListVentas);
-		
-		JMenuItem btnBarraProductosID = new JMenuItem("Productos por ID");
-		btnBarraProductosID.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosID);
-		
-		JMenuItem btnBarraProductosAlfabetico = new JMenuItem("Productos Alfab\u00E9tico");
-		btnBarraProductosAlfabetico.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosAlfabetico);
-		
-		JMenu menuBarraAyuda = new JMenu("Ayuda");
-		menuBarraAyuda.setForeground(Color.BLACK);
-		menuBarraAyuda.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraAyuda);
-		
-		JMenuItem btnBarraManual = new JMenuItem("Manual de Usuario");
-		btnBarraManual.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraAyuda.add(btnBarraManual);
 		/*
 		 * Contenido en Ventana				
 		 */
@@ -137,20 +70,6 @@ public class VistaListProducAlfab extends JFrame
 		contentPane.setBorder(UIManager.getBorder("List.noFocusBorder"));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		// Etiquetas:
-		
-		JLabel etiquetaPieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		etiquetaPieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina1.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina1.setBounds(12, 504, 384, 22);
-		contentPane.add(etiquetaPieDePagina1);
-		
-		JLabel etiquetaPieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
-		etiquetaPieDePagina2.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina2.setBounds(610, 504, 172, 22);
-		contentPane.add(etiquetaPieDePagina2);
 
 		JLabel etiquetaTitulo = new JLabel("Listado Productos en Orden Alfab\u00E9tico");
 		etiquetaTitulo.setVerticalAlignment(SwingConstants.CENTER);

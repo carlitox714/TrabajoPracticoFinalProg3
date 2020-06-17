@@ -1,21 +1,10 @@
 package Main;
 
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import Productos.Venta;
 import Productos.ListadoVentas;
 import Productos.Producto;
 import Productos.RegistroVenta;
-import Productos.Contenedor;
-import Usuarios.Usuario;
 import Vistas.VistaLogin;
-import Vistas.VistaMenuPrincipal;
 import Productos.ListadoProducto;
 
 
@@ -27,8 +16,8 @@ public class Main {
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
-	listProd.leerArchivo();
-	listVentas.leerArchivo();
+		listProd.leerArchivo();
+		//listVentas.leerArchivo();
 		
 		
 		

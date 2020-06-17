@@ -1,22 +1,18 @@
 package Productos;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.Comparator;
 
 
 public class Producto implements  Serializable
-{
-	
-	
+{	
 	private int ID;
 	private String nombre;
 	private String categoria;
 	private int precio;
-	private int calorias;
 	private boolean isVegano;
 	private boolean isCeliaco;
-	private boolean azucar;
+	private boolean isAzucar;
+	private boolean isVegetariano;
 	private int stock; 
 	
 	
@@ -35,10 +31,9 @@ public class Producto implements  Serializable
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.precio = precio;
-		this.calorias = calorias;
 		this.isVegano = isVegano;
 		this.isCeliaco = isCeliaco;
-		this.azucar = azucar;
+		this.isAzucar = azucar;
 		this.stock = stock;
 	}
 	
@@ -46,39 +41,7 @@ public class Producto implements  Serializable
 	
 	
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + (azucar ? 1231 : 1237);
-		result = prime * result + calorias;
-		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-		result = prime * result + (isCeliaco ? 1231 : 1237);
-		result = prime * result + (isVegano ? 1231 : 1237);
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + precio;
-		result = prime * result + stock;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) 
-	{
-		if(obj instanceof Producto)
-		{
-				
-			Producto prod = (Producto) obj;
-			if(this.nombre.equals(prod.nombre))
-				return true;
-			else
-				return false;
-			
-		}
-		else return false;
-		
-	}
-
+	
 	public int getID() {
 		return ID;
 	}
@@ -111,16 +74,12 @@ public class Producto implements  Serializable
 		this.precio = precio;
 	}
 
-	public int getCalorias() {
-		return calorias;
-	}
-
-	public void setCalorias(int calorias) {
-		this.calorias = calorias;
-	}
-
 	public boolean isVegano() {
 		return isVegano;
+	}
+	
+	public boolean isVegetariano() {
+		return isVegetariano;
 	}
 
 	public void setVegano(boolean isVegano) {
@@ -136,13 +95,16 @@ public class Producto implements  Serializable
 	}
 
 	public boolean isAzucar() {
-		return azucar;
+		return isAzucar;
 	}
 
 	public void setAzucar(boolean azucar) {
-		this.azucar = azucar;
+		this.isAzucar = azucar;
 	}
 
+	public void setVegetariano(boolean vegetariano) {
+		this.isVegetariano = vegetariano;
+	}
 	
 	public boolean reducirStock(int cant)
 	{
@@ -162,35 +124,57 @@ public class Producto implements  Serializable
 	{
 		this.stock = this.stock + cant;
 	}
-
-
-	
 	
 	public int getStock()
 	{
 		return this.stock;
 	}
-	
-	public void setStock(int id,int stock)
+
+	public void setStock(int stock)
 	{
 		this.stock = stock;
 	}
-	
-
-	
+		
 	public String toStringSimple()
 	{
 		return this.getNombre()  + "                " + this.getPrecio() + "                " + stock;
 	}
 	
-
-	
 	@Override
 	public String toString()
 	{
-		return ID + nombre  + ", precio=" + precio
-				+ ", calorias=" + calorias + ", stock=" + stock + "]\n" ;
+		return ID + nombre  + ", precio=" + precio +  ", stock=" + stock + "]\n" ;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ID;
+		result = prime * result + (isAzucar ? 1231 : 1237);
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + (isCeliaco ? 1231 : 1237);
+		result = prime * result + (isVegano ? 1231 : 1237);
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + precio;
+		result = prime * result + stock;
+		return result;
 	}
 
-
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if(obj instanceof Producto)
+		{
+				
+			Producto prod = (Producto) obj;
+			if(this.nombre.equals(prod.nombre))
+				return true;
+			else
+				return false;
+			
+		}
+		else return false;
+		
+	}
 }

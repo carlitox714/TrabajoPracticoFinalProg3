@@ -1,7 +1,5 @@
 package Vistas;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,12 +7,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import java.awt.Font;
@@ -42,7 +36,7 @@ public class VistaRegCompras extends JFrame
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
+/*	public static void main(String[] args)
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
@@ -59,7 +53,7 @@ public class VistaRegCompras extends JFrame
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -74,63 +68,6 @@ public class VistaRegCompras extends JFrame
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
 		/*
-		 * Barra de Tareas
-		 */
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu menuBarraCaja = new JMenu("Caja");
-		menuBarraCaja.setForeground(Color.BLACK);
-		menuBarraCaja.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraCaja);
-		
-		JMenuItem btnBarraRegistrarVenta = new JMenuItem("Registrar Venta");
-		btnBarraRegistrarVenta.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraCaja.add(btnBarraRegistrarVenta);
-		
-		JMenu menuBarraProductos = new JMenu("Productos");
-		menuBarraProductos.setForeground(Color.BLACK);
-		menuBarraProductos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraProductos);
-		
-		JMenuItem btnBarraAgregarProducto = new JMenuItem("Agregar Producto");
-		btnBarraAgregarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraAgregarProducto);
-		
-		JMenuItem btnBarraEditarProducto = new JMenuItem("Editar Producto");
-		btnBarraEditarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraEditarProducto);
-		
-		JMenuItem btnBarraRegistrarCompra = new JMenuItem("Registrar Compra");
-		btnBarraRegistrarCompra.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraRegistrarCompra);
-		
-		JMenu menuBarraListados = new JMenu("Productos");
-		menuBarraListados.setForeground(Color.BLACK);
-		menuBarraListados.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraListados);
-		
-		JMenuItem btnBarraListVentas = new JMenuItem("Ventas");
-		btnBarraListVentas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraListVentas);
-		
-		JMenuItem btnBarraProductosID = new JMenuItem("Productos por ID");
-		btnBarraProductosID.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosID);
-		
-		JMenuItem btnBarraProductosAlfabetico = new JMenuItem("Productos Alfab\u00E9tico");
-		btnBarraProductosAlfabetico.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosAlfabetico);
-		
-		JMenu menuBarraAyuda = new JMenu("Ayuda");
-		menuBarraAyuda.setForeground(Color.BLACK);
-		menuBarraAyuda.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraAyuda);
-		
-		JMenuItem btnBarraManual = new JMenuItem("Manual de Usuario");
-		btnBarraManual.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraAyuda.add(btnBarraManual);
-		/*
 		 * Contenido en Ventana				
 		 */
 		contentPane = new JPanel();
@@ -138,20 +75,6 @@ public class VistaRegCompras extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		// Etiquetas:
-		
-		JLabel etiquetaPieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		etiquetaPieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina1.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina1.setBounds(12, 504, 384, 22);
-		contentPane.add(etiquetaPieDePagina1);
-		
-		JLabel etiquetaPieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
-		etiquetaPieDePagina2.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina2.setBounds(610, 504, 172, 22);
-		contentPane.add(etiquetaPieDePagina2);
 
 		JLabel etiquetaNuevaCompra = new JLabel("Nueva Compra");
 		etiquetaNuevaCompra.setVerticalAlignment(SwingConstants.CENTER);

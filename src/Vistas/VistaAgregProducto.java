@@ -17,11 +17,13 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Window.Type;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.ListSelectionModel;
@@ -41,7 +43,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.UIManager;
 
-public class VistaAgregProducto extends JFrame
+public class VistaAgregProducto extends JDialog
 {
 	private JPanel contentPane;
 	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
@@ -74,78 +76,19 @@ public class VistaAgregProducto extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaAgregProducto(ListadoProducto<Producto> listProd)
+	public VistaAgregProducto(java.awt.Frame parent, boolean modo, ListadoProducto<Producto> lista)
 	{
-		ListadoProducto<Producto> listAux = new ListadoProducto<Producto>();
-		
-		id = listProd.getIdcount();
-		
-
-		
-		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
-		setTitle("Aurelia - Registro de Nuevo Producto");
+		super(parent,modo);
+		setType(Type.POPUP);
 		setResizable(false);
+		setUndecorated(true);
+		setSize(792, 515);
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(550, 100, 800, 600);
-		/*
-		 * Barra de Tareas
-		 */
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
+		setAlwaysOnTop(true);
 		
-		JMenu menuBarraCaja = new JMenu("Caja");
-		menuBarraCaja.setForeground(Color.BLACK);
-		menuBarraCaja.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraCaja);
+		ListadoProducto<Producto> listAux = new ListadoProducto<Producto>();		
+		id = lista.getIdcount();
 		
-		JMenuItem btnBarraRegistrarVenta = new JMenuItem("Registrar Venta");
-		btnBarraRegistrarVenta.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraCaja.add(btnBarraRegistrarVenta);
-		
-		JMenu menuBarraProductos = new JMenu("Productos");
-		menuBarraProductos.setForeground(Color.BLACK);
-		menuBarraProductos.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraProductos);
-		
-		JMenuItem btnBarraAgregarProducto = new JMenuItem("Agregar Producto");
-		btnBarraAgregarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraAgregarProducto);
-		
-		JMenuItem btnBarraEditarProducto = new JMenuItem("Editar Producto");
-		btnBarraEditarProducto.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraEditarProducto);
-		
-		JMenuItem btnBarraRegistrarCompra = new JMenuItem("Registrar Compra");
-		btnBarraRegistrarCompra.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraProductos.add(btnBarraRegistrarCompra);
-		
-		JMenu menuBarraListados = new JMenu("Listados");
-		menuBarraListados.setForeground(Color.BLACK);
-		menuBarraListados.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraListados);
-		
-		JMenuItem btnBarraListVentas = new JMenuItem("Ventas");
-		btnBarraListVentas.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraListVentas);
-		
-		JMenuItem btnBarraProductosID = new JMenuItem("Productos por ID");
-		btnBarraProductosID.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosID);
-		
-		JMenuItem btnBarraProductosAlfabetico = new JMenuItem("Productos Alfab\u00E9tico");
-		btnBarraProductosAlfabetico.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraListados.add(btnBarraProductosAlfabetico);
-		
-		JMenu menuBarraAyuda = new JMenu("Ayuda");
-		menuBarraAyuda.setForeground(Color.BLACK);
-		menuBarraAyuda.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBar.add(menuBarraAyuda);
-		
-		JMenuItem btnBarraManual = new JMenuItem("Manual de Usuario");
-		btnBarraManual.setFont(new Font("Segoe UI Semilight", Font.PLAIN, 15));
-		menuBarraAyuda.add(btnBarraManual);
 		/*
 		 * Contenido en Ventana				
 		 */
@@ -154,20 +97,6 @@ public class VistaAgregProducto extends JFrame
 		contentPane.setBorder(UIManager.getBorder("List.noFocusBorder"));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		// Etiquetas:
-		
-		JLabel etiquetaPieDePagina1 = new JLabel("Almac\u00E9n de Alimentos Saludables - Gesti\u00F3n de Stock");
-		etiquetaPieDePagina1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina1.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina1.setBounds(12, 504, 384, 22);
-		contentPane.add(etiquetaPieDePagina1);
-		
-		JLabel etiquetaPieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
-		etiquetaPieDePagina2.setForeground(SystemColor.textInactiveText);
-		etiquetaPieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		etiquetaPieDePagina2.setBounds(610, 504, 172, 22);
-		contentPane.add(etiquetaPieDePagina2);
 
 		JLabel etiquetaNuevoProducto = new JLabel("Nuevo Producto");
 		etiquetaNuevoProducto.setVerticalAlignment(SwingConstants.CENTER);
@@ -256,17 +185,15 @@ public class VistaAgregProducto extends JFrame
 				try {
 					ListadoProducto<Producto> aux;
 					
-					listAux.ordenarId(listProd.getIdcount());
-					listProd.lista2lista(listAux);
-					System.out.println(listProd.toString());
+					listAux.ordenarId(lista.getIdcount());
+					lista.lista2lista(listAux);
+					System.out.println(lista.toString());
 					
-					listProd.guardarArchivo();
+					lista.guardarArchivo();
 					dispose();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
-				
 			}
 		});
 		btnConfirmar.setForeground(new Color(0, 128, 0));
@@ -375,8 +302,7 @@ public class VistaAgregProducto extends JFrame
 		chckbxCeliaco.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		chckbxCeliaco.setBackground(Color.LIGHT_GRAY);
 		chckbxCeliaco.setBounds(520, 142, 123, 31);
-		contentPane.add(chckbxCeliaco);
-		
+		contentPane.add(chckbxCeliaco);		
 		
 		// Lista y componentes relacionados
 		
@@ -393,17 +319,12 @@ public class VistaAgregProducto extends JFrame
 		listaParcialProductos.setModel(listaParcial);
 		scrollPane.setViewportView(listaParcialProductos);
 		
-		
-	
-		
-		
-		
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
 		btnAniadirALista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				
-				Producto prod = new Producto(id, textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, false, false, false, (Integer) jSpinStock.getValue());
-				if(!listProd.existeProducto(prod))
+				Producto prod = new Producto(id, textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue());
+				if(!lista.existeProducto(prod))
 					{
 						try {
 							listAux.agregar(prod);

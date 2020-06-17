@@ -4,29 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Map;
 
 public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Cloneable
 {
-
 	private ArrayList<T> conjuntoDeElementos;
 	
-	
-	
-
 	public ContenedorArrayList() {
 		this.conjuntoDeElementos = new ArrayList<T>();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public ContenedorArrayList(ArrayList<T> conjuntoDeElementos) {
 		super();
 		this.conjuntoDeElementos = conjuntoDeElementos;
 	}
-
-	
-
 	
 	public ArrayList<T> getElementos()
 	{
@@ -38,35 +29,30 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Clone
 		conjuntoDeElementos.remove(id);
 		conjuntoDeElementos.add(id, pord);
 	}
-	
-	
+		
 	public void agregar(T obj) throws Exception 
 	{
 		conjuntoDeElementos.add(obj);
 	}
 
-	
 	public T remover(int indice) 
 	{	
 		return conjuntoDeElementos.remove(indice);
 	}
 
-	
 	public Iterator<T> iterator() 
 	{		
 		return conjuntoDeElementos.iterator();
 	}
+	
 	@Override
 	public String toString() 
-	{	
-		
+	{		
 		Iterator<T> it = conjuntoDeElementos.iterator();
 		String aux = "";
 		while(it.hasNext())
 			  aux = aux + (it.next().toString());
-		return aux;
-		
-		
+		return aux;		
 	}
 
 	/**
