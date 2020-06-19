@@ -143,7 +143,7 @@ public class Producto implements  Serializable
 	@Override
 	public String toString()
 	{
-		return ID + nombre  + ", precio=" + precio +  ", stock=" + stock + "]\n" ;
+		return "[ID=" + ID +",nombre=" + nombre  + ",categoria=" + categoria + ",precio=" + precio +  ",stock=" + stock + ",Vegano=" + isVegano + ",Celiaco=" + isCeliaco + ",Azucar=" + isAzucar + ",Vegetariano=" + isVegetariano +"]\n" ;
 	}
 	
 	@Override

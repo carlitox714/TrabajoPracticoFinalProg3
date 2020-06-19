@@ -104,6 +104,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 			Producto prod = iterator.next();
 			if(id == prod.getID())
 			{
+				System.out.println("\n\n"+ prod.toString()+"\n\n");
 				return prod;
 			}
 		}

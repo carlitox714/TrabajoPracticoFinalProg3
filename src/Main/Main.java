@@ -3,6 +3,7 @@ package Main;
 import Productos.Venta;
 import Productos.ListadoVentas;
 import Productos.Producto;
+import Productos.ProductoJSON;
 import Productos.RegistroVenta;
 import Vistas.VistaLogin;
 import Productos.ListadoProducto;
@@ -14,13 +15,14 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
+		ProductoJSON son = new ProductoJSON();
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
-		listProd.leerArchivo();
+		//listProd.leerArchivo();
 		//listVentas.leerArchivo();
 		
 		
-		
+		/*
 		
 		//System.out.println(listVentas.toString());
 		
@@ -148,7 +150,12 @@ public class Main {
 		
 				
 		
-
+		
+		
+		
+		//son.guardarJSON(son.lista2JSON(listProd));
+		listProd = son.levantarJSON();
+		System.out.println(listProd.toString());
 
 				
 				
