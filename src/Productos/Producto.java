@@ -13,7 +13,7 @@ public class Producto implements  Serializable
 	private boolean isCeliaco;
 	private boolean isAzucar;
 	private boolean isVegetariano;
-	private int stock; 
+	protected int stock; 
 	
 	
 	

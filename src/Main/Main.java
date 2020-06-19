@@ -18,11 +18,11 @@ public class Main {
 		ProductoJSON son = new ProductoJSON();
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
-		//listProd.leerArchivo();
+		listProd.leerArchivo();
 		//listVentas.leerArchivo();
 		
 		
-		/*
+		
 		
 		//System.out.println(listVentas.toString());
 		
@@ -152,11 +152,11 @@ public class Main {
 		
 		
 		
-		
-		//son.guardarJSON(son.lista2JSON(listProd));
+		/*
+		son.guardarJSON(son.lista2JSON(listProd));
 		listProd = son.levantarJSON();
 		System.out.println(listProd.toString());
-
+		*/
 				
 				
 			
