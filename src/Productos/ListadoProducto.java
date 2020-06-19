@@ -226,10 +226,6 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		arch.guardarArchivo((ContenedorArrayList<Producto>)this.clone());
 	}
 	
-	
-
-
-
 	@Override
 	public boolean hasNext() {
 		// TODO Auto-generated method stub
