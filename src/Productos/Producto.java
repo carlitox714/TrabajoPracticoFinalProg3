@@ -7,7 +7,6 @@ public class Producto implements  Serializable
 {	
 	private int ID;
 	private String nombre;
-	private String categoria;
 	private int precio;
 	private boolean isVegano;
 	private boolean isCeliaco;
@@ -59,13 +58,6 @@ public class Producto implements  Serializable
 		this.nombre = nombre;
 	}
 
-	public String getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
 
 	public int getPrecio() {
 		return precio;
@@ -184,17 +176,7 @@ public class Producto implements  Serializable
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + (isAzucar ? 1231 : 1237);
-		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
-		result = prime * result + (isCeliaco ? 1231 : 1237);
-		result = prime * result + (isVegano ? 1231 : 1237);
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + precio;
-		result = prime * result + stock;
-		return result;
+		return 1;
 	}
 
 	@Override

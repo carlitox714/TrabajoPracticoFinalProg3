@@ -133,7 +133,7 @@ public class VistaMenuPrincipal extends JFrame
 			{
 				try
 				{
-					VistaRegVentas frame = new VistaRegVentas(null);
+					VistaRegVentas frame = new VistaRegVentas(listVentas,listProd);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{

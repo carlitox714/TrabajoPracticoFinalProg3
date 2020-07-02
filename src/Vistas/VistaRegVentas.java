@@ -30,7 +30,9 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import Productos.RegistroVenta;
 import Productos.Venta;
+import Productos.ListadoProducto;
 import Productos.ListadoVentas;
+import Productos.Producto;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -39,36 +41,19 @@ import javax.swing.DefaultComboBoxModel;
 public class VistaRegVentas extends JFrame
 {
 	private JPanel contentPane;
-	private static ListadoVentas<Integer,RegistroVenta<Venta>> listVentas;
+	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args)
-	{
-		EventQueue.invokeLater(new Runnable()
-		{
-			public void run()
-			{
-				try
-				{
-					VistaRegVentas frame = new VistaRegVentas(listVentas);
-					frame.setVisible(true);
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public VistaRegVentas(ListadoVentas<Integer,RegistroVenta<Venta>> lista)
+	public VistaRegVentas(ListadoVentas<Integer,RegistroVenta<Venta>> lista, ListadoProducto<Producto> listProd)
 	{
 		
-		listVentas = lista;
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
 		setTitle("Aurelia - Registro de Venta");
 		setResizable(false);
@@ -182,10 +167,12 @@ public class VistaRegVentas extends JFrame
 		btnConfirmarVenta.setBounds(348, 450, 211, 41);
 		contentPane.add(btnConfirmarVenta);
 		
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<String>(listProd.listaSimple());
+		
 		JComboBox<String> comboBoxProducto = new JComboBox<String>();
 		comboBoxProducto.setToolTipText("Aqu\u00ED se elige el producto a agregar a la lista de venta.");
 		comboBoxProducto.setFont(new Font("Courier New", Font.PLAIN, 17));
-		comboBoxProducto.setModel(new DefaultComboBoxModel<String>(new String[] {" ", "fefe", "fifi", "fofo", "fufu"}));
+		comboBoxProducto.setModel(model);
 		comboBoxProducto.setEditable(true);
 		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
 		comboBoxProducto.setBounds(153, 37, 569, 41);
