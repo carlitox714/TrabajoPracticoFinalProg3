@@ -13,7 +13,8 @@ public class Producto implements  Serializable
 	private boolean isCeliaco;
 	private boolean isAzucar;
 	private boolean isVegetariano;
-	protected int stock; 
+	protected int stock;
+	protected int stockMin; 
 	
 	
 	
@@ -23,18 +24,18 @@ public class Producto implements  Serializable
 		super(); 
 	}
 
-	public Producto(int iD, String nombre, String categoria, int precio, int calorias, boolean isVegano,
-			boolean isCeliaco, boolean azucar, int stock) 
+	public Producto(int iD, String nombre, int precio, int calorias, boolean isVegano,
+			boolean isCeliaco, boolean azucar, int stock, int stockMin) 
 	{
 		super();
 		ID = iD;
 		this.nombre = nombre;
-		this.categoria = categoria;
 		this.precio = precio;
 		this.isVegano = isVegano;
 		this.isCeliaco = isCeliaco;
 		this.isAzucar = azucar;
 		this.stock = stock;
+		this.stockMin = stockMin;
 	}
 	
 	
@@ -134,7 +135,17 @@ public class Producto implements  Serializable
 	{
 		this.stock = stock;
 	}
+	
+	
 		
+	public int getStockMin() {
+		return stockMin;
+	}
+
+	public void setStockMin(int stockMin) {
+		this.stockMin = stockMin;
+	}
+
 	public String toStringSimple()
 	{
 		return this.getNombre()  + "                " + this.getPrecio() + "                " + stock;
@@ -143,7 +154,32 @@ public class Producto implements  Serializable
 	@Override
 	public String toString()
 	{
-		return "[ID=" + ID +",nombre=" + nombre  + ",categoria=" + categoria + ",precio=" + precio +  ",stock=" + stock + ",Vegano=" + isVegano + ",Celiaco=" + isCeliaco + ",Azucar=" + isAzucar + ",Vegetariano=" + isVegetariano +"]\n" ;
+		String vegano;
+		String vegetariano;
+		String celiaco;
+		String azucar;
+		
+		if(isVegano())
+			vegano = "Si";
+		else
+			vegano = "No";
+		
+		if(isAzucar())
+			azucar = "Si";
+		else
+			azucar = "No";
+		
+		if(isCeliaco())
+			celiaco = "Si";
+		else
+			celiaco = "No";
+		
+		if(isVegetariano())
+			vegetariano = "Si";
+		else
+			vegetariano = "No";
+		
+		return " ID=" + ID +",nombre=" + nombre  + ",precio=" + precio +  ",stock=" + stock + ",Vegano=" + vegano + ",Celiaco=" + celiaco + ",Azucar=" + azucar  + ",Vegetariano=" + vegetariano +"\n" ;
 	}
 	
 	@Override

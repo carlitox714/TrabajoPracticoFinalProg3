@@ -30,6 +30,8 @@ import javax.swing.ListSelectionModel;
 
 import Productos.ListadoProducto;
 import Productos.Producto;
+import Productos.ProductoEnvasado;
+import Productos.ProductoSuelto;
 import Productos.RegistroVenta;
 import Productos.Venta;
 import Productos.ListadoVentas;
@@ -42,6 +44,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.UIManager;
+
+import Exepciones.AgregarProductoException;
 
 public class VistaAgregProducto extends JDialog
 {
@@ -131,7 +135,7 @@ public class VistaAgregProducto extends JDialog
 		etiqueta_cantidad.setForeground(Color.DARK_GRAY);
 		etiqueta_cantidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiqueta_cantidad.setBackground(Color.GRAY);
-		etiqueta_cantidad.setBounds(271, 191, 95, 22);
+		etiqueta_cantidad.setBounds(308, 191, 95, 22);
 		contentPane.add(etiqueta_cantidad);
 
 		JLabel etiquetaCategoria = new JLabel("Categor\u00EDa :");
@@ -185,7 +189,7 @@ public class VistaAgregProducto extends JDialog
 				try {
 					ListadoProducto<Producto> aux;
 					
-					listAux.ordenarId(lista.getIdcount());
+					listAux.setIdcount(lista.getIdcount());
 					lista.lista2lista(listAux);
 					System.out.println(lista.toString());
 					
@@ -194,6 +198,8 @@ public class VistaAgregProducto extends JDialog
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+				System.out.println(lista.getIdcount());
+
 			}
 		});
 		btnConfirmar.setForeground(new Color(0, 128, 0));
@@ -220,8 +226,28 @@ public class VistaAgregProducto extends JDialog
 			}
 		});
 		jSpinStock.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
-		jSpinStock.setBounds(378, 191, 118, 28);
+		jSpinStock.setBounds(415, 191, 57, 28);
 		contentPane.add(jSpinStock);
+		
+		JSpinner jSpinStockMinimo = new JSpinner();
+		jSpinStockMinimo.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpinStockMinimo.setBounds(204, 191, 57, 28);
+		contentPane.add(jSpinStockMinimo);
+		jSpinStockMinimo.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+		        int movimiento = e.getWheelRotation();
+		        if (movimiento > 0 && jSpinStockMinimo.getPreviousValue() != null)// Rueda hacia abajo
+		        {
+		        	jSpinStockMinimo.setValue(jSpinStockMinimo.getPreviousValue());
+		        }
+		        else if (movimiento < 0 && jSpinStockMinimo.getNextValue() != null)// Rueda hacia arriba
+		        {
+		        	jSpinStockMinimo.setValue(jSpinStockMinimo.getNextValue());
+		        }
+			}
+		});
 		
 		JSpinner jSpinPrecio = new JSpinner();
 		jSpinPrecio.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
@@ -255,7 +281,7 @@ public class VistaAgregProducto extends JDialog
 		comboBoxCategoria.setFont(new Font("Courier New", Font.PLAIN, 17));
 		comboBoxCategoria.setBackground(Color.WHITE);
 		comboBoxCategoria.setToolTipText("Aqu\u00ED puedes seleccionar la categor\u00EDa a la que pertenece el nuevo producto.");
-		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Categor\u00EDa 1", "Categor\u00EDa 2", "Categor\u00EDa 3"}));
+		comboBoxCategoria.setModel(new DefaultComboBoxModel(new String[] {"Envasado", "Suelto"}));
 		comboBoxCategoria.setBounds(222, 106, 184, 27);
 		contentPane.add(comboBoxCategoria);
 		
@@ -322,24 +348,34 @@ public class VistaAgregProducto extends JDialog
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
 		btnAniadirALista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
+				Producto prod;
+				if(comboBoxCategoria.getSelectedIndex() == 0)
+				{
+					prod = new ProductoEnvasado(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
+				}
+				else
+				{
+					prod = new ProductoSuelto(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
+				}
 				
-				Producto prod = new Producto(id, textFieldDetalleProducto.getText(), "puto", (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue());
 				if(!lista.existeProducto(prod))
 					{
-						try {
-							listAux.agregar(prod);
+						try 
+						{
+							listAux.add(prod);
 							listaParcial.addElement(jSpinStock.getValue() + " " + textFieldDetalleProducto.getText() + ", " +  comboBoxCategoria.getSelectedItem() + " a $" + jSpinPrecio.getValue() + ".");
 							id++;
 							
-	
-						} catch (Exception e1) {
+						}
+						catch (AgregarProductoException e1) 
+						{
 							// TODO Auto-generated catch block
 							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);
-						}
+						} 
 					}
 					
 			
-				
+
 				/// cambiar la muestra de la categoría por el detalle del precio (por gramos o por unidad)
 				/// desarrollar listaProducto paralela al defaultListModel
 			}
@@ -368,5 +404,16 @@ public class VistaAgregProducto extends JDialog
 		btnEliminarSeleccionado.setBackground(Color.LIGHT_GRAY);
 		btnEliminarSeleccionado.setBounds(69, 429, 211, 41);
 		contentPane.add(btnEliminarSeleccionado);
+		
+	
+		
+		JLabel etiqueta_cantidad_1 = new JLabel("Stock Minimo :");
+		etiqueta_cantidad_1.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_cantidad_1.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_cantidad_1.setForeground(Color.DARK_GRAY);
+		etiqueta_cantidad_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_cantidad_1.setBackground(Color.GRAY);
+		etiqueta_cantidad_1.setBounds(83, 191, 109, 22);
+		contentPane.add(etiqueta_cantidad_1);
 	}
 }

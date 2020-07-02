@@ -68,7 +68,7 @@ public class VistaEditarProducto extends JDialog
 		comboBoxProducto.setModel(model);
 		comboBoxProducto.setEditable(true);
 		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
-		comboBoxProducto.setBounds(153, 67, 569, 41);
+		comboBoxProducto.setBounds(153, 67, 414, 41);
 		contentPane.add(comboBoxProducto);
 
 		// Etiquetas:
@@ -153,6 +153,28 @@ public class VistaEditarProducto extends JDialog
 		btnCancelar.setBounds(571, 450, 211, 41);
 		contentPane.add(btnCancelar);
 
+		
+		JSpinner jSpinStockMinimo = new JSpinner();
+		jSpinStockMinimo.setFont(new Font("Courier New", Font.PLAIN, 17));
+		jSpinStockMinimo.setBounds(216, 336, 50, 28);
+		contentPane.add(jSpinStockMinimo);
+		jSpinStockMinimo.addMouseWheelListener(new MouseWheelListener()
+		{
+			public void mouseWheelMoved(MouseWheelEvent e)
+			{
+		        int movimiento = e.getWheelRotation();
+		        if (movimiento > 0 && jSpinStockMinimo.getPreviousValue() != null)// Rueda hacia abajo
+		        {
+		        	jSpinStockMinimo.setValue(jSpinStockMinimo.getPreviousValue());
+		        }
+		        else if (movimiento < 0 && jSpinStockMinimo.getNextValue() != null)// Rueda hacia arriba
+		        {
+		        	jSpinStockMinimo.setValue(jSpinStockMinimo.getNextValue());
+		        }
+			}
+		});
+		
+		
 		JSpinner jSpinStock = new JSpinner();
 		jSpinStock.setFont(new Font("Courier New", Font.PLAIN, 17));
 		jSpinStock.addMouseWheelListener(new MouseWheelListener()
@@ -171,7 +193,7 @@ public class VistaEditarProducto extends JDialog
 			}
 		});
 		jSpinStock.setModel(new SpinnerNumberModel(new Integer(1), new Integer(0), null, new Integer(1)));
-		jSpinStock.setBounds(404, 336, 118, 28);
+		jSpinStock.setBounds(404, 336, 50, 28);
 		contentPane.add(jSpinStock);
 		
 		JSpinner jSpinPrecio = new JSpinner();
@@ -253,27 +275,29 @@ public class VistaEditarProducto extends JDialog
 		JButton btnCargarDatos = new JButton("Datos Actuales\r\n");
 		btnCargarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				chckbxAzucar.setSelected(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).isAzucar());
+				Producto prod = lista.getProducto(comboBoxProducto.getSelectedIndex()-1);
+				chckbxAzucar.setSelected(prod.isAzucar());
 				chckbxAzucar.revalidate();
-				chckbxCeliaco.setSelected(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).isCeliaco());
+				chckbxCeliaco.setSelected(prod.isCeliaco());
 				chckbxCeliaco.revalidate();
-				chckbxVegano.setSelected(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).isVegano());
+				chckbxVegano.setSelected(prod.isVegano());
 				chckbxVegano.revalidate();
-				chckbxVegetariano.setSelected(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).isVegetariano());
+				chckbxVegetariano.setSelected(prod.isVegetariano());
 				chckbxVegetariano.revalidate();
-				textFieldDetalleProducto.setText(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).getNombre());
+				textFieldDetalleProducto.setText(prod.getNombre());
 				textFieldDetalleProducto.revalidate();
-				jSpinPrecio.setValue(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).getPrecio());
+				jSpinPrecio.setValue(prod.getPrecio());
 				jSpinPrecio.revalidate();
-				jSpinStock.setValue(lista.getProducto(comboBoxProducto.getSelectedIndex()-1).getStock());
+				jSpinStock.setValue(prod.getStock());
 				jSpinStock.revalidate();
-				
+				jSpinStockMinimo.setValue(prod.getStockMin());
+				jSpinStockMinimo.revalidate();
 			}
 		});
 		btnCargarDatos.setForeground(Color.DARK_GRAY);
 		btnCargarDatos.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		btnCargarDatos.setBackground(Color.LIGHT_GRAY);
-		btnCargarDatos.setBounds(65, 365, 211, 41);
+		btnCargarDatos.setBounds(577, 67, 211, 41);
 		contentPane.add(btnCargarDatos);
 
 		JButton btnConfirmar = new JButton("Confirmar ");
@@ -296,5 +320,14 @@ public class VistaEditarProducto extends JDialog
 		btnConfirmar.setBackground(Color.LIGHT_GRAY);
 		btnConfirmar.setBounds(348, 450, 211, 41);
 		contentPane.add(btnConfirmar);
+		
+		JLabel etiqueta_stockMinimo = new JLabel("Nuevo Stock Min :");
+		etiqueta_stockMinimo.setVerticalAlignment(SwingConstants.CENTER);
+		etiqueta_stockMinimo.setHorizontalAlignment(SwingConstants.CENTER);
+		etiqueta_stockMinimo.setForeground(Color.DARK_GRAY);
+		etiqueta_stockMinimo.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiqueta_stockMinimo.setBackground(Color.GRAY);
+		etiqueta_stockMinimo.setBounds(78, 336, 128, 22);
+		contentPane.add(etiqueta_stockMinimo);
 	}
 }

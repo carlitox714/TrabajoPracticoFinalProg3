@@ -24,7 +24,7 @@ public class RegistroVenta<T> extends ContenedorArrayList<Venta> implements Seri
 
 	
 	@Override
-	public void agregar(Venta venta) throws Exception
+	public void agregar(Venta venta)
 	{
 		contenedor.agregar(venta);
 		

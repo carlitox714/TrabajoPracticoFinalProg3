@@ -214,6 +214,7 @@ public class VistaRegVentas extends JFrame
 		contentPane.add(jSpinCantidad);
 		
 		JTextPane textPaneID = new JTextPane();// Obtener ID del atributo del Producto
+		textPaneID.setEnabled(false);
 		textPaneID.setToolTipText("Aqu\u00ED se muestra el ID del producto.\r\n");
 		textPaneID.setEditable(false);
 		textPaneID.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -240,6 +241,7 @@ public class VistaRegVentas extends JFrame
 		// CheckBoxs 
 
 		JCheckBox chckbxVegetariano = new JCheckBox("Vegetariano");
+		chckbxVegetariano.setEnabled(false);
 		chckbxVegetariano.setToolTipText("Aqu\u00ED se muestra si el producto es vegetariano.\r\n");
 		chckbxVegetariano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		chckbxVegetariano.setBackground(Color.LIGHT_GRAY);
@@ -247,6 +249,7 @@ public class VistaRegVentas extends JFrame
 		contentPane.add(chckbxVegetariano);
 		
 		JCheckBox chckbxVegano = new JCheckBox("Vegano");
+		chckbxVegano.setEnabled(false);
 		chckbxVegano.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxVegano.setToolTipText("Aqu\u00ED se muestra si el producto es vegano.\r\n");
 		chckbxVegano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -256,6 +259,7 @@ public class VistaRegVentas extends JFrame
 		contentPane.add(chckbxVegano);
 
 		JCheckBox chckbxAzucar = new JCheckBox("Az\u00FAcar");
+		chckbxAzucar.setEnabled(false);
 		chckbxAzucar.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxAzucar.setToolTipText("Aqu\u00ED se muestra si el producto contiene az\u00FAcar.\r\n");
 		chckbxAzucar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -264,6 +268,7 @@ public class VistaRegVentas extends JFrame
 		contentPane.add(chckbxAzucar);
 
 		JCheckBox chckbxCeliaco = new JCheckBox("Apto Cel\u00EDaco\r\n");
+		chckbxCeliaco.setEnabled(false);
 		chckbxCeliaco.setToolTipText("Aqu\u00ED se muestra si el producto contiene az\u00FAcar.\r\n");
 		chckbxCeliaco.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxCeliaco.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));

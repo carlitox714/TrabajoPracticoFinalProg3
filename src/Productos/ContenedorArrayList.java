@@ -30,7 +30,7 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Clone
 		conjuntoDeElementos.add(id, pord);
 	}
 		
-	public void agregar(T obj) throws Exception 
+	public void agregar(T obj)  
 	{
 		conjuntoDeElementos.add(obj);
 	}

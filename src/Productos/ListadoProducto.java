@@ -11,6 +11,7 @@ import javax.swing.DefaultListModel;
 import com.sun.scenario.effect.impl.prism.PrDrawable;
 
 import Archivos.*;
+import Exepciones.AgregarProductoException;
 
 public class ListadoProducto<T> extends ContenedorArrayList<Producto> 
 {
@@ -34,9 +35,9 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	{
 		super();	
 	}
+
 	
-	@Override
-	public void agregar(Producto prod) throws Exception
+	public void add(Producto prod) throws AgregarProductoException
 	{
 		
 			if(!existeProducto(prod))
@@ -45,7 +46,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 				this.idCount++;
 			}
 			else
-				throw new IOException("El producto ya se encuentra registrado");
+				throw new AgregarProductoException("El producto ya se encuentra registrado");
 			
 		
 	}
@@ -165,7 +166,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		while(iterator.hasNext())
 		{ 
 			Producto prod = iterator.next();
-			this.agregar(prod);	
+			add(prod);	
 		}		
 	}
 	

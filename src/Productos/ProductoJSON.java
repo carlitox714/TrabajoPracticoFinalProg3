@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 
 import org.json.*;
 
+import Exepciones.AgregarProductoException;
+
 public class ProductoJSON 
 {
 	private static String nombreArchivo = "productos.json";
@@ -19,7 +21,6 @@ public class ProductoJSON
 		{
 			obj.put("ID",prod.getID());
 			obj.put("nombre",prod.getNombre());
-			obj.put("categoria",prod.getCategoria());
 			obj.put("precio",prod.getPrecio());
 			obj.put("vegano",prod.isVegano());
 			obj.put("celiaco",prod.isCeliaco());
@@ -89,9 +90,9 @@ public class ProductoJSON
 				jsonobj = arr.getJSONObject(i);
 				try 
 				{
-					list.agregar(JSONtoProducto(jsonobj));
+					list.add(JSONtoProducto(jsonobj));
 				} 
-				catch (Exception e) 
+				catch (AgregarProductoException e) 
 				{
 					e.printStackTrace();
 				}
@@ -112,7 +113,6 @@ public class ProductoJSON
 		{
 			prod.setID(obj.getInt("ID"));
 			prod.setNombre(obj.getString("nombre"));
-			prod.setCategoria(obj.getString("categoria"));
 			prod.setPrecio(obj.getInt("precio"));
 			prod.setVegano(obj.getBoolean("isVegano"));
 			prod.setAzucar(obj.getBoolean("isAzucar"));
