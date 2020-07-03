@@ -12,7 +12,7 @@ import com.sun.scenario.effect.impl.prism.PrDrawable;
 
 import Archivos.*;
 import Contenedores.ContenedorArrayList;
-import Exepciones.AgregarProductoException;
+import Exepciones.ProductoReptidoException;
 import Interfaces.IABM;
 
 public class ListadoProducto<T> extends ContenedorArrayList<Producto>
@@ -21,15 +21,22 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	private static String nombreArchivo = "productos.bin";
 	private int idCount = 0;
 
-	
+	/**
+	 * 
+	 * @return Contador del ID
+	 */
 	public int getIdcount()
 	{
 		return this.idCount;
 	}
-	
+	/**
+	 * 
+	 * @param idCount, int con el cual setear el contador del ID
+	 * @return 
+	 */
 	public int setIdcount(int idCount)
 	{
-		return this.idCount;
+		return this.idCount = idCount;
 	}
 	
 
@@ -44,7 +51,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	 * @throws Falla al agregar un producto que ya se encuentra registrado.
 	 */
 	
-	public void add(Producto prod) throws AgregarProductoException
+	public void add(Producto prod) throws ProductoReptidoException
 	{
 		
 			if(!existeProducto(prod))
@@ -53,7 +60,7 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 				this.idCount++;
 			}
 			else
-				throw new AgregarProductoException("El producto ya se encuentra registrado");
+				throw new ProductoReptidoException("El producto ya se encuentra registrado");
 			
 		
 	}
@@ -110,6 +117,11 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		return null;	
 	}
 	
+	/**
+	 * 	Método para conseguir el producto mandando el id.
+	 * @param id del producto solicitado.
+	 * @return Producto solicitado.
+	 */
 	public Producto getProducto(int id)
 	{
 		Iterator<Producto> iterator = this.iterator();
@@ -127,12 +139,9 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	}
 	
 	/**
-	 * Metodo iterar sobre la lista y reemplazar un producto a modificar
-	 * @param recibe el producto modificado
-	 */
-
-	
-	
+	 * Metodo iterar sobre la lista y reemplazar un producto a modificar.
+	 * @param recibe el producto modificado.
+	 */	
 	public void modificarProducto(Producto producto)
 	{
 		Iterator<Producto> iterator = this.iterator();
@@ -149,11 +158,10 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	}
 	
 	/**
-	 * Metodo verificar la existencia del producto
-	 * @param recibe el producto 
-	 * @return returna verdadero si el producto existe en la lista
-	 */
-	
+	 * Metodo verificar la existencia del producto.
+	 * @param recibe el producto.
+	 * @return returna verdadero si el producto existe en la lista.
+	 */	
 	public boolean existeProducto(Producto prod)
 	{
 		Iterator<Producto> iterator = this.iterator();
@@ -168,7 +176,10 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		return false;
 	}
 	
-	
+	/**
+	 * Método para conseguir la cantidad de productos en en listado.
+	 * @return Cantidad de productos en el listado.
+	 */
 	public int cantProd()
 	{
 		int cont = 0;

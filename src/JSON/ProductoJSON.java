@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import org.json.*;
 
-import Exepciones.AgregarProductoException;
+import Exepciones.ProductoReptidoException;
 import Productos.ListadoProducto;
 import Productos.Producto;
 import Productos.ProductoEnvasado;
@@ -15,9 +15,13 @@ import Productos.ProductoSuelto;
 
 public class ProductoJSON 
 {
-	private static String nombreArchivo = "productos.json";
+	private static String nombreArchivo = "productos.json";	
 	
-	
+	/**
+	 * Método que crea un JSONObject a partir de un Producto.
+	 * @param prod a convertir.
+	 * @return JSONObject resultante.
+	 */
 	public JSONObject crearOBJJSON(Producto prod)
 	{
 		JSONObject obj = new JSONObject();
@@ -39,6 +43,11 @@ public class ProductoJSON
 		return obj;
 	}
 	
+	/**
+	 * Método que crea un JSONArray a partir de una lista.
+	 * @param list a convertir.
+	 * @return JSONArray resultante.
+	 */
 	public JSONArray lista2JSON(ListadoProducto<Producto> list)
 	{
 		JSONArray arr = new JSONArray();
@@ -51,6 +60,10 @@ public class ProductoJSON
 		return arr;
 	}
 	
+	/**
+	 * Método para guardar un JSONArray en archivo.
+	 * @param arr
+	 */
 	public void guardarJSON(JSONArray arr)
 	{
 		try
@@ -66,6 +79,10 @@ public class ProductoJSON
 		}
 	}
 	
+	/**
+	 * Método para leer un JSon.
+	 * @return
+	 */
 	public String leerJSON()
 	{
 		String contenido = "";
@@ -80,6 +97,10 @@ public class ProductoJSON
 		return contenido;
 	}
 	
+	/**
+	 * Método que levanta un Listado de Productos de un archivo Json.
+	 * @return list resultante.
+	 */
 	public ListadoProducto<Producto> levantarJSON()
 	{
 		ListadoProducto<Producto> list = new ListadoProducto<Producto>();
@@ -96,7 +117,7 @@ public class ProductoJSON
 				{
 					list.add(JSONtoProducto(jsonobj));
 				} 
-				catch (AgregarProductoException e) 
+				catch (ProductoReptidoException e) 
 				{
 					e.printStackTrace();
 				}
@@ -110,6 +131,11 @@ public class ProductoJSON
 		return list;
 	}
 	
+	/**
+	 * Método para pasar un Json a Producto.
+	 * @param obj Json a convertir.
+	 * @return Producto resultante.
+	 */
 	public Producto JSONtoProducto(JSONObject obj)
 	{
 		ProductoEnvasado prod = new ProductoEnvasado();
@@ -131,6 +157,4 @@ public class ProductoJSON
 		
 		return prod;
 	}
-	
-	
 }

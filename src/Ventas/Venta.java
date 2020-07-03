@@ -14,21 +14,22 @@ public class Venta implements Serializable
 	private int cantidad;
 	private int precioTotal;
 	
-	
-	
-	public Venta() {
+	public Venta()
+	{
 		this.cantidad = 0;
 		this.nombre = "";
 		this.precio = 0 ;
 		this.precioTotal = 0;
-		// TODO Auto-generated constructor stub
 	}
-
-
 	
+	/**
+	 * Método para cargar una venta
+	 * @param prod
+	 * @param cantidad
+	 * @throws StockInsuficienteException
+	 */
 	public void cargarVenta(Producto prod, int cantidad) throws StockInsuficienteException
-	{
-		
+	{		
 		try
 		{
 			prod.reducirStock(cantidad);
@@ -42,28 +43,34 @@ public class Venta implements Serializable
 		{
 			throw new StockInsuficienteException(e.getMessage());
 		}
-	
-	
 	}
 
-
-
+	/**
+	 * Método que devuelve el toString
+	 * @return String resultante.
+	 */
 	@Override
 	public String toString() {
 		return  nombre + ", cantidad=" + cantidad + ", Total=" + precioTotal + "\n";
 	}
 
+	/**
+	 * Método para conseguir la cantidad vendida.
+	 * @return cantidad.
+	 */
 	public int getCantidad() {
 		return cantidad;
 	}
 	
-	
-	
-	
+	/**
+	 * Método para conseguir el id de la venta.
+	 * @return id
+	 */
 	public int getId()
 	{
 		return this.id;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,7 +82,6 @@ public class Venta implements Serializable
 		result = prime * result + precioTotal;
 		return 1;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -102,7 +108,6 @@ public class Venta implements Serializable
 		return true;
 	}
 
-
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
 	}
@@ -113,31 +118,19 @@ public class Venta implements Serializable
 		this.precio = precio;
 	}
 
-
 	public int getPrecioTotal() {
 		return precioTotal;
 	}
-
 
 	public void setPrecioTotal(int precioTotal) {
 		this.precioTotal = precioTotal;
 	}
 
-
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-	
-	
- 
-	
-	
-
 }

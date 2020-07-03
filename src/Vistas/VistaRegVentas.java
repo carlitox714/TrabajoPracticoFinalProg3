@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import Contenedores.Contenedor;
 import Contenedores.ContenedorArrayList;
-import Exepciones.AgregarProductoException;
+import Exepciones.ProductoReptidoException;
 import Exepciones.StockInsuficienteException;
 
 import java.awt.Color;

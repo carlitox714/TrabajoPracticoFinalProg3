@@ -9,12 +9,13 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 {
 	private ArrayList<T> conjuntoDeElementos;
 	
-	public ContenedorArrayList() {
+	public ContenedorArrayList()
+	{
 		this.conjuntoDeElementos = new ArrayList<T>();
-		// TODO Auto-generated constructor stub
 	}
 
-	public ContenedorArrayList(ArrayList<T> conjuntoDeElementos) {
+	public ContenedorArrayList(ArrayList<T> conjuntoDeElementos)
+	{
 		super();
 		this.conjuntoDeElementos = conjuntoDeElementos;
 	}
@@ -24,24 +25,31 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 		return conjuntoDeElementos;
 	}
 	
+	/**
+	 * Método para editar un elemento del Arraylist, conociendo su índice.
+	 * @param pord
+	 * @param id
+	 */
 	public void editar(T pord, int id)
 	{
 		conjuntoDeElementos.remove(id);
 		conjuntoDeElementos.add(id, pord);
 	}
-		
+	
+	/**
+	 * Método para agregar un objeto al Arraylist.
+	 * @param obj a agregar.
+	 */
 	public void agregar(T obj)  
 	{
 		conjuntoDeElementos.add(obj);
 	}
 	
 	/**
-	 * 
+	 * Método para remover elemento en el Arraylist mandando el índice.
 	 * @param el indice del elemento a eliminar
 	 * @return el elemento eliminado
-	 *
 	 */
-
 	public T remover(int indice) 
 	{	
 		return conjuntoDeElementos.remove(indice);
@@ -61,8 +69,6 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 			  aux = aux + (it.next().toString());
 		return aux;		
 	}
-
-
 	
 	public void sort(Comparator<? super T> c)
 	{
@@ -70,7 +76,10 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 		
 	}
 	
-	
+	/**
+	 * Método para conseguir la catidad de elementos en el Arraylist.
+	 * @return cantidad de elementos.
+	 */
 	public int cantElementos() {
 		return conjuntoDeElementos.size();
 	}

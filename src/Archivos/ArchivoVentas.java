@@ -19,7 +19,10 @@ public class ArchivoVentas
 {
 private static String nombreArchivo = "Resgistro de Ventas.bin";
 	
-	
+	/**
+	 * Método que levanta losdatos del archivo registroventas.bin
+	 * @return Listado de Ventas presentes en el archivo
+	 */
 	public ListadoVentas<Integer,RegistroVenta<Venta>> levantarArchivo()
 	{
 		ObjectInputStream arch = null;
@@ -50,6 +53,10 @@ private static String nombreArchivo = "Resgistro de Ventas.bin";
 		return aux;
 	}
 	
+	/**
+	 * Método que guarda el listado de ventas en el archivo registroventas.bin
+	 * @param ListadoVentas a guardar
+	 */
 	public void guardarArchivo(ListadoVentas<Integer, RegistroVenta<Venta>> venta)
 	{
 		try{

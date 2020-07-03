@@ -1,9 +1,12 @@
 package Exepciones;
 
-public class AgregarProductoException extends Exception 
+public class ProductoReptidoException extends Exception 
 {
-	
-	public AgregarProductoException(String mensaje) {
+	/**
+	 * Excepcion que se dá cuando se quiere agregar un producto que ya existe.
+	 * @param mensaje
+	 */
+	public ProductoReptidoException(String mensaje) {
 		super(mensaje);
 	}
 	

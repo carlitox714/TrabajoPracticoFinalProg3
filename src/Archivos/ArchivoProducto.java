@@ -17,7 +17,10 @@ public class ArchivoProducto
 {
 	private static String nombreArchivo = "productos.bin";
 	
-	
+	/**
+	 * Método que levanta losdatos del archivo de productos.bin
+	 * @return Listado de Productos presentes en el archivo
+	 */
 	public ListadoProducto<Producto> levantarArchivo()
 	{
 		ObjectInputStream arch = null;
@@ -44,7 +47,10 @@ public class ArchivoProducto
 		
 		return aux;
 	}
-	
+	/**
+	 * Método que guarda el listado de productos en el archivo productos.bin
+	 * @param listadoProducto a guardar
+	 */
 	public void guardarArchivo(ListadoProducto<Producto> listadoProducto)
 	{
 		try{
@@ -56,7 +62,6 @@ public class ArchivoProducto
 
 		}catch (IOException e) {
 		    e.printStackTrace();
-		}
-		
+		}		
 	}
 }

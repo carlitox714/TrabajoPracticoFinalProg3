@@ -11,24 +11,21 @@ import Productos.ListadoProducto;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws Exception
+	{
 		
 		ListadoProducto<Producto> listProd = new ListadoProducto<Producto>();
 		ProductoJSON son = new ProductoJSON();
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
 		listProd.leerArchivo();
-		listVentas.leerArchivo();
-		
-		
-		
+		listVentas.leerArchivo();		
 		
 		//System.out.println(listVentas.toString());
 		
 		System.out.println(listProd.toString());
 		//
-	VistaLogin login = new VistaLogin(listProd, listVentas);
+		VistaLogin login = new VistaLogin(listProd, listVentas);
 		login.setVisible(true);
 		
 		/*
@@ -38,8 +35,6 @@ public class Main {
 		Producto prod4 = new Producto(3, "leche1lt", null, 80, 0, false, false, false,940);
 		Producto prod5 = new Producto(4, "barrita de cereal", null, 35, 0, false, false, false,490);
 		Producto prod6 = new Producto(5, "Pepas", null, 10, 0, false, false, false,490);
-		
-
 
 		try 
 		{
@@ -132,10 +127,7 @@ public class Main {
 		
 		aux =new Venta(prod1,14);
 		reg2.agregar(aux);
-		prod3.reducirStock(9);
-		
-		
-	
+		prod3.reducirStock(9);	
 
 		listVentas.agregar(reg1);
 		listVentas.agregar(reg2);
@@ -147,27 +139,11 @@ public class Main {
 	//	lista.leerArchivo();
 	//	System.out.println(lista.toString());
 		
-		
-				
-		
-		
-		
 		/*
 		son.guardarJSON(son.lista2JSON(listProd));
 		listProd = son.levantarJSON();
 		System.out.println(listProd.toString());
 		*/
-				
-				
-			
-			
-		
-
-		
-		
-		
-		
-
 	}
 
 }

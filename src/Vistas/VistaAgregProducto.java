@@ -45,7 +45,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.UIManager;
 
-import Exepciones.AgregarProductoException;
+import Exepciones.ProductoReptidoException;
 
 public class VistaAgregProducto extends JDialog
 {
@@ -382,7 +382,7 @@ public class VistaAgregProducto extends JDialog
 							id++;
 							
 						}
-						catch (AgregarProductoException e1) 
+						catch (ProductoReptidoException e1) 
 						{
 							
 							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);

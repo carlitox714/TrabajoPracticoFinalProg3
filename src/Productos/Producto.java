@@ -19,12 +19,27 @@ public abstract class Producto implements  Serializable
 	
 	
 	
-	
+	/**
+	 * Constructor Vacío de Producto
+	 */
 	public Producto() 
 	{
 		super(); 
 	}
-
+	
+	/**
+	 * Constructor de Producto
+	 * @param iD
+	 * @param nombre
+	 * @param precio
+	 * @param calorias
+	 * @param isVegano
+	 * @param isCeliaco
+	 * @param isVegetariano
+	 * @param azucar
+	 * @param stock
+	 * @param stockMin
+	 */
 	public Producto(int iD, String nombre, int precio, int calorias, boolean isVegano,
 			boolean isCeliaco,boolean isVegetariano, boolean azucar, int stock, int stockMin) 
 	{
@@ -39,11 +54,6 @@ public abstract class Producto implements  Serializable
 		this.stock = stock;
 		this.stockMin = stockMin;
 	}
-	
-	
-	
-	
-
 	
 	public int getID() {
 		return ID;
@@ -107,8 +117,7 @@ public abstract class Producto implements  Serializable
 	 * Metodo para verificar y reducir stock de un producto
 	 * @param recibe la cantidad de productos a reducir
 	 * @exception Si no se puede reducr se lanza una exepecion
-	 */
-	
+	 */	
 	public void reducirStock(int cant) throws StockInsuficienteException
 	{
 		int newStock = this.stock - cant;
@@ -137,8 +146,6 @@ public abstract class Producto implements  Serializable
 		this.stock = stock;
 	}
 	
-	
-		
 	public int getStockMin() {
 		return stockMin;
 	}
