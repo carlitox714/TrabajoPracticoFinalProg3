@@ -1,4 +1,4 @@
-package Productos;
+package JSON;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +8,10 @@ import java.nio.file.Paths;
 import org.json.*;
 
 import Exepciones.AgregarProductoException;
+import Productos.ListadoProducto;
+import Productos.Producto;
+import Productos.ProductoEnvasado;
+import Productos.ProductoSuelto;
 
 public class ProductoJSON 
 {
@@ -108,7 +112,7 @@ public class ProductoJSON
 	
 	public Producto JSONtoProducto(JSONObject obj)
 	{
-		Producto prod = new Producto();
+		ProductoEnvasado prod = new ProductoEnvasado();
 		try
 		{
 			prod.setID(obj.getInt("ID"));
@@ -127,4 +131,6 @@ public class ProductoJSON
 		
 		return prod;
 	}
+	
+	
 }

@@ -1,11 +1,11 @@
 package Main;
 
-import Productos.Venta;
-import Productos.ListadoVentas;
 import Productos.Producto;
-import Productos.ProductoJSON;
-import Productos.RegistroVenta;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 import Vistas.VistaLogin;
+import JSON.ProductoJSON;
 import Productos.ListadoProducto;
 
 

@@ -9,9 +9,9 @@ import com.sun.glass.events.WindowEvent;
 
 import Productos.ListadoProducto;
 import Productos.Producto;
-import Productos.RegistroVenta;
-import Productos.Venta;
-import Productos.ListadoVentas;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 
 import java.awt.Color;
 import javax.swing.JButton;

@@ -1,9 +1,10 @@
-package Productos;
+package Ventas;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import Archivos.*;
+import Contenedores.Contenedor;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 

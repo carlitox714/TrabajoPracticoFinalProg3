@@ -8,12 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import Productos.Contenedor;
-import Productos.ContenedorArrayList;
-import Productos.ListadoVentas;
+import Contenedores.Contenedor;
+import Contenedores.ContenedorArrayList;
 import Productos.Producto;
-import Productos.RegistroVenta;
-import Productos.Venta;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 
 public class ArchivoVentas
 {

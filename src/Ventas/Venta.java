@@ -1,9 +1,10 @@
-package Productos;
+package Ventas;
 
 import java.io.IOException;
 import java.io.Serializable;
 
 import Exepciones.StockInsuficienteException;
+import Productos.Producto;
 
 public class Venta implements Serializable
 {

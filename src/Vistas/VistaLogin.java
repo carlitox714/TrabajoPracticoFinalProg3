@@ -17,10 +17,11 @@ import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
 
 import Productos.ListadoProducto;
-import Productos.ListadoVentas;
 import Productos.Producto;
-import Productos.RegistroVenta;
-import Productos.Venta;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

@@ -11,13 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import Productos.RegistroVenta;
-import Productos.Venta;
-import Productos.ListadoVentas;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.UIManager;
+
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
+
 import javax.swing.JTextArea;
 
 public class VistaListVentas extends JDialog
