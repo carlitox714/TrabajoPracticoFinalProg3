@@ -174,7 +174,16 @@ public class VistaRegVentas extends JFrame
 		btnConfirmarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				listVenta.agregar(regaux);
+				
+				try {
+					listVenta.agregar(regaux);
+					dispose();
+					listVenta.guardarArchivo();
+				} catch (CloneNotSupportedException e) {
+					
+					e.printStackTrace();
+				}
+				
 			}
 		});
 		btnConfirmarVenta.setToolTipText("Con este bot\u00F3n se confirma la venta.");

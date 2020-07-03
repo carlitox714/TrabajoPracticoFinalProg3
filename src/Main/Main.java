@@ -19,7 +19,7 @@ public class Main {
 		ListadoVentas<Integer,RegistroVenta<Venta>> listVentas = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 
 		listProd.leerArchivo();
-		//listVentas.leerArchivo();
+		listVentas.leerArchivo();
 		
 		
 		
