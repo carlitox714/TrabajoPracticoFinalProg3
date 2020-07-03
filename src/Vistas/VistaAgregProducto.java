@@ -351,11 +351,11 @@ public class VistaAgregProducto extends JDialog
 				Producto prod;
 				if(comboBoxCategoria.getSelectedIndex() == 0)
 				{
-					prod = new ProductoEnvasado(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
+					prod = new ProductoEnvasado(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(),chckbxVegetariano.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
 				}
 				else
 				{
-					prod = new ProductoSuelto(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
+					prod = new ProductoSuelto(id, textFieldDetalleProducto.getText(), (Integer) jSpinPrecio.getValue(), 54, chckbxVegano.isSelected(), chckbxCeliaco.isSelected(), chckbxAzucar.isSelected(),chckbxVegetariano.isSelected(), (Integer) jSpinStock.getValue(),(Integer)jSpinStockMinimo.getValue());
 				}
 				
 				if(!lista.existeProducto(prod))

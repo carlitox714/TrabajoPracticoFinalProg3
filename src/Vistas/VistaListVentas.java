@@ -18,6 +18,7 @@ import Productos.ListadoVentas;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.UIManager;
+import javax.swing.JTextArea;
 
 public class VistaListVentas extends JDialog
 {
@@ -94,17 +95,15 @@ public class VistaListVentas extends JDialog
 		
 		// Lista
 
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(70, 65, 654, 350);
 		contentPane.add(scrollPane);
 		
-		DefaultListModel<String> listaParcial = new DefaultListModel<String>();
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		textArea.setText(lista.toString());
 		
-		JList<String> listaParcialProductos = new JList<String>();
-		listaParcialProductos.setForeground(Color.DARK_GRAY);
-		listaParcialProductos.setFont(new Font("Courier New", Font.PLAIN, 17));
-		listaParcialProductos.setBackground(Color.LIGHT_GRAY);
-		listaParcialProductos.setModel(listaParcial);
-		scrollPane.setViewportView(listaParcialProductos);
+		
 	}
 }

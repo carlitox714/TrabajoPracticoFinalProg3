@@ -155,7 +155,7 @@ public class VistaMenuPrincipal extends JFrame
 			{
 				try
 				{
-					VistaListVentas frame = new VistaListVentas(new JFrame(), true, null);
+					VistaListVentas frame = new VistaListVentas(new JFrame(), true, listVentas);
 					frame.setLocationRelativeTo(getContentPane());
 					frame.setVisible(true);
 				} catch (Exception e)

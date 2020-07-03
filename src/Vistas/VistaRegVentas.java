@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Exepciones.AgregarProductoException;
+
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -30,9 +33,13 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import Productos.RegistroVenta;
 import Productos.Venta;
+import Productos.Contenedor;
+import Productos.ContenedorArrayList;
 import Productos.ListadoProducto;
 import Productos.ListadoVentas;
 import Productos.Producto;
+import Productos.ProductoEnvasado;
+import Productos.ProductoSuelto;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
@@ -51,7 +58,7 @@ public class VistaRegVentas extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaRegVentas(ListadoVentas<Integer,RegistroVenta<Venta>> lista, ListadoProducto<Producto> listProd)
+	public VistaRegVentas(ListadoVentas<Integer,RegistroVenta<Venta>> listVenta, ListadoProducto<Producto> listProd)
 	{
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
@@ -60,6 +67,10 @@ public class VistaRegVentas extends JFrame
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 200, 800, 600);
+		
+		ListadoVentas<Integer, RegistroVenta<Venta>> listAux = new ListadoVentas<Integer, RegistroVenta<Venta>>();
+		RegistroVenta<Venta> regaux = new RegistroVenta<Venta>();
+		
 		/*
 		 * Contenido en Ventana				
 		 */
@@ -160,6 +171,12 @@ public class VistaRegVentas extends JFrame
 		contentPane.add(btnCancelar);
 
 		JButton btnConfirmarVenta = new JButton("Confirmar Venta");
+		btnConfirmarVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				listVenta.agregar(regaux);
+			}
+		});
 		btnConfirmarVenta.setToolTipText("Con este bot\u00F3n se confirma la venta.");
 		btnConfirmarVenta.setForeground(new Color(0, 128, 0));
 		btnConfirmarVenta.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
@@ -177,6 +194,7 @@ public class VistaRegVentas extends JFrame
 		comboBoxProducto.setBackground(Color.LIGHT_GRAY);
 		comboBoxProducto.setBounds(153, 37, 569, 41);
 		contentPane.add(comboBoxProducto);
+	
 		
 		JSpinner jSpinCantidad = new JSpinner();
 		jSpinCantidad.setToolTipText("Aqu\u00ED se especifica la cantidad vendida del producto.");
@@ -231,8 +249,9 @@ public class VistaRegVentas extends JFrame
 		chckbxVegetariano.setEnabled(false);
 		chckbxVegetariano.setToolTipText("Aqu\u00ED se muestra si el producto es vegetariano.\r\n");
 		chckbxVegetariano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		chckbxVegetariano.setBackground(Color.LIGHT_GRAY);
-		chckbxVegetariano.setBounds(161, 128, 117, 31);
+		chckbxVegetariano.setBackground(Color.WHITE);
+		chckbxVegetariano.setBounds(181, 126, 123, 31);
+		chckbxVegetariano.setVisible(true);
 		contentPane.add(chckbxVegetariano);
 		
 		JCheckBox chckbxVegano = new JCheckBox("Vegano");
@@ -240,9 +259,9 @@ public class VistaRegVentas extends JFrame
 		chckbxVegano.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxVegano.setToolTipText("Aqu\u00ED se muestra si el producto es vegano.\r\n");
 		chckbxVegano.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		chckbxVegano.setBackground(Color.LIGHT_GRAY);
-		chckbxVegano.setBounds(282, 128, 117, 31);
-		chckbxVegano.setVisible(false);
+		chckbxVegano.setBackground(Color.WHITE);
+		chckbxVegano.setBounds(333, 126, 123, 31);
+		chckbxVegano.setVisible(true);
 		contentPane.add(chckbxVegano);
 
 		JCheckBox chckbxAzucar = new JCheckBox("Az\u00FAcar");
@@ -250,8 +269,8 @@ public class VistaRegVentas extends JFrame
 		chckbxAzucar.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxAzucar.setToolTipText("Aqu\u00ED se muestra si el producto contiene az\u00FAcar.\r\n");
 		chckbxAzucar.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		chckbxAzucar.setBackground(Color.LIGHT_GRAY);
-		chckbxAzucar.setBounds(402, 128, 117, 31);
+		chckbxAzucar.setBackground(Color.WHITE);
+		chckbxAzucar.setBounds(485, 126, 123, 31);
 		contentPane.add(chckbxAzucar);
 
 		JCheckBox chckbxCeliaco = new JCheckBox("Apto Cel\u00EDaco\r\n");
@@ -259,8 +278,8 @@ public class VistaRegVentas extends JFrame
 		chckbxCeliaco.setToolTipText("Aqu\u00ED se muestra si el producto contiene az\u00FAcar.\r\n");
 		chckbxCeliaco.setHorizontalAlignment(SwingConstants.CENTER);
 		chckbxCeliaco.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		chckbxCeliaco.setBackground(Color.LIGHT_GRAY);
-		chckbxCeliaco.setBounds(523, 128, 123, 31);
+		chckbxCeliaco.setBackground(Color.WHITE);
+		chckbxCeliaco.setBounds(637, 126, 123, 31);
 		contentPane.add(chckbxCeliaco);
 		
 		// Lista y componentes relacionados.
@@ -281,17 +300,20 @@ public class VistaRegVentas extends JFrame
 		JButton btnAniadirALista = new JButton("A\u00F1adir a la Lista");
 		btnAniadirALista.setToolTipText("Con este bot\u00F3n se agrega el producto a la lista de venta.");
 		btnAniadirALista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				if(comboBoxProducto.getSelectedIndex() == 0)
-				{
-					JOptionPane.showMessageDialog(null, "Seleccione el producto a vender.", "Error.", 2, null);
-				}
-				else
-				{
-					listaParcial.addElement(jSpinCantidad.getValue() + " " + comboBoxProducto.getSelectedItem() + ", a $" + ".");
-					/// desarrollar listaVenta paralela al defaultListModel
-				}
-				
+			public void actionPerformed(ActionEvent e)
+			{
+				Venta venta;
+				Producto producto = (Producto)listProd.getProducto(comboBoxProducto.getSelectedIndex()-1) ;
+				venta = new Venta(producto, (int)jSpinCantidad.getValue());
+			
+				regaux.agregar(venta);
+				int precio = (int)producto.getPrecio();
+				int cant = (int)jSpinCantidad.getValue();
+				int precioTotal = precio * cant;
+				listaParcial.addElement(jSpinCantidad.getValue() + " " + textPaneID.getText() + ", " +  " a $" + String.valueOf(precioTotal));
+
+				/// cambiar la muestra de la categoría por el detalle del precio (por gramos o por unidad)
+				/// desarrollar listaProducto paralela al defaultListModel
 			}
 		});
 		btnAniadirALista.setForeground(new Color(70, 130, 180));
@@ -299,23 +321,45 @@ public class VistaRegVentas extends JFrame
 		btnAniadirALista.setBackground(Color.LIGHT_GRAY);
 		btnAniadirALista.setBounds(513, 182, 211, 41);
 		contentPane.add(btnAniadirALista);
-
-		JButton btnEliminarSeleccionado = new JButton("Eliminar Seleccionado");	
-		btnEliminarSeleccionado.setToolTipText("Con este bot\u00F3n se elimina el producto que est\u00E9 seleccionado de la lista de venta.");
-		btnEliminarSeleccionado.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e)
-			{
-				ListSelectionModel model2 = listaParcialProductos.getSelectionModel();
-				int indiceABorrar = model2.getMinSelectionIndex();
-				if (indiceABorrar != -1) {
-					listaParcial.remove(indiceABorrar);
-				}		
+		
+		JTextPane textPaneStockMin = new JTextPane();
+		textPaneStockMin.setToolTipText("Aqu\u00ED se muestra el stock actual del producto.\r\n");
+		textPaneStockMin.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		textPaneStockMin.setEditable(false);
+		textPaneStockMin.setBackground(Color.LIGHT_GRAY);
+		textPaneStockMin.setBounds(123, 127, 39, 28);
+		contentPane.add(textPaneStockMin);
+		
+		JLabel etiquetaStock_1 = new JLabel("Stock Minimo :");
+		etiquetaStock_1.setVerticalAlignment(SwingConstants.CENTER);
+		etiquetaStock_1.setHorizontalAlignment(SwingConstants.CENTER);
+		etiquetaStock_1.setForeground(Color.DARK_GRAY);
+		etiquetaStock_1.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
+		etiquetaStock_1.setBackground(Color.GRAY);
+		etiquetaStock_1.setBounds(10, 130, 109, 22);
+		contentPane.add(etiquetaStock_1);
+		
+		comboBoxProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Producto prod = listProd.getProducto(comboBoxProducto.getSelectedIndex()-1);
+				chckbxAzucar.setSelected(prod.isAzucar());
+				chckbxAzucar.revalidate();
+				chckbxCeliaco.setSelected(prod.isCeliaco());
+				chckbxCeliaco.revalidate();
+				chckbxVegano.setSelected(prod.isVegano());
+				chckbxVegano.revalidate();
+				chckbxVegetariano.setSelected(prod.isVegetariano());
+				chckbxVegetariano.revalidate();
+				textPaneID.setText(prod.getNombre());
+				textPaneID.revalidate();
+				textPanePrecio.setText(String.valueOf(prod.getPrecio()));
+				textPanePrecio.revalidate();
+				textPaneStock.setText(String.valueOf(prod.getStock()));
+				textPaneStock.revalidate();
+				textPaneStockMin.setText(String.valueOf(prod.getStockMin()));
+				textPaneStockMin.revalidate();
 			}
 		});
-		btnEliminarSeleccionado.setForeground(new Color(153, 0, 0));
-		btnEliminarSeleccionado.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnEliminarSeleccionado.setBackground(Color.LIGHT_GRAY);
-		btnEliminarSeleccionado.setBounds(69, 429, 211, 41);
-		contentPane.add(btnEliminarSeleccionado);
+		
 	}
 }

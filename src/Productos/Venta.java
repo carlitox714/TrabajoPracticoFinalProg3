@@ -3,6 +3,8 @@ package Productos;
 import java.io.IOException;
 import java.io.Serializable;
 
+import Exepciones.StockInsuficienteException;
+
 public class Venta implements Serializable
 {
 	private int id;
@@ -21,13 +23,22 @@ public class Venta implements Serializable
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venta(Producto prod, int cantidad) throws IOException 
+	public Venta(Producto prod, int cantidad) 
 	{
 		
-		if(! prod.reducirStock(cantidad))
+		try
 		{
-			throw new IOException("No hay suficiente stock, intente nuevamente");
+			prod.reducirStock(cantidad);
+			this.nombre = prod.getNombre();
+			this.precio = prod.getPrecio();
+			this.cantidad = cantidad;
+			this.setPrecioTotal(precio * cantidad);
 		}
+		catch (StockInsuficienteException e) {
+			e.getMessage();
+		}
+		
+			
 		
 		
 		this.nombre = prod.getNombre();

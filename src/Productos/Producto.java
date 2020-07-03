@@ -2,6 +2,8 @@ package Productos;
 
 import java.io.Serializable;
 
+import Exepciones.StockInsuficienteException;
+
 
 public class Producto implements  Serializable
 {	
@@ -24,7 +26,7 @@ public class Producto implements  Serializable
 	}
 
 	public Producto(int iD, String nombre, int precio, int calorias, boolean isVegano,
-			boolean isCeliaco, boolean azucar, int stock, int stockMin) 
+			boolean isCeliaco,boolean isVegetariano, boolean azucar, int stock, int stockMin) 
 	{
 		super();
 		ID = iD;
@@ -33,6 +35,7 @@ public class Producto implements  Serializable
 		this.isVegano = isVegano;
 		this.isCeliaco = isCeliaco;
 		this.isAzucar = azucar;
+		this.isVegetariano = isVegetariano;
 		this.stock = stock;
 		this.stockMin = stockMin;
 	}
@@ -99,18 +102,17 @@ public class Producto implements  Serializable
 		this.isVegetariano = vegetariano;
 	}
 	
-	public boolean reducirStock(int cant)
+	public void reducirStock(int cant) throws StockInsuficienteException
 	{
 		int newStock = this.stock - cant;
 		if(newStock >= 0)
 		{
 			this.stock = newStock;
-			return true;
-			}
-			else 
-			{
-				return false;
-			}
+		}
+		else 
+		{
+			throw new StockInsuficienteException("No hay Stock suficiente");
+		}
 	}
 	
 	public void aumentarStock(int cant)

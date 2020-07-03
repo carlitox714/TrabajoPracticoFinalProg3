@@ -36,6 +36,7 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		id = idCount;
 		this.agregar(id,venta);
 		idCount++;
+		
 	}
 	public void lista2lista(Contenedor<Integer, RegistroVenta<Venta>> lista2) throws Exception
 	{

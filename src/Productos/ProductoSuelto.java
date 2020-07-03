@@ -10,8 +10,8 @@ public class ProductoSuelto extends Producto
 		// TODO Auto-generated constructor stub
 	}
 	public ProductoSuelto(int iD, String nombre, int precio, int calorias, boolean isVegano,
-			boolean isCeliaco, boolean azucar, int stock,int stockMin) {
-		super(iD, nombre, precio, calorias, isVegano, isCeliaco, azucar, stock, stockMin);
+			boolean isCeliaco, boolean azucar,boolean isVegetariano, int stock,int stockMin) {
+		super(iD, nombre, precio, calorias, isVegano, isCeliaco, azucar,isVegetariano, stock, stockMin);
 		// TODO Auto-generated constructor stub
 	}
 
