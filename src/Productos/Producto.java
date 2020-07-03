@@ -154,7 +154,7 @@ public abstract class Producto implements  Serializable
 
 	public String toStringSimple()
 	{
-		return this.getNombre()  + "                " + this.getPrecio() + "                " + stock;
+		return this.getNombre()  + "       " + this.getPrecio() + "$        Stock: " + stock;
 	}
 	
 	@Override

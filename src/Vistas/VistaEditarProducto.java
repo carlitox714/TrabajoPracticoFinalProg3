@@ -47,8 +47,7 @@ public class VistaEditarProducto extends JDialog
 		setSize(792, 515);
 		setBackground(Color.WHITE);
 		setAlwaysOnTop(true);
-		
-		Producto prod = new Producto();		
+	
 		
 		/*
 		 * Contenido en Ventana				
