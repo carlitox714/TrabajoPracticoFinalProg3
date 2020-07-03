@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Exepciones.AgregarProductoException;
+import Exepciones.StockInsuficienteException;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -24,9 +25,12 @@ import javax.swing.JOptionPane;
 import javax.swing.DefaultListModel;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Window.Type;
+
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
@@ -45,7 +49,7 @@ import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 import javax.swing.DefaultComboBoxModel;
 
-public class VistaRegVentas extends JFrame
+public class VistaRegVentas extends JDialog
 {
 	private JPanel contentPane;
 	
@@ -58,17 +62,18 @@ public class VistaRegVentas extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public VistaRegVentas(ListadoVentas<Integer,RegistroVenta<Venta>> listVenta, ListadoProducto<Producto> listProd)
+	public VistaRegVentas(java.awt.Frame parent, boolean modo,ListadoVentas<Integer,RegistroVenta<Venta>> listVenta, ListadoProducto<Producto> listProd)
 	{
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(VistaLogin.class.getResource("/Imagenes/IconoVentana.png")));
-		setTitle("Aurelia - Registro de Venta");
+		super(parent,modo);
+		setType(Type.POPUP);
 		setResizable(false);
+		setUndecorated(true);
+		setSize(792, 515);
 		setBackground(Color.WHITE);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(300, 200, 800, 600);
+		setAlwaysOnTop(true);
 		
-		ListadoVentas<Integer, RegistroVenta<Venta>> listAux = new ListadoVentas<Integer, RegistroVenta<Venta>>();
+	
 		RegistroVenta<Venta> regaux = new RegistroVenta<Venta>();
 		
 		/*
@@ -174,15 +179,10 @@ public class VistaRegVentas extends JFrame
 		btnConfirmarVenta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				listVenta.agregar(regaux);
+				dispose();
+				listVenta.guardarArchivo();
 				
-				try {
-					listVenta.agregar(regaux);
-					dispose();
-					listVenta.guardarArchivo();
-				} catch (CloneNotSupportedException e) {
-					
-					e.printStackTrace();
-				}
 				
 			}
 		});
@@ -310,16 +310,31 @@ public class VistaRegVentas extends JFrame
 		btnAniadirALista.setToolTipText("Con este bot\u00F3n se agrega el producto a la lista de venta.");
 		btnAniadirALista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e)
-			{
+			{	
+				
 				Venta venta;
 				Producto producto = (Producto)listProd.getProducto(comboBoxProducto.getSelectedIndex()-1) ;
-				venta = new Venta(producto, (int)jSpinCantidad.getValue());
+
+				venta = new Venta();
+				
+				try
+				{
+					
+					venta.cargarVenta(producto, (int)jSpinCantidad.getValue());
+					regaux.agregar(venta);
+					int precio = (int)producto.getPrecio();
+					int cant = (int)jSpinCantidad.getValue();
+					int precioTotal = precio * cant;
+					listaParcial.addElement(jSpinCantidad.getValue() + " " + textPaneID.getText() + ", " +  " a $" + String.valueOf(precioTotal));
+					
+				}catch (StockInsuficienteException ex) 
+				{	
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error.", 2, null);
+				}
+				
+				
 			
-				regaux.agregar(venta);
-				int precio = (int)producto.getPrecio();
-				int cant = (int)jSpinCantidad.getValue();
-				int precioTotal = precio * cant;
-				listaParcial.addElement(jSpinCantidad.getValue() + " " + textPaneID.getText() + ", " +  " a $" + String.valueOf(precioTotal));
+				
 
 				/// cambiar la muestra de la categoría por el detalle del precio (por gramos o por unidad)
 				/// desarrollar listaProducto paralela al defaultListModel

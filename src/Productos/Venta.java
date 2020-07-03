@@ -23,7 +23,9 @@ public class Venta implements Serializable
 		// TODO Auto-generated constructor stub
 	}
 
-	public Venta(Producto prod, int cantidad) 
+
+	
+	public void cargarVenta(Producto prod, int cantidad) throws StockInsuficienteException
 	{
 		
 		try
@@ -33,21 +35,16 @@ public class Venta implements Serializable
 			this.precio = prod.getPrecio();
 			this.cantidad = cantidad;
 			this.setPrecioTotal(precio * cantidad);
+		
 		}
-		catch (StockInsuficienteException e) {
-			e.getMessage();
+		catch (StockInsuficienteException e) 
+		{
+			throw new StockInsuficienteException(e.getMessage());
 		}
-		
-			
-		
-		
-		this.nombre = prod.getNombre();
-		this.precio = prod.getPrecio();
-		this.cantidad = cantidad;
-		this.setPrecioTotal(precio * cantidad);
-		
+	
 	
 	}
+
 
 
 	@Override

@@ -81,7 +81,7 @@ public class VistaMenuPrincipal extends JFrame
 		pieDePagina1.setBounds(12, 543, 384, 22);
 		paneMenuPrincipal.add(pieDePagina1);
 		
-		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
+		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - AureliaMaster");
 		pieDePagina2.setForeground(SystemColor.textInactiveText);
 		pieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		pieDePagina2.setBounds(610, 543, 172, 22);
@@ -121,7 +121,7 @@ public class VistaMenuPrincipal extends JFrame
 		lblMenPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMenPrincipal.setForeground(Color.DARK_GRAY);
 		lblMenPrincipal.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
-		lblMenPrincipal.setBounds(291, 13, 211, 41);
+		lblMenPrincipal.setBounds(291, 42, 211, 41);
 		paneMenuPrincipal.add(lblMenPrincipal);
 		
 		// Botones: 
@@ -133,7 +133,8 @@ public class VistaMenuPrincipal extends JFrame
 			{
 				try
 				{
-					VistaRegVentas frame = new VistaRegVentas(listVentas,listProd);
+					VistaRegVentas frame = new VistaRegVentas(new JFrame(), true,listVentas,listProd);
+					frame.setLocationRelativeTo(getContentPane());
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -213,27 +214,6 @@ public class VistaMenuPrincipal extends JFrame
 		btnEditarProducto.setBackground(Color.LIGHT_GRAY);
 		btnEditarProducto.setBounds(301, 262, 211, 41);
 		paneMenuPrincipal.add(btnEditarProducto);
-		
-		JButton btnRegistrarCompra = new JButton("Registrar Compra");
-		btnRegistrarCompra.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try
-				{
-					VistaRegCompras frame = new VistaRegCompras(null);
-					frame.setLocationRelativeTo(getContentPane());
-					frame.setVisible(true);
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-		});
-		btnRegistrarCompra.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
-		btnRegistrarCompra.setForeground(Color.BLACK);
-		btnRegistrarCompra.setBackground(Color.LIGHT_GRAY);
-		btnRegistrarCompra.setBounds(301, 316, 211, 41);
-		paneMenuPrincipal.add(btnRegistrarCompra);
 		
 		JButton btnListProdID = new JButton("Productos (por ID)");
 		btnListProdID.addActionListener(new ActionListener() {

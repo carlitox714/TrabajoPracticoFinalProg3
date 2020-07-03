@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Cloneable
+public class ContenedorArrayList<T> implements Iterator<T>, Serializable
 {
 	private ArrayList<T> conjuntoDeElementos;
 	
@@ -34,6 +34,13 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Clone
 	{
 		conjuntoDeElementos.add(obj);
 	}
+	
+	/**
+	 * 
+	 * @param el indice del elemento a eliminar
+	 * @return el elemento eliminado
+	 *
+	 */
 
 	public T remover(int indice) 
 	{	
@@ -55,12 +62,7 @@ public class ContenedorArrayList<T> implements Iterator<T>, Serializable , Clone
 		return aux;		
 	}
 
-	/**
-	 * 
-	 * @return la cantidad de elementos en el contenedor
-	
-	 *
-	 */
+
 	
 	public void sort(Comparator<? super T> c)
 	{

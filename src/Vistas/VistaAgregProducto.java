@@ -153,17 +153,17 @@ public class VistaAgregProducto extends JDialog
 		etiquetaPrecioPorUnidad.setForeground(Color.DARK_GRAY);
 		etiquetaPrecioPorUnidad.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiquetaPrecioPorUnidad.setBackground(Color.GRAY);
-		etiquetaPrecioPorUnidad.setBounds(697, 106, 26, 22);
-		etiquetaPrecioPorUnidad.setVisible(false);
+		etiquetaPrecioPorUnidad.setBounds(701, 106, 38, 22);
+		etiquetaPrecioPorUnidad.setVisible(true);
 		contentPane.add(etiquetaPrecioPorUnidad);
 		
-		JLabel etiquetaPrecioPorGramo = new JLabel("/g");
+		JLabel etiquetaPrecioPorGramo = new JLabel("/100g");
 		etiquetaPrecioPorGramo.setVerticalAlignment(SwingConstants.CENTER);
 		etiquetaPrecioPorGramo.setHorizontalAlignment(SwingConstants.CENTER);
 		etiquetaPrecioPorGramo.setForeground(Color.DARK_GRAY);
 		etiquetaPrecioPorGramo.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		etiquetaPrecioPorGramo.setBackground(Color.GRAY);
-		etiquetaPrecioPorGramo.setBounds(697, 106, 17, 22);
+		etiquetaPrecioPorGramo.setBounds(697, 106, 57, 22);
 		etiquetaPrecioPorGramo.setVisible(false);
 		contentPane.add(etiquetaPrecioPorGramo);
 		
@@ -278,6 +278,21 @@ public class VistaAgregProducto extends JDialog
 		textFieldDetalleProducto.setColumns(10);
 		
 		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBoxCategoria.getSelectedIndex() == 0)
+				{
+					etiquetaPrecioPorGramo.setVisible(false);
+					etiquetaPrecioPorUnidad.setVisible(true);
+				}
+				else
+				{
+					etiquetaPrecioPorUnidad.setVisible(false);
+					etiquetaPrecioPorGramo.setVisible(true);
+					
+				}
+			}
+		});
 		comboBoxCategoria.setFont(new Font("Courier New", Font.PLAIN, 17));
 		comboBoxCategoria.setBackground(Color.WHITE);
 		comboBoxCategoria.setToolTipText("Aqu\u00ED puedes seleccionar la categor\u00EDa a la que pertenece el nuevo producto.");
@@ -369,7 +384,7 @@ public class VistaAgregProducto extends JDialog
 						}
 						catch (AgregarProductoException e1) 
 						{
-							// TODO Auto-generated catch block
+							
 							JOptionPane.showMessageDialog(null, e1.getMessage(), "Error.", 2, null);
 						} 
 					}

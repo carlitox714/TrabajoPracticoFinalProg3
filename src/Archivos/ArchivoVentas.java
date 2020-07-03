@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 import Productos.Contenedor;
 import Productos.ContenedorArrayList;
+import Productos.ListadoVentas;
 import Productos.Producto;
 import Productos.RegistroVenta;
 import Productos.Venta;
@@ -19,17 +20,20 @@ public class ArchivoVentas
 private static String nombreArchivo = "Resgistro de Ventas.bin";
 	
 	
-	public Contenedor<Integer, RegistroVenta<Venta>> levantarArchivo()
+	public ListadoVentas<Integer,RegistroVenta<Venta>> levantarArchivo()
 	{
 		ObjectInputStream arch = null;
-		Contenedor<Integer, RegistroVenta<Venta>> aux = new Contenedor<Integer, RegistroVenta<Venta>>();
+		ListadoVentas<Integer,RegistroVenta<Venta>> aux = new ListadoVentas<Integer,RegistroVenta<Venta>>();
 		
 		try 
 		{
 			arch = new ObjectInputStream(new FileInputStream(nombreArchivo));
-			try {
-				aux = (Contenedor<Integer, RegistroVenta<Venta>>) arch.readObject();
-			} catch (ClassNotFoundException e) {
+			try 
+			{
+				aux =  (ListadoVentas<Integer,RegistroVenta<Venta>>) arch.readObject();
+			} 
+			catch (ClassNotFoundException e) 
+			{
 				e.printStackTrace();
 			}
 			arch.close();
@@ -46,12 +50,12 @@ private static String nombreArchivo = "Resgistro de Ventas.bin";
 		return aux;
 	}
 	
-	public void guardarArchivo(Contenedor<Integer, RegistroVenta<Venta>> prod)
+	public void guardarArchivo(ListadoVentas<Integer, RegistroVenta<Venta>> venta)
 	{
 		try{
 		    ObjectOutputStream arch = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
 
-		    arch.writeObject(prod);
+		    arch.writeObject(venta);
 		    arch.flush();
 		    arch.close();
 

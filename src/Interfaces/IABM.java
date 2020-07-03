@@ -1,7 +1,7 @@
 package Interfaces;
 
-public interface IABM {
+public interface IABM<T>{
 	
-	public void agregar();
-	public void remover();
+	void add(T valor);
+
 }

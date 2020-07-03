@@ -18,16 +18,16 @@ public class ArchivoProducto
 	private static String nombreArchivo = "productos.bin";
 	
 	
-	public ContenedorArrayList<Producto> levantarArchivo()
+	public ListadoProducto<Producto> levantarArchivo()
 	{
 		ObjectInputStream arch = null;
-		ContenedorArrayList<Producto> aux = new ContenedorArrayList<Producto>();
+		ListadoProducto<Producto> aux = new ListadoProducto<Producto>();
 		
 		try 
 		{
 			arch = new ObjectInputStream(new FileInputStream(nombreArchivo));
 			try {
-				aux = (ContenedorArrayList<Producto>) arch.readObject();
+				aux = (ListadoProducto<Producto>) arch.readObject();
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -45,12 +45,12 @@ public class ArchivoProducto
 		return aux;
 	}
 	
-	public void guardarArchivo(ContenedorArrayList<Producto> prod)
+	public void guardarArchivo(ListadoProducto<Producto> listadoProducto)
 	{
 		try{
 		    ObjectOutputStream arch = new ObjectOutputStream(new FileOutputStream(nombreArchivo));
 
-		    arch.writeObject(prod);
+		    arch.writeObject(listadoProducto);
 		    arch.flush();
 		    arch.close();
 

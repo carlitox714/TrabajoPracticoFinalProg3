@@ -5,7 +5,7 @@ import java.io.Serializable;
 import Exepciones.StockInsuficienteException;
 
 
-public class Producto implements  Serializable
+public abstract class Producto implements  Serializable
 {	
 	private int ID;
 	private String nombre;
@@ -102,6 +102,13 @@ public class Producto implements  Serializable
 		this.isVegetariano = vegetariano;
 	}
 	
+	
+	/**
+	 * Metodo para verificar y reducir stock de un producto
+	 * @param recibe la cantidad de productos a reducir
+	 * @exception Si no se puede reducr se lanza una exepecion
+	 */
+	
 	public void reducirStock(int cant) throws StockInsuficienteException
 	{
 		int newStock = this.stock - cant;
@@ -139,6 +146,11 @@ public class Producto implements  Serializable
 	public void setStockMin(int stockMin) {
 		this.stockMin = stockMin;
 	}
+	
+	/**
+	 * Metodo para recibir un string con menos datos
+	 * @return devuelve un string con los datos seleccionados
+	 */
 
 	public String toStringSimple()
 	{

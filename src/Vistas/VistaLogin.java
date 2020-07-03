@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 
 public class VistaLogin extends JFrame
 {
+	public static String pass = "admin";
 	private JPanel paneLogin;
 	private JPasswordField campoContraseña;
 	/**
@@ -98,7 +99,7 @@ public class VistaLogin extends JFrame
 		pieDePagina1.setBounds(12, 530, 384, 22);
 		paneLogin.add(pieDePagina1);
 		
-		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - Los Hermosos");
+		JLabel pieDePagina2 = new JLabel("\u00A9 2020 - AureliaMaster");
 		pieDePagina2.setForeground(SystemColor.textInactiveText);
 		pieDePagina2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 16));
 		pieDePagina2.setBounds(610, 530, 172, 22);
@@ -114,7 +115,7 @@ public class VistaLogin extends JFrame
 				// Desarrollar el sistema de contraseña
 				String password = campoContraseña.getText();
 				
-				if(password.equals("admin"))
+				if(password.equals(pass))
 				{
 					try
 					{

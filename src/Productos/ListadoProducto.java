@@ -12,8 +12,9 @@ import com.sun.scenario.effect.impl.prism.PrDrawable;
 
 import Archivos.*;
 import Exepciones.AgregarProductoException;
+import Interfaces.IABM;
 
-public class ListadoProducto<T> extends ContenedorArrayList<Producto> 
+public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 {
 	
 	private static String nombreArchivo = "productos.bin";
@@ -36,6 +37,11 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		super();	
 	}
 
+	/**
+	 * Metodo para agregar un producto a la lista.
+	 * @param Recibe un Producto ya cargado.
+	 * @throws Falla al agregar un producto que ya se encuentra registrado.
+	 */
 	
 	public void add(Producto prod) throws AgregarProductoException
 	{
@@ -50,8 +56,6 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 			
 		
 	}
-	
-
 
 	public void ordenarId(int id)
 	{
@@ -66,7 +70,10 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 	
 	
 	}
-	
+	/**
+	 * Metodo para recibir una Lista en formato correspondiente a la vista.
+	 * @return retorna una list en modo de String[] para mostrarla en la vista
+	 */
 	
 	public DefaultListModel<String> listadoString()
 	{
@@ -80,6 +87,12 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		}
 		return srt;		
 	}
+	
+	/**
+	 * Metodo para conseguir un producto mandando el nombre
+	 * @param recibe el nombre del producto a buscar
+	 * @return retorna un producto
+	 */
 
 	public Producto getProducto(String nombre)
 	{
@@ -112,6 +125,12 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		return null;	
 	}
 	
+	/**
+	 * Metodo iterar sobre la lista y reemplazar un producto a modificar
+	 * @param recibe el producto modificado
+	 */
+
+	
 	
 	public void modificarProducto(Producto producto)
 	{
@@ -128,7 +147,11 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		
 	}
 	
-
+	/**
+	 * Metodo verificar la existencia del producto
+	 * @param recibe el producto 
+	 * @return returna verdadero si el producto existe en la lista
+	 */
 	
 	public boolean existeProducto(Producto prod)
 	{
@@ -157,6 +180,12 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		}
 		return cont;		
 	}
+	
+	
+	/**
+	 * Metodo para agregar los valores de  una lista de productos a otra
+	 * @param recibe el una lista 
+	 */
 	
 	
 	public void lista2lista(ContenedorArrayList<Producto> lista2) throws Exception
@@ -191,7 +220,10 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 		return str;
 			
 	}
-	
+	/**
+	 * Metodo para listar de manera que el swing reconozca los diferentes productos
+	 * @param recibe el una lista 
+	 */
 
 	public String[] listaSimple()
 	{
@@ -214,18 +246,25 @@ public class ListadoProducto<T> extends ContenedorArrayList<Producto>
 			
 	}
 	
-	
+	/**
+	 * Metodo para leer el archivo de productos
+	 */
 	
 	public void leerArchivo() throws Exception
 	{
 		ArchivoProducto arch = new ArchivoProducto();
 		this.lista2lista(arch.levantarArchivo());
 	}
+	
+	/**
+	 * Metodo para guardar el archivo de productos
+	 */
 	 
 	public void guardarArchivo() throws CloneNotSupportedException
 	{
 		ArchivoProducto arch = new ArchivoProducto();
-		arch.guardarArchivo((ContenedorArrayList<Producto>)this.clone());
+		ListadoProducto<Producto> aux = (ListadoProducto<Producto>) this; 
+		arch.guardarArchivo(aux);
 	}
 	
 	@Override

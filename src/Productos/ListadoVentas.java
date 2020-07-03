@@ -29,7 +29,10 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 	{
 		return this.id;
 	}
-
+	/**
+	 * Metodo para agregar una venta a la lista
+	 * @param recibe una venta con los productos previamente creada
+	 */
 
 	public void agregar(RegistroVenta<Venta> venta)
 	{	
@@ -38,6 +41,12 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		idCount++;
 		
 	}
+	
+	/**
+	 * Metodo para agregar los valores de  una lista de ventas a otra
+	 * @param recibe el una lista 
+	 */
+	
 	public void lista2lista(Contenedor<Integer, RegistroVenta<Venta>> lista2) throws Exception
 	{
 		
@@ -69,6 +78,11 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		return  aux;
 	}
 	
+	/**
+	 * Metodo para leer el archivo de ventas
+	 */
+	
+	
 	public void leerArchivo() throws Exception
 	{
 		ArchivoVentas arch = new ArchivoVentas();
@@ -76,10 +90,15 @@ public class ListadoVentas<K,T> extends Contenedor<Integer, RegistroVenta<Venta>
 		this.lista2lista(arch.levantarArchivo());
 	}
 	
-	public void guardarArchivo() throws CloneNotSupportedException
+	/**
+	 * Metodo para guardar el archivo de ventas
+	 */
+	
+	public void guardarArchivo() 
 	{
 		ArchivoVentas arch = new ArchivoVentas();
-		arch.guardarArchivo((Contenedor<Integer, RegistroVenta<Venta>>)this.clone());
+		ListadoVentas<Integer, RegistroVenta<Venta>> aux = (ListadoVentas<Integer,RegistroVenta<Venta>>) this;
+		arch.guardarArchivo(aux);
 	}
 
 }
