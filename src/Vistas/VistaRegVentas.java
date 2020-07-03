@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Contenedores.Contenedor;
+import Contenedores.ContenedorArrayList;
 import Exepciones.AgregarProductoException;
 import Exepciones.StockInsuficienteException;
 
@@ -35,15 +37,14 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
-import Productos.RegistroVenta;
-import Productos.Venta;
-import Productos.Contenedor;
-import Productos.ContenedorArrayList;
+
 import Productos.ListadoProducto;
-import Productos.ListadoVentas;
 import Productos.Producto;
 import Productos.ProductoEnvasado;
 import Productos.ProductoSuelto;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;

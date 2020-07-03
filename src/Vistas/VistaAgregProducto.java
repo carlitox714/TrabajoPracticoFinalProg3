@@ -32,9 +32,9 @@ import Productos.ListadoProducto;
 import Productos.Producto;
 import Productos.ProductoEnvasado;
 import Productos.ProductoSuelto;
-import Productos.RegistroVenta;
-import Productos.Venta;
-import Productos.ListadoVentas;
+import Ventas.ListadoVentas;
+import Ventas.RegistroVenta;
+import Ventas.Venta;
 
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;

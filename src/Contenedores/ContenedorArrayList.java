@@ -1,4 +1,4 @@
-package Productos;
+package Contenedores;
 
 import java.io.Serializable;
 import java.util.ArrayList;

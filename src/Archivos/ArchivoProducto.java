@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
-import Productos.ContenedorArrayList;
+import Contenedores.ContenedorArrayList;
 import Productos.ListadoProducto;
 import Productos.Producto;
 
